@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootpane" prefHeight="568.0" prefWidth="687.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RegisterController">
+   <children>
+      <AnchorPane layoutX="23.0" layoutY="34.0" prefHeight="470.0" prefWidth="657.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.0">
+         <children>
+            <AnchorPane layoutX="325.0" layoutY="-6.0" maxWidth="311.0" prefHeight="397.0" prefWidth="290.0" style="-fx-background-color: white; -fx-background-radius: 10;" AnchorPane.bottomAnchor="-6.0" AnchorPane.leftAnchor="325.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="-6.0">
+               <children>
+                  <JFXButton fx:id="btnRegister" buttonType="RAISED" layoutX="47.0" layoutY="325.0" prefHeight="46.0" prefWidth="229.0" ripplerFill="#094d8d" style="-fx-background-color: #92E7F0; -fx-background-radius: 1em;" text="REGISTER" textFill="#45a2c9">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font></JFXButton>
+                  <JFXTextField focusColor="#1289c9" labelFloat="true" layoutX="44.0" layoutY="111.0" prefHeight="25.0" prefWidth="229.0" promptText="Username " unFocusColor="#1289c9">
+                     <font>
+                        <Font size="14.0" />
+                     </font></JFXTextField>
+                  <JFXTextField focusColor="#1289c9" labelFloat="true" layoutX="44.0" layoutY="161.0" prefHeight="25.0" prefWidth="229.0" promptText="Email" unFocusColor="#1289c9">
+                     <font>
+                        <Font size="14.0" />
+                     </font></JFXTextField>
+                  <JFXTextField focusColor="#1289c9" labelFloat="true" layoutX="44.0" layoutY="211.0" prefHeight="25.0" prefWidth="229.0" promptText="Phone Number" unFocusColor="#1289c9">
+                     <font>
+                        <Font size="14.0" />
+                     </font></JFXTextField>
+                  <JFXPasswordField focusColor="#1289c9" labelFloat="true" layoutX="45.0" layoutY="262.0" prefHeight="30.0" prefWidth="229.0" promptText="Password" unFocusColor="#1289c9">
+                     <font>
+                        <Font size="14.0" />
+                     </font></JFXPasswordField>
+                  <Label layoutX="70.0" layoutY="406.0" prefHeight="17.0" prefWidth="187.0" text="Do you want to login the system ?" textFill="#2aa0ab" />
+                  <JFXButton fx:id="btnLoginNow" buttonType="RAISED" layoutX="67.0" layoutY="426.0" prefHeight="37.0" prefWidth="187.0" ripplerFill="#0b6d75" style="-fx-background-color: #92E7F0;" text="LOGIN NOW !" textFill="#45a2c9">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </JFXButton>
+                  <ImageView fx:id="btnClosed_RegisUI" fitHeight="18.0" fitWidth="18.0" layoutX="273.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="3.0">
+                     <image>
+                        <Image url="@../image/icon-close.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <effect>
+                  <DropShadow height="26.93" radius="14.4475" width="32.86" />
+               </effect>
+            </AnchorPane>
+            <AnchorPane layoutX="29.0" layoutY="-32.0" prefHeight="446.0" prefWidth="305.0" style="-fx-background-color: linear-gradient(to right top, #c1eff4, #aae7f1, #93dfef, #79d7ed, #5cceed, #46c2e8, #2db5e3, #00a9de, #0096d1, #0084c3, #0071b4, #135fa4); -fx-background-radius: 1em;" AnchorPane.bottomAnchor="-33.0" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="-32.0">
+               <effect>
+                  <DropShadow radius="12.225" width="29.9" />
+               </effect>
+               <children>
+                  <ImageView fitHeight="256.0" fitWidth="222.0" layoutX="42.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="42.0">
+                     <image>
+                        <Image url="@../image/image-register.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="26.0" layoutY="374.0" prefHeight="30.0" prefWidth="253.0" text="Clothing Store Management">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="0.6" endY="0.3904761904761905" startX="0.4857142857142857" startY="0.5190476190476191">
+                           <stops>
+                              <Stop color="#bdecf2" />
+                              <Stop color="#309ba7" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Label>
+                  <Label layoutX="26.0" layoutY="313.0" prefHeight="58.0" prefWidth="253.0" text="WELCOME TO">
+                     <font>
+                        <Font name=".VnTimeH" size="38.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="0.5285714285714286" endY="0.49523809523809514" startX="0.5142857142857143" startY="0.5952380952380953">
+                           <stops>
+                              <Stop color="#a4f4fc" />
+                              <Stop color="#309ba7" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Label>
+                  <Label layoutX="28.0" layoutY="403.0" text="Application" textFill="#ccfaff">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
