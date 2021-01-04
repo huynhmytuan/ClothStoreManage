@@ -14,7 +14,7 @@ public class ConnectDBUtil {
 	
     public Connection getConnect() throws SQLException{
         try{
-            String uRl ="jdbc:sqlserver://Localhost:1433;databaseName=Question";
+            String uRl ="jdbc:sqlserver://Localhost:1433;databaseName=ClothingStore"; 
             String user = "sa";
             String pass = "sa";
             cnn = DriverManager.getConnection(uRl,user,pass);

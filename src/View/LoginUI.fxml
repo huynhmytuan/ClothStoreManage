@@ -37,7 +37,7 @@
                   <Blend mode="GREEN" />
                </effect>
             </ImageView>
-            <JFXTextField focusColor="#1e90cd" focusTraversable="false" labelFloat="true" layoutX="60.0" layoutY="164.0" prefHeight="30.0" prefWidth="223.0" promptText="Username" unFocusColor="#006c8a" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="30.0">
+            <JFXTextField fx:id="tbUsername" focusColor="#1e90cd" focusTraversable="false" labelFloat="true" layoutX="60.0" layoutY="164.0" prefHeight="30.0" prefWidth="223.0" promptText="Username" unFocusColor="#006c8a" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="30.0">
                <font>
                   <Font size="15.0" />
                </font>
@@ -98,7 +98,7 @@
                   <Blend mode="COLOR_BURN" />
                </effect>
             </ImageView>
-            <JFXPasswordField focusColor="#1e90cd" labelFloat="true" layoutX="60.0" layoutY="225.0" prefHeight="30.0" prefWidth="200.0" promptText="Password" unFocusColor="#006986" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="30.0">
+            <JFXPasswordField fx:id="tbPassword" focusColor="#1e90cd" labelFloat="true" layoutX="60.0" layoutY="225.0" prefHeight="30.0" prefWidth="200.0" promptText="Password" unFocusColor="#006986" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="30.0">
                <font>
                   <Font size="15.0" />
                </font>

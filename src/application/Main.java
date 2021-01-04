@@ -7,7 +7,6 @@ import javafx.stage.StageStyle;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.fxml.FXMLLoader;
 
@@ -21,6 +20,7 @@ public class Main extends Application {
 			stage.initStyle(StageStyle.UNDECORATED);
 			stage.initStyle(StageStyle.TRANSPARENT);
 			stage.setScene(scene);
+			stage.centerOnScreen();
 			stage.show();
 			scene.setFill(Color.TRANSPARENT);
 			root.setOnMousePressed(new EventHandler<MouseEvent>() {

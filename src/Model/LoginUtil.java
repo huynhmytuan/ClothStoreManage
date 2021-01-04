@@ -1,5 +1,7 @@
 package Model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import javafx.scene.control.Alert;
@@ -8,16 +10,21 @@ import javafx.scene.control.Alert.AlertType;
 public class LoginUtil {
 	ConnectDBUtil kn = new ConnectDBUtil();
 	
-	public ResultSet getLogin() {
+	public ResultSet getLogin(String username, String pass) {
 		ResultSet rs = null;
-		String sql = "SELECT * FROM Login";
+		Connection cn =null;
+		PreparedStatement ptm = null;
+		String sql = "SELECT * FROM [Login] WHERE Username=? AND Password=?";
 		try { 
-			kn.ExecuteNonQuery(sql);
-			rs = kn.getTable(sql);
-	        Alert a = new Alert(AlertType.INFORMATION,"Login successfully!");
-	        a.show();
+			cn = kn.getConnect();
+			ptm = cn.prepareStatement(sql);
+			ptm.setString(1, username);
+			ptm.setString(2, pass);
+			rs = ptm.executeQuery();
+	        
 		}
 		catch(Exception e) {
+			
 		}
 		return rs;
 	}
