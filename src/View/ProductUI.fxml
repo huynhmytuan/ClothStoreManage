@@ -12,13 +12,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="productUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #e1fcf6;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="productUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #e6f2f7;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView layoutX="10.0" layoutY="171.0" prefHeight="502.0" prefWidth="773.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="287.0">
+      <TableView layoutX="10.0" layoutY="171.0" prefHeight="536.0" prefWidth="794.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="271.0">
         <columns>
           <TableColumn prefWidth="83.0" text="C1" />
           <TableColumn prefWidth="142.0" text="C2" />
         </columns>
+         <effect>
+            <DropShadow />
+         </effect>
       </TableView>
       <JFXButton layoutX="107.0" layoutY="690.0" prefHeight="30.0" prefWidth="130.0" ripplerFill="#fff0f0" style="-fx-background-color: #10a6ad;" text="Add New Product" textFill="#f6ffd1">
          <font>
@@ -72,68 +75,58 @@
             <Image url="@../image/icon-update.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="150.0" prefWidth="194.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
+      <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="130.0" prefWidth="1050.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0">
          <children>
             <Label layoutX="422.0" layoutY="14.0" text="View Products" textAlignment="CENTER" textFill="#37a6b5" AnchorPane.leftAnchor="422.0" AnchorPane.rightAnchor="421.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font name="Arial Bold" size="30.0" />
                </font>
             </Label>
-            <Label layoutX="28.0" layoutY="43.0" text="Search :" textFill="#37a6b5" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="43.0">
+            <Label layoutX="28.0" layoutY="27.0" text="Search :" textFill="#37a6b5" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="27.0">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <JFXTextField focusColor="#0e798a" layoutX="152.0" layoutY="43.0" prefHeight="25.0" prefWidth="249.0" promptText="Search By ID Or Name" unFocusColor="#19559e" AnchorPane.leftAnchor="152.0" AnchorPane.topAnchor="43.0" />
-            <Label layoutX="27.0" layoutY="82.0" text="Detail Search:" textFill="#072a2f">
+            <JFXTextField focusColor="#0e798a" layoutX="145.0" layoutY="24.0" prefHeight="25.0" prefWidth="218.0" promptText="Search By ID Or Name" unFocusColor="#19559e" AnchorPane.leftAnchor="145.0" AnchorPane.topAnchor="24.0" />
+            <Label layoutX="27.0" layoutY="58.0" text="Detail Search:" textFill="#072a2f">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="28.0" layoutY="104.0" text="Name Product :" textFill="#37a6b5">
+            <Label layoutX="28.0" layoutY="82.0" text="Name Product :" textFill="#37a6b5">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="329.0" layoutY="104.0" text="Category :" textFill="#37a6b5">
+            <Label layoutX="327.0" layoutY="80.0" text="Category :" textFill="#37a6b5">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="560.0" layoutY="104.0" text="Size :" textFill="#37a6b5">
+            <Label layoutX="558.0" layoutY="82.0" text="Size :" textFill="#37a6b5">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="670.0" layoutY="104.0" text="inventory :" textFill="#37a6b5">
+            <Label layoutX="666.0" layoutY="83.0" text="inventory :" textFill="#37a6b5">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <JFXComboBox layoutX="140.0" layoutY="104.0" prefHeight="25.0" prefWidth="180.0" />
-            <JFXComboBox layoutX="409.0" layoutY="104.0" prefHeight="25.0" prefWidth="138.0" />
-            <JFXComboBox layoutX="602.0" layoutY="104.0" prefHeight="25.0" prefWidth="54.0" />
-            <JFXComboBox layoutX="751.0" layoutY="104.0" prefHeight="25.0" prefWidth="138.0" />
-            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="100.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+            <JFXComboBox layoutX="140.0" layoutY="80.0" prefHeight="25.0" prefWidth="180.0" />
+            <JFXComboBox layoutX="405.0" layoutY="80.0" prefHeight="25.0" prefWidth="138.0" />
+            <JFXComboBox layoutX="602.0" layoutY="82.0" prefHeight="25.0" prefWidth="54.0" />
+            <JFXComboBox layoutX="750.0" layoutY="80.0" prefHeight="25.0" prefWidth="138.0" />
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="100.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/icon-search.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="1040.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <image>
-            <Image url="@../image/icon-CloseSaleUi.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="1027.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="0.0">
-         <image>
-            <Image url="@../image/icon-backtoHome.png" />
-         </image>
-      </ImageView>
-      <AnchorPane layoutX="738.0" layoutY="179.0" prefHeight="502.0" prefWidth="268.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="10.0">
+      <AnchorPane layoutX="738.0" layoutY="179.0" prefHeight="536.0" prefWidth="258.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="5.0">
          <children>
-            <Label layoutX="42.0" layoutY="14.0" text="INFORMATION DETAILS" textFill="#12555d" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="5.0">
+            <Label layoutX="42.0" layoutY="14.0" prefHeight="20.0" prefWidth="193.0" text="INFORMATION DETAILS" textFill="#12555d" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="5.0">
                <font>
                   <Font name="Arial" size="16.0" />
                </font>
@@ -175,6 +168,9 @@
             <JFXTextField layoutX="10.0" layoutY="332.0" prefHeight="25.0" prefWidth="221.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="30.0" />
             <JFXTextField layoutX="10.0" layoutY="395.0" prefHeight="25.0" prefWidth="221.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="30.0" />
          </children>
+         <effect>
+            <DropShadow />
+         </effect>
       </AnchorPane>
    </children>
 </AnchorPane>

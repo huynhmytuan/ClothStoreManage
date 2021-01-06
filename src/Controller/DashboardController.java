@@ -1,37 +1,38 @@
 package Controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import com.jfoenix.controls.JFXButton;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 public class DashboardController implements Initializable {
-
-	    @FXML
-	    private JFXButton btnProduct;
-
-	    @FXML
-	    private JFXButton btnCustomer;
-
-	    @FXML
-	    private JFXButton btnSatistics;
-
-	    @FXML
-	    private AnchorPane btnLogout;
-
-	    @FXML
-	    private JFXButton btnLogOut;
+	
+		@FXML
+	    private BorderPane mainPane;
 
 	    @FXML
 	    private ImageView btnClosed;
 
 	    @FXML
-	    private AnchorPane contentView;
+	    private VBox Slidebar;
+
+	    @FXML
+	    private AnchorPane btnLogout;
+
+	    @FXML
+	    private AnchorPane Content;
 
 	    @FXML
 	    void btnClosed_Clicked(MouseEvent event) {
@@ -39,25 +40,43 @@ public class DashboardController implements Initializable {
 	    }
 
 	    @FXML
-	    void btnCustomer_Clicked(MouseEvent event) {
+	    void btnCustomerUI_Clicked(MouseEvent event) {
 
 	    }
 
 	    @FXML
-	    void btnLogOut_Clicked(MouseEvent event) {
-
+	    void btnHome_Clicked(MouseEvent event) {
+	    	mainPane.setCenter(Content);
 	    }
 
 	    @FXML
-	    void btnProduct_Clicked(MouseEvent event) {
-
+	    void btnLogOut_Clicked(MouseEvent event) throws IOException {
+	    	LoadScene loader = new LoadScene();
+	    	String frm = "LoginUI.fxml";
+	    	loader.loadSence(frm, event);
 	    }
 
 	    @FXML
-	    void btnStatistics_Clicked(MouseEvent event) {
-
+	    void btnProductUI_Clicked(MouseEvent event) {
+	    	LoadUI("ProductUI.fxml");
 	    }
 
+	    @FXML
+	    void btnStatisticsUI_Clicked(MouseEvent event) {
+
+	    }
+	    // ham loadUI 
+	    private void LoadUI(String UI) {
+	    	Parent root = null;
+	    	try {
+				root = FXMLLoader.load(getClass().getResource("../View/"+ UI));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	mainPane.setCenter(root);
+	    }
+	    
 	    @Override
 	    public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub

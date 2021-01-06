@@ -1,6 +1,7 @@
 package Controller;
 
 import java.io.IOException;
+import java.net.URL;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -9,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -17,10 +19,10 @@ public class LoadScene {
 	double xOffset, yOffset;
 	public void loadSence(String formName, MouseEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("../View/"+formName));
-    	Scene registerScence = new Scene(root);
+    	Scene scence = new Scene(root);
     	Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    	registerScence.setFill(Color.TRANSPARENT);
-        window.setScene(registerScence);
+    	scence.setFill(Color.TRANSPARENT);
+        window.setScene(scence);
         window.centerOnScreen();
         window.show();
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -39,3 +41,4 @@ public class LoadScene {
 		});
 	}
 }
+
