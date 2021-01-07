@@ -41,7 +41,7 @@ public class DashboardController implements Initializable {
 
 	    @FXML
 	    void btnCustomerUI_Clicked(MouseEvent event) {
-
+	    	LoadUI("CustomerUI.fxml");
 	    }
 
 	    @FXML
