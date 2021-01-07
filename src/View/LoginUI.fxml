@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -37,7 +38,7 @@
                   <Blend mode="GREEN" />
                </effect>
             </ImageView>
-            <JFXTextField fx:id="tbUsername" focusColor="#1e90cd" focusTraversable="false" labelFloat="true" layoutX="60.0" layoutY="164.0" prefHeight="30.0" prefWidth="223.0" promptText="Username" unFocusColor="#006c8a" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="30.0">
+            <JFXTextField fx:id="tbUsername" focusColor="#1e90cd" labelFloat="true" layoutX="60.0" layoutY="164.0" prefHeight="30.0" prefWidth="223.0" promptText="Username" unFocusColor="#006c8a" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="30.0">
                <font>
                   <Font size="15.0" />
                </font>
@@ -72,6 +73,9 @@
                <effect>
                   <Blend mode="SCREEN" opacity="0.0" />
                </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
             <JFXButton fx:id="btnLogin" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="49.0" layoutY="295.0" onMouseClicked="#btnLogin_Clicked" prefHeight="39.0" prefWidth="234.0" style="-fx-background-color: #45C0FF; -fx-background-radius: 15;" text="LOGIN" textAlignment="CENTER" textFill="#f1fbff" textOverrun="WORD_ELLIPSIS" AnchorPane.leftAnchor="49.0" AnchorPane.rightAnchor="37.0">
                <font>
@@ -89,6 +93,9 @@
                <effect>
                   <Blend mode="ADD" opacity="0.0" />
                </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
             <ImageView fx:id="btnClosed" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="20.0" layoutX="267.0" layoutY="14.0" onMouseClicked="#btnClosed_Clicked" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="3.0">
                <image>
@@ -97,6 +104,9 @@
                <effect>
                   <Blend mode="COLOR_BURN" />
                </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
             <JFXPasswordField fx:id="tbPassword" focusColor="#1e90cd" labelFloat="true" layoutX="60.0" layoutY="225.0" prefHeight="30.0" prefWidth="200.0" promptText="Password" unFocusColor="#006986" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="30.0">
                <font>

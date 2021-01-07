@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -21,6 +22,9 @@
                <HBox.margin>
                   <Insets left="1230.0" top="1.0" />
                </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
          </children>
       </HBox>
@@ -32,6 +36,9 @@
                <image>
                   <Image url="@../image/icon-dashboard.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
             <AnchorPane prefHeight="50.0" prefWidth="190.0">
                <VBox.margin>
@@ -45,6 +52,9 @@
                      <padding>
                         <Insets left="10.0" />
                      </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </JFXButton>
                   <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="25.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -65,6 +75,9 @@
                      <padding>
                         <Insets left="40.0" />
                      </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </JFXButton>
                   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="21.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -85,6 +98,9 @@
                      <padding>
                         <Insets left="50.0" />
                      </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </JFXButton>
                   <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="25.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -105,6 +121,9 @@
                      <padding>
                         <Insets left="40.0" />
                      </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </JFXButton>
                   <ImageView fitHeight="35.0" fitWidth="32.0" layoutX="27.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -14,7 +15,7 @@
 
 <AnchorPane fx:id="productUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #e6f2f7;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView layoutX="10.0" layoutY="171.0" prefHeight="536.0" prefWidth="794.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="271.0">
+      <TableView layoutX="5.0" layoutY="144.0" prefHeight="536.0" prefWidth="792.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="273.0">
         <columns>
           <TableColumn prefWidth="83.0" text="C1" />
           <TableColumn prefWidth="142.0" text="C2" />
@@ -30,6 +31,9 @@
          <effect>
             <DropShadow />
          </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
       <JFXButton buttonType="RAISED" layoutX="382.0" layoutY="691.0" prefHeight="30.0" prefWidth="118.0" ripplerFill="#ffeded" style="-fx-background-color: #10a6ad;" text="Edit Product" textFill="#efffe4">
          <font>
@@ -38,6 +42,9 @@
          <effect>
             <DropShadow />
          </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
       <JFXButton buttonType="RAISED" layoutX="638.0" layoutY="689.0" prefHeight="30.0" prefWidth="130.0" ripplerFill="#ffeeee" style="-fx-background-color: #10a6ad;" text="Delete Product" textFill="#f6ffd1">
          <font>
@@ -46,14 +53,20 @@
          <effect>
             <DropShadow />
          </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="894.0" layoutY="689.0" prefHeight="30.0" prefWidth="130.0" ripplerFill="#fff0f0" style="-fx-background-color: #10a6ad;" text="Update Product" textFill="#f6ffd1">
+      <JFXButton buttonType="RAISED" layoutX="894.0" layoutY="689.0" prefHeight="30.0" prefWidth="130.0" ripplerFill="#fff0f0" style="-fx-background-color: #10a6ad;" text="Refresh" textFill="#f6ffd1">
          <font>
             <Font size="14.0" />
          </font>
          <effect>
             <DropShadow />
          </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
       <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="61.0" layoutY="686.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -121,6 +134,9 @@
                <image>
                   <Image url="@../image/icon-search.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
          </children>
       </AnchorPane>
