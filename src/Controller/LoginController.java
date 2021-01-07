@@ -72,7 +72,7 @@ public class LoginController  implements Initializable{
                          loader.loadSence(frmName, event);
         	        }
         	        else {
-        	        	String frmName = "DashboardUIStaff.fxml";
+        	        	String frmName = "DashboardStaffUI.fxml";
         	        	 LoadScene loader = new LoadScene();
                          loader.loadSence(frmName, event);
         	        }
