@@ -81,7 +81,7 @@ public class ProductOfStaffController implements Initializable {
 		col_type.setCellValueFactory(new PropertyValueFactory<Product,String>("ProductType"));
 		col_size.setCellValueFactory(new PropertyValueFactory<Product,String>("ProductSize"));
 		col_decs.setCellValueFactory(new PropertyValueFactory<Product,String>("ProductDecs"));
-		col_inprice.setCellValueFactory(new PropertyValueFactory<Product,Float>("ProductINPrice"));
+		col_inprice.setCellValueFactory(new PropertyValueFactory<Product,Float>("ProductInPrice"));
 		col_outprice.setCellValueFactory(new PropertyValueFactory<Product,Float>("ProductOutPrice"));
 		col_picture.setCellValueFactory(new PropertyValueFactory<Product,String>("ProductPicture"));
 		

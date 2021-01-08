@@ -15,16 +15,21 @@
 
 <AnchorPane fx:id="productUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #e6f2f7;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView layoutX="5.0" layoutY="144.0" prefHeight="536.0" prefWidth="792.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="273.0">
+      <TableView fx:id="table_product" layoutX="5.0" layoutY="144.0" prefHeight="536.0" prefWidth="792.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="273.0">
         <columns>
-          <TableColumn prefWidth="83.0" text="C1" />
-          <TableColumn prefWidth="142.0" text="C2" />
+          <TableColumn fx:id="col_id" prefWidth="83.0" text="ID" />
+          <TableColumn fx:id="col_name" prefWidth="155.9999771118164" text="Name" />
+            <TableColumn fx:id="col_type" prefWidth="94.4000244140625" text="Type" />
+            <TableColumn fx:id="col_size" prefWidth="85.5999755859375" text="Size" />
+            <TableColumn fx:id="col_decs" prefWidth="92.79989624023438" text="Decs" />
+            <TableColumn fx:id="col_inprice" prefWidth="144.0" text="InPrice" />
+            <TableColumn fx:id="col_outprice" prefWidth="135.99993896484375" text="OutPrice" />
         </columns>
          <effect>
             <DropShadow />
          </effect>
       </TableView>
-      <JFXButton layoutX="107.0" layoutY="690.0" prefHeight="30.0" prefWidth="130.0" ripplerFill="#fff0f0" style="-fx-background-color: #10a6ad;" text="Add New Product" textFill="#f6ffd1">
+      <JFXButton fx:id="btn_add" layoutX="107.0" layoutY="690.0" prefHeight="30.0" prefWidth="130.0" ripplerFill="#fff0f0" style="-fx-background-color: #10a6ad;" text="Add New Product" textFill="#f6ffd1">
          <font>
             <Font size="14.0" />
          </font>
@@ -35,7 +40,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="382.0" layoutY="691.0" prefHeight="30.0" prefWidth="118.0" ripplerFill="#ffeded" style="-fx-background-color: #10a6ad;" text="Edit Product" textFill="#efffe4">
+      <JFXButton fx:id="btn_edit" buttonType="RAISED" layoutX="382.0" layoutY="691.0" prefHeight="30.0" prefWidth="118.0" ripplerFill="#ffeded" style="-fx-background-color: #10a6ad;" text="Edit Product" textFill="#efffe4">
          <font>
             <Font size="14.0" />
          </font>
@@ -46,7 +51,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="638.0" layoutY="689.0" prefHeight="30.0" prefWidth="130.0" ripplerFill="#ffeeee" style="-fx-background-color: #10a6ad;" text="Delete Product" textFill="#f6ffd1">
+      <JFXButton fx:id="btn_delete" buttonType="RAISED" layoutX="638.0" layoutY="689.0" prefHeight="30.0" prefWidth="130.0" ripplerFill="#ffeeee" style="-fx-background-color: #10a6ad;" text="Delete Product" textFill="#f6ffd1">
          <font>
             <Font size="14.0" />
          </font>
@@ -57,7 +62,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="894.0" layoutY="689.0" prefHeight="30.0" prefWidth="130.0" ripplerFill="#fff0f0" style="-fx-background-color: #10a6ad;" text="Refresh" textFill="#f6ffd1">
+      <JFXButton fx:id="btn_refresh" buttonType="RAISED" layoutX="894.0" layoutY="689.0" prefHeight="30.0" prefWidth="130.0" ripplerFill="#fff0f0" style="-fx-background-color: #10a6ad;" text="Refresh" textFill="#f6ffd1">
          <font>
             <Font size="14.0" />
          </font>
@@ -100,7 +105,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <JFXTextField focusColor="#0e798a" layoutX="145.0" layoutY="24.0" prefHeight="25.0" prefWidth="218.0" promptText="Search By ID Or Name" unFocusColor="#19559e" AnchorPane.leftAnchor="145.0" AnchorPane.topAnchor="24.0" />
+            <JFXTextField fx:id="txt_search" focusColor="#0e798a" layoutX="145.0" layoutY="24.0" prefHeight="25.0" prefWidth="218.0" promptText="Search By ID Or Name" unFocusColor="#19559e" AnchorPane.leftAnchor="145.0" AnchorPane.topAnchor="24.0" />
             <Label layoutX="27.0" layoutY="58.0" text="Detail Search:" textFill="#072a2f">
                <font>
                   <Font size="14.0" />
@@ -177,12 +182,12 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <JFXTextField focusColor="#156879" layoutX="92.0" layoutY="65.0" prefHeight="25.0" prefWidth="146.0" unFocusColor="#146572" AnchorPane.leftAnchor="92.0" AnchorPane.rightAnchor="30.0" />
-            <JFXTextField layoutX="10.0" layoutY="137.0" prefHeight="25.0" prefWidth="221.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="30.0" />
-            <JFXTextField layoutX="10.0" layoutY="199.0" prefHeight="25.0" prefWidth="221.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="30.0" />
-            <JFXTextField layoutX="10.0" layoutY="266.0" prefHeight="25.0" prefWidth="221.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="30.0" />
-            <JFXTextField layoutX="10.0" layoutY="332.0" prefHeight="25.0" prefWidth="221.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="30.0" />
-            <JFXTextField layoutX="10.0" layoutY="395.0" prefHeight="25.0" prefWidth="221.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="30.0" />
+            <JFXTextField fx:id="txt_id" focusColor="#156879" layoutX="92.0" layoutY="65.0" prefHeight="25.0" prefWidth="146.0" unFocusColor="#146572" AnchorPane.leftAnchor="92.0" AnchorPane.rightAnchor="30.0" />
+            <JFXTextField fx:id="txt_name" layoutX="10.0" layoutY="137.0" prefHeight="25.0" prefWidth="221.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="30.0" />
+            <JFXTextField fx:id="txt_type" layoutX="10.0" layoutY="199.0" prefHeight="25.0" prefWidth="221.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="30.0" />
+            <JFXTextField fx:id="txt_size" layoutX="10.0" layoutY="266.0" prefHeight="25.0" prefWidth="221.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="30.0" />
+            <JFXTextField fx:id="txt_inprice" layoutX="10.0" layoutY="332.0" prefHeight="25.0" prefWidth="221.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="30.0" />
+            <JFXTextField fx:id="txt_outprice" layoutX="10.0" layoutY="395.0" prefHeight="25.0" prefWidth="221.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="30.0" />
          </children>
          <effect>
             <DropShadow />
