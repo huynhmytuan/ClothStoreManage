@@ -1,75 +1,154 @@
 package Controller;
 
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ResourceBundle;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+
+import Model.*;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
-public class ProductController {
+public class ProductController implements Initializable {
+	ProductUtil pu = new ProductUtil();
+	int selectedIndex = -1;
 
     @FXML
     private AnchorPane productUI;
 
     @FXML
-    private TableView<product> table_product;
+    private TableView<Product> tableProduct;
 
     @FXML
-    private TableColumn<?, ?> col_id;
+    private TableColumn<Product, Integer> colID;
 
     @FXML
-    private TableColumn<?, ?> col_name;
+    private TableColumn<Product, String> colName;
 
     @FXML
-    private TableColumn<?, ?> col_type;
+    private TableColumn<Product, String> colType;
 
     @FXML
-    private TableColumn<?, ?> col_size;
+    private TableColumn<Product, String> colSize;
 
     @FXML
-    private TableColumn<?, ?> col_outprice;
+    private TableColumn<Product, Float> colOutPrice;
 
     @FXML
-    private JFXButton btn_add;
+    private JFXButton btnAdd;
 
     @FXML
-    private JFXButton btn_edit;
+    private JFXButton btnEdit;
 
     @FXML
-    private JFXButton btn_delete;
+    private JFXButton btnDelete;
 
     @FXML
-    private JFXButton btn_refresh;
+    private JFXButton btnRefresh;
 
     @FXML
-    private JFXTextField txt_search;
+    private JFXTextField txtSearch;
 
     @FXML
-    private ImageView btn_search;
+    private ImageView btnSearch;
 
     @FXML
-    private JFXTextField txt_id;
+    private JFXTextField txtID;
 
     @FXML
-    private JFXTextField txt_name;
+    private JFXTextField txtName;
 
     @FXML
-    private JFXTextField txt_type;
+    private JFXTextField txtType;
 
     @FXML
-    private JFXTextField txt_size;
+    private JFXTextField txtSize;
 
     @FXML
-    private JFXTextField txt_inprice;
+    private JFXTextField txtInPrice;
 
     @FXML
-    private JFXTextField txt_outprice;
+    private JFXTextField txtOutPrice;
 
     @FXML
-    void btn_search_Clicked(MouseEvent event) {
+    private JFXTextField txtPicture;
+
+    @FXML
+    private JFXTextField txtDecs;
+    
+	@FXML
+    void btnAdd_Clicked(MouseEvent event) {
+    	int productID = Integer.parseInt(txtID.getText());
+    	String productName = txtName.getText();
+    	String productType = txtType.getText();
+    	String productSize = txtSize.getText();
+    	String productDecs = txtDecs.getText();
+    	String productInPrice = txtInPrice.getText();
+    	String productOutPrice = txtOutPrice.getText();
+    	String productPicture = txtPicture.getText();
+    	ProductUtil kn = new ProductUtil();
+    	
+    	kn.insertProduct(productID, productName, productType, productSize, "", Float.parseFloat(productInPrice), Float.parseFloat(productOutPrice), "");
+    	
+    	loadTable();
+    }
+
+    @FXML
+    void btnDelete_Clicked(MouseEvent event) {
 
     }
+
+    @FXML
+    void btnEdit_Clicked(MouseEvent event) {
+
+    }
+
+    @FXML
+    void btnRefresh_Clicked(MouseEvent event) {
+    	txtID.setText("");
+    	txtName.setText("");
+    	txtType.setText("");
+    	txtSize.setText("");
+    	txtDecs.setText("");
+    	txtInPrice.setText("");
+    	txtOutPrice.setText("");
+    	txtPicture.setText("");
+    }
+
+    @FXML
+    void btnSearch_Clicked(MouseEvent event) {
+    	
+    }
+    ObservableList<Product> listM;
+    int index = -1;
+    Connection cnn = null;
+    ResultSet rs = null;
+    PreparedStatement pst = null;
+    
+    public void loadTable() {
+    	colID.setCellValueFactory(new PropertyValueFactory<Product,Integer>("ProductID"));
+		colName.setCellValueFactory(new PropertyValueFactory<Product,String>("ProductName"));
+		colType.setCellValueFactory(new PropertyValueFactory<Product,String>("ProductType"));
+		colSize.setCellValueFactory(new PropertyValueFactory<Product,String>("ProductSize"));
+		colOutPrice.setCellValueFactory(new PropertyValueFactory<Product,Float>("ProductOutPrice"));
+		
+		listM = pu.getDataList();
+		tableProduct.setItems(listM);
+    }
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		loadTable();	
+	}
 
 }
