@@ -58,7 +58,7 @@ public class Product {
 	public void setProductPicture(String ProductPicture) {
 		this.productPicture = ProductPicture;
 	}
-	public void setProduct(int ProductID,String ProductName,String ProductType,String ProductSize,String ProductDecs,float ProductInPrice,float ProductOutPrice,String ProductPicture) {
+	public Product(int ProductID,String ProductName,String ProductType,String ProductSize,String ProductDecs,float ProductInPrice,float ProductOutPrice,String ProductPicture) {
 		this.productID = ProductID;
 		this.productName = ProductName;
 		this.productType = ProductType;

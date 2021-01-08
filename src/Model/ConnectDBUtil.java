@@ -30,8 +30,6 @@ public class ConnectDBUtil {
     		Connection cn = getConnect();
 	        Statement stm = cn.createStatement();
 	        rs = stm.executeQuery(sql);
-	        cn.close();
-	        stm.close();
     	}
     	catch(SQLException e) {
     		Alert a = new Alert(AlertType.ERROR, "Sql Error");

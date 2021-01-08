@@ -2,6 +2,8 @@ package Model;
 
 import java.sql.ResultSet;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -61,5 +63,23 @@ public class ProductUtil {
         catch(Exception e) {       	
         }
         return rs;
+    }
+	
+	//Get data Tableview_Product
+    public ObservableList<Product> getDataList(){
+        ObservableList<Product> list = FXCollections.observableArrayList();
+        ResultSet rs = null;
+        try {
+            String sql = "SELECT * from Product";
+            rs = kn.getTable(sql);
+            while (rs.next()){   
+                list.add(new Product(Integer.parseInt(rs.getString("ProductID")), rs.getString("ProductName"), rs.getString("ProductType"), rs.getString("ProductSize"), rs.getString("ProductDecs"), rs.getFloat("ProductInPrice"), rs.getFloat("ProductOutPrice") ,rs.getString("ProductPicture")));               
+            }
+        } 
+        catch (Exception e) {
+        	Alert a = new Alert(AlertType.INFORMATION,"Database Error: "+e.getMessage());
+	        a.show();
+        }
+        return list;
     }
 }
