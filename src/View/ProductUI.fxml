@@ -13,17 +13,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="productUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #e6f2f7;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="productUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #e6f2f7;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProductController">
    <children>
-      <TableView fx:id="table_product" layoutX="5.0" layoutY="144.0" prefHeight="536.0" prefWidth="792.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="273.0">
+      <TableView fx:id="table_product" layoutX="5.0" layoutY="144.0" prefHeight="536.0" prefWidth="606.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="459.0">
         <columns>
-          <TableColumn fx:id="col_id" prefWidth="83.0" text="ID" />
-          <TableColumn fx:id="col_name" prefWidth="155.9999771118164" text="Name" />
-            <TableColumn fx:id="col_type" prefWidth="94.4000244140625" text="Type" />
-            <TableColumn fx:id="col_size" prefWidth="85.5999755859375" text="Size" />
-            <TableColumn fx:id="col_decs" prefWidth="92.79989624023438" text="Decs" />
-            <TableColumn fx:id="col_inprice" prefWidth="144.0" text="InPrice" />
-            <TableColumn fx:id="col_outprice" prefWidth="135.99993896484375" text="OutPrice" />
+          <TableColumn fx:id="col_id" prefWidth="100.7999849319458" text="ID" />
+          <TableColumn fx:id="col_name" prefWidth="189.6000213623047" text="Name" />
+            <TableColumn fx:id="col_type" prefWidth="106.39996337890625" text="Type" />
+            <TableColumn fx:id="col_size" prefWidth="63.99993896484375" text="Size" />
+            <TableColumn fx:id="col_outprice" prefWidth="146.4000244140625" text="OutPrice" />
         </columns>
          <effect>
             <DropShadow />
@@ -100,42 +98,25 @@
                   <Font name="Arial Bold" size="30.0" />
                </font>
             </Label>
-            <Label layoutX="28.0" layoutY="27.0" text="Search :" textFill="#37a6b5" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="27.0">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="txt_search" focusColor="#0e798a" layoutX="145.0" layoutY="24.0" prefHeight="25.0" prefWidth="218.0" promptText="Search By ID Or Name" unFocusColor="#19559e" AnchorPane.leftAnchor="145.0" AnchorPane.topAnchor="24.0" />
-            <Label layoutX="27.0" layoutY="58.0" text="Detail Search:" textFill="#072a2f">
+            <JFXTextField fx:id="txt_search" focusColor="#0e798a" layoutX="71.0" layoutY="86.0" prefHeight="26.0" prefWidth="151.0" promptText="Search By ID Or Name" unFocusColor="#19559e" AnchorPane.leftAnchor="71.0" AnchorPane.topAnchor="86.0" />
+            <Label layoutX="274.0" layoutY="60.0" text="Filter:" textFill="#072a2f">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="28.0" layoutY="82.0" text="Name Product :" textFill="#37a6b5">
+            <Label layoutX="272.0" layoutY="85.0" text="Category :" textFill="#37a6b5">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="327.0" layoutY="80.0" text="Category :" textFill="#37a6b5">
+            <Label layoutX="498.0" layoutY="86.0" text="Size :" textFill="#37a6b5">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="558.0" layoutY="82.0" text="Size :" textFill="#37a6b5">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="666.0" layoutY="83.0" text="inventory :" textFill="#37a6b5">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <JFXComboBox layoutX="140.0" layoutY="80.0" prefHeight="25.0" prefWidth="180.0" />
-            <JFXComboBox layoutX="405.0" layoutY="80.0" prefHeight="25.0" prefWidth="138.0" />
-            <JFXComboBox layoutX="602.0" layoutY="82.0" prefHeight="25.0" prefWidth="54.0" />
-            <JFXComboBox layoutX="750.0" layoutY="80.0" prefHeight="25.0" prefWidth="138.0" />
-            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="100.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+            <JFXComboBox layoutX="350.0" layoutY="85.0" prefHeight="25.0" prefWidth="138.0" />
+            <JFXComboBox layoutX="547.0" layoutY="87.0" prefHeight="25.0" prefWidth="54.0" />
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/icon-search.png" />
                </image>
@@ -145,7 +126,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="738.0" layoutY="179.0" prefHeight="536.0" prefWidth="258.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="5.0">
+      <AnchorPane layoutX="738.0" layoutY="179.0" prefHeight="536.0" prefWidth="440.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="11.0">
          <children>
             <Label layoutX="42.0" layoutY="14.0" prefHeight="20.0" prefWidth="193.0" text="INFORMATION DETAILS" textFill="#12555d" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="5.0">
                <font>

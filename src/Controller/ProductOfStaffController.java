@@ -8,8 +8,7 @@ import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXTextField;
 
-import Model.Product;
-import Model.ProductUtil;
+import Model.*;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -87,5 +86,6 @@ public class ProductOfStaffController implements Initializable {
 		
 		listM = pu.getDataList();
 		table_Product.setItems(listM);
-	}	
+		
+	}
 }
