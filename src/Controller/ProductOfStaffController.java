@@ -72,7 +72,7 @@ public class ProductOfStaffController implements Initializable {
     int index = -1;
     Connection cnn = null;
     ResultSet rs = null;
-    PreparedStatement pst = null;
+    PreparedStatement pst = null;	
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
