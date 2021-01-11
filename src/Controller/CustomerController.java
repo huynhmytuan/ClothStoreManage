@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
+
+import javax.swing.JOptionPane;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
@@ -101,7 +104,12 @@ public class CustomerController implements Initializable {
 
     @FXML
     void btnDelete_Clicked(MouseEvent event) {
-
+    	int p = JOptionPane.showConfirmDialog(null, "Do you really want to delete ?", "Delete", JOptionPane.YES_NO_OPTION);
+    	if(p==0) {
+			int cusID = Integer.parseInt(txtID.getText());
+			cu.deleteCustomer(cusID);
+			loadTable();
+    	} 	
     }
 
     @FXML
