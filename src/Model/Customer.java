@@ -10,6 +10,7 @@ public class Customer {
 	private String cusEmail;
 	private String cusAddress;
 	
+
 	public int getCusID() {
 		return cusID;
 	}
@@ -46,7 +47,7 @@ public class Customer {
 	public void setCusAddress(String CusAddress) {
 		this.cusAddress = CusAddress;
 	}
-	public void setCustomter(int CusID,String CusName,Date CusDOB,String CusPhone,String CusEmail,String CusAddress) {
+	public Customer(int CusID,String CusName,Date CusDOB,String CusPhone,String CusEmail,String CusAddress) {
 		this.cusID = CusID;
 		this.cusName = CusName;
 		this.cusDOB = CusDOB;

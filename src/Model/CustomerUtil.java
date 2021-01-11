@@ -2,6 +2,9 @@ package Model;
 
 import java.sql.ResultSet;
 import java.util.Date;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -64,4 +67,21 @@ public class CustomerUtil {
         }
         return rs;
     }
+	
+	 public ObservableList<Customer> getDataList(){
+	        ObservableList<Customer> list = FXCollections.observableArrayList();
+	        ResultSet rs = null;
+	        try {
+	            String sql = "SELECT * from Customer";
+	            rs = kn.getTable(sql);
+	            while (rs.next()){   
+	                list.add(new Customer(Integer.parseInt(rs.getString("CusID")), rs.getString("CusName"), rs.getDate("CusDOB"), rs.getString("CusPhone"), rs.getString("CusEmail"),rs.getString("CusAddress")));               
+	            }
+	        } 
+	        catch (Exception e) {
+	        	Alert a = new Alert(AlertType.INFORMATION,"Database Error: "+e.getMessage());
+		        a.show();
+	        }
+	        return list;
+	    }
 }

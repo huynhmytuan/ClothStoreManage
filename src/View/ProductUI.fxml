@@ -38,7 +38,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnEdit" buttonType="RAISED" layoutX="382.0" layoutY="691.0" onMouseClicked="#btnEdit_Clicked" prefHeight="30.0" prefWidth="118.0" ripplerFill="#ffeded" style="-fx-background-color: #10a6ad;" text="Edit Product" textFill="#efffe4">
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="382.0" layoutY="691.0" onMouseClicked="#btnUpdate_Clicked" prefHeight="30.0" prefWidth="118.0" ripplerFill="#ffeded" style="-fx-background-color: #10a6ad;" text="Update Product" textFill="#efffe4">
          <font>
             <Font size="14.0" />
          </font>
@@ -169,8 +169,8 @@
                </font>
             </Label>
             <JFXTextField fx:id="txtOutPrice" layoutX="10.0" layoutY="434.0" prefHeight="26.0" prefWidth="400.0" />
-            <JFXTextField fx:id="txtPicture" layoutX="14.0" layoutY="488.0" prefHeight="26.0" prefWidth="400.0" />
-            <Label layoutX="16.0" layoutY="468.0" text="Product Picture:" textFill="#12555d">
+            <JFXTextField fx:id="txtPicture" layoutX="10.0" layoutY="488.0" prefHeight="26.0" prefWidth="400.0" />
+            <Label layoutX="7.0" layoutY="468.0" text="Product Picture:" textFill="#12555d">
                <font>
                   <Font size="14.0" />
                </font>

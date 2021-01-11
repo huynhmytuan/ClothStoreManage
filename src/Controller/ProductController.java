@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -22,7 +23,6 @@ import javafx.scene.layout.AnchorPane;
 
 public class ProductController implements Initializable {
 	ProductUtil pu = new ProductUtil();
-	int selectedIndex = -1;
 
     @FXML
     private AnchorPane productUI;
@@ -49,7 +49,7 @@ public class ProductController implements Initializable {
     private JFXButton btnAdd;
 
     @FXML
-    private JFXButton btnEdit;
+    private JFXButton btnUpdate;
 
     @FXML
     private JFXButton btnDelete;
@@ -106,11 +106,11 @@ public class ProductController implements Initializable {
 
     @FXML
     void btnDelete_Clicked(MouseEvent event) {
-
+    	
     }
 
     @FXML
-    void btnEdit_Clicked(MouseEvent event) {
+    void btnUpdate_Clicked(MouseEvent event) {
 
     }
 
