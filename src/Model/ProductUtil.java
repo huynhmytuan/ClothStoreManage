@@ -55,16 +55,21 @@ public class ProductUtil {
 		catch(Exception e) {
 		}	
 	}
-	public ResultSet Search(String condi) {
+	public ObservableList<Product> Search(String condi) {
+		ObservableList<Product> list = FXCollections.observableArrayList();
 		ResultSet rs = null;
         String sql = "SELECT * FROM Product WHERE ProductID like '%" + condi + "%' OR ProductName like '%" + condi + "%'";
         try {
-        	kn.ExecuteNonQuery(sql);
 			rs = kn.getTable(sql);
+            while (rs.next()){   
+                list.add(new Product(Integer.parseInt(rs.getString("ProductID")), rs.getString("ProductName"), rs.getString("ProductType"), rs.getString("ProductSize"), rs.getString("ProductDecs"), rs.getFloat("ProductInPrice"), rs.getFloat("ProductOutPrice") ,rs.getString("ProductPicture")));               
+            }
         }
-        catch(Exception e) {       	
+        catch(Exception e) {  
+        	Alert a = new Alert(AlertType.INFORMATION,"Database Error: "+e.getMessage());
+	        a.show();
         }
-        return rs;
+        return list;
     }
 	
 	//Get data Tableview_Product

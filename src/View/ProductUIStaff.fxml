@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
@@ -14,16 +15,13 @@
 
 <AnchorPane fx:id="productUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #e1fcf6;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProductOfStaffController">
    <children>
-      <TableView fx:id="table_Product" layoutX="10.0" layoutY="171.0" prefHeight="537.0" prefWidth="773.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="287.0">
+      <TableView fx:id="table_Product" layoutX="10.0" layoutY="171.0" onMousePressed="#Row_Clicked" prefHeight="538.0" prefWidth="712.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="348.0">
          <columns>
-            <TableColumn fx:id="col_id" prefWidth="83.0" text="ID" />
-            <TableColumn fx:id="col_name" prefWidth="142.0" text="Name" />
-            <TableColumn fx:id="col_type" prefWidth="75.0" text="Type" />
-            <TableColumn fx:id="col_size" prefWidth="75.0" text="Size" />
-            <TableColumn fx:id="col_decs" prefWidth="75.0" text="Decs" />
-            <TableColumn fx:id="col_inprice" prefWidth="75.0" text="InPrice" />
-            <TableColumn fx:id="col_outprice" prefWidth="75.0" text="OutPrice" />
-            <TableColumn fx:id="col_picture" prefWidth="170.60003662109375" text="Picture" />
+            <TableColumn fx:id="col_id" prefWidth="113.33333015441895" text="ID" />
+            <TableColumn fx:id="col_name" prefWidth="141.86663818359375" text="Name" />
+            <TableColumn fx:id="col_type" prefWidth="168.79995727539062" text="Type" />
+            <TableColumn fx:id="col_size" prefWidth="79.46661376953125" text="Size" />
+            <TableColumn fx:id="col_outprice" prefWidth="272.53338623046875" text="OutPrice" />
          </columns>
          <effect>
             <DropShadow />
@@ -36,42 +34,25 @@
                   <Font name="Arial Bold" size="30.0" />
                </font>
             </Label>
-            <Label layoutX="28.0" layoutY="43.0" text="Search :" textFill="#37a6b5" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="43.0">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="txt_search" focusColor="#0e798a" layoutX="152.0" layoutY="43.0" prefHeight="25.0" prefWidth="256.0" promptText="Search By ID Or Name" unFocusColor="#19559e" AnchorPane.leftAnchor="152.0" AnchorPane.topAnchor="43.0" />
-            <Label layoutX="27.0" layoutY="82.0" text="Detail Search:" textFill="#072a2f">
+            <JFXTextField fx:id="txt_search" focusColor="#0e798a" layoutX="99.0" layoutY="95.0" prefHeight="25.0" prefWidth="256.0" promptText="Search By ID Or Name" unFocusColor="#19559e" AnchorPane.leftAnchor="99.0" AnchorPane.topAnchor="95.0" />
+            <Label layoutX="634.0" layoutY="55.0" text="Detail Search:" textFill="#072a2f">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="28.0" layoutY="104.0" text="Name Product :" textFill="#37a6b5">
+            <Label layoutX="642.0" layoutY="94.0" text="Category :" textFill="#37a6b5">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="329.0" layoutY="104.0" text="Category :" textFill="#37a6b5">
+            <Label layoutX="873.0" layoutY="94.0" text="Size :" textFill="#37a6b5">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="560.0" layoutY="104.0" text="Size :" textFill="#37a6b5">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="670.0" layoutY="104.0" text="inventory :" textFill="#37a6b5">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <JFXComboBox layoutX="140.0" layoutY="104.0" prefHeight="25.0" prefWidth="180.0" />
-            <JFXComboBox layoutX="409.0" layoutY="104.0" prefHeight="25.0" prefWidth="138.0" />
-            <JFXComboBox layoutX="602.0" layoutY="104.0" prefHeight="25.0" prefWidth="54.0" />
-            <JFXComboBox layoutX="751.0" layoutY="104.0" prefHeight="25.0" prefWidth="138.0" />
-            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="100.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+            <JFXComboBox fx:id="cmb_category" layoutX="722.0" layoutY="94.0" prefHeight="25.0" prefWidth="138.0" />
+            <JFXComboBox fx:id="cmb_size" layoutX="915.0" layoutY="94.0" prefHeight="25.0" prefWidth="54.0" />
+            <ImageView fx:id="btn_search" fitHeight="40.0" fitWidth="40.0" layoutX="47.0" layoutY="88.0" onMouseClicked="#btnSearch_Clicked" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/icon-search.png" />
                </image>
@@ -84,7 +65,7 @@
             <DropShadow />
          </effect>
       </AnchorPane>
-      <AnchorPane layoutX="738.0" layoutY="179.0" prefHeight="538.0" prefWidth="268.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+      <AnchorPane layoutX="738.0" layoutY="179.0" prefHeight="439.0" prefWidth="330.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="109.0" AnchorPane.rightAnchor="10.0">
          <children>
             <Label layoutX="42.0" layoutY="14.0" text="INFORMATION DETAILS" textFill="#12555d" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="5.0">
                <font>
@@ -132,5 +113,10 @@
             <DropShadow />
          </effect>
       </AnchorPane>
+      <JFXButton fx:id="btnRefresh" layoutX="803.0" layoutY="649.0" onMouseClicked="#btnRefresh_Clicked" prefHeight="40.0" prefWidth="183.0" style="-fx-background-color: white;" text="Refresh">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

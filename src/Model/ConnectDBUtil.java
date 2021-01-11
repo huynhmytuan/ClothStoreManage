@@ -23,7 +23,6 @@ public class ConnectDBUtil {
         }
         return cnn;       
     }
-    
     public ResultSet getTable(String sql) {
     	ResultSet rs = null;
     	try {
