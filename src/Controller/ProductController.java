@@ -96,12 +96,14 @@ public class ProductController implements Initializable {
     	String productName = txtName.getText();
     	String productType = txtType.getText();
     	String productSize = txtSize.getText();
-    	String productDecs = txtDecs.getText();
+    	String productDecs = "";
+    	productDecs = txtDecs.getText();
     	String productInPrice = txtInPrice.getText();
     	String productOutPrice = txtOutPrice.getText();
-    	String productPicture = txtPicture.getText();
+    	String productPicture = "";
+		productPicture = txtPicture.getText();
     	
-    	pu.insertProduct(productID, productName, productType, productSize, "", Float.parseFloat(productInPrice), Float.parseFloat(productOutPrice), "");
+    	pu.insertProduct(productID, productName, productType, productSize, productDecs, Float.parseFloat(productInPrice), Float.parseFloat(productOutPrice), productPicture);
     	
     	loadTable();
     }
