@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
@@ -97,16 +99,20 @@ public class ProductController implements Initializable {
     	String productInPrice = txtInPrice.getText();
     	String productOutPrice = txtOutPrice.getText();
     	String productPicture = txtPicture.getText();
-    	ProductUtil kn = new ProductUtil();
     	
-    	kn.insertProduct(productID, productName, productType, productSize, "", Float.parseFloat(productInPrice), Float.parseFloat(productOutPrice), "");
+    	pu.insertProduct(productID, productName, productType, productSize, "", Float.parseFloat(productInPrice), Float.parseFloat(productOutPrice), "");
     	
     	loadTable();
     }
 
     @FXML
     void btnDelete_Clicked(MouseEvent event) {
-    	
+    	int p = JOptionPane.showConfirmDialog(null, "Do you really want to delete ?", "Delete", JOptionPane.YES_NO_OPTION);
+    	if(p==0) {
+			int productID = Integer.parseInt(txtID.getText());
+			pu.deleteProduct(productID);
+			loadTable();
+    	} 	
     }
 
     @FXML

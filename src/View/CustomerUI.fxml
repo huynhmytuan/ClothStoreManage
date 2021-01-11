@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -14,7 +15,7 @@
 
 <AnchorPane fx:id="customerUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #e6f2f7;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CustomerController">
    <children>
-      <TableView fx:id="tableCustomer" layoutY="84.0" prefHeight="637.0" prefWidth="794.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="271.0">
+      <TableView fx:id="tableCustomer" layoutY="84.0" onMouseClicked="#btnRefresh_Clicked" prefHeight="637.0" prefWidth="794.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="271.0">
          <columns>
             <TableColumn fx:id="colID" prefWidth="65.59997415542603" text="ID" />
             <TableColumn fx:id="colName" prefWidth="160.00000762939453" text="Name" />
@@ -27,7 +28,7 @@
             <DropShadow />
          </effect>
       </TableView>
-      <JFXButton fx:id="btnAdd" layoutX="880.0" layoutY="652.0" onMouseClicked="#btnAdd_Clicked" prefHeight="39.0" prefWidth="154.0" ripplerFill="#fff0f0" style="-fx-background-color: #10a6ad;" text="Add New Customer" textFill="#f6ffd1">
+      <JFXButton fx:id="btnAdd" layoutX="853.0" layoutY="665.0" onMouseClicked="#btnAdd_Clicked" prefHeight="30.0" prefWidth="79.0" ripplerFill="#fff0f0" style="-fx-background-color: #10a6ad;" text="Add" textFill="#f6ffd1">
          <font>
             <Font size="14.0" />
          </font>
@@ -38,7 +39,18 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="844.0" layoutY="589.0" onMouseClicked="#btnUpdate_Clicked" prefHeight="30.0" prefWidth="80.0" ripplerFill="#ffeded" style="-fx-background-color: #10a6ad;" text="Update" textFill="#efffe4">
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="844.0" layoutY="589.0" onMouseClicked="#btnUpdate_Clicked" prefHeight="30.0" prefWidth="88.0" ripplerFill="#ffeded" style="-fx-background-color: #10a6ad;" text="Update" textFill="#efffe4">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="btnRefresh" buttonType="RAISED" layoutX="977.0" layoutY="666.0" onMouseClicked="#btnRefresh_Clicked" prefHeight="30.0" prefWidth="88.0" ripplerFill="#fff0f0" style="-fx-background-color: #10a6ad;" text="Refresh" textFill="#f6ffd1">
          <font>
             <Font size="14.0" />
          </font>
@@ -60,7 +72,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="834.0" layoutY="653.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="807.0" layoutY="657.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/icon-add.png" />
          </image>
@@ -75,24 +87,6 @@
             <Image url="@../image/icon-delete.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="66.0" prefWidth="1060.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0">
-         <children>
-            <Label layoutX="422.0" layoutY="14.0" text="View Customer" textAlignment="CENTER" textFill="#37a6b5" AnchorPane.leftAnchor="422.0" AnchorPane.rightAnchor="421.0" AnchorPane.topAnchor="0.0">
-               <font>
-                  <Font name="Arial Bold" size="30.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="txtSearch" focusColor="#0e798a" layoutX="83.0" layoutY="23.0" prefHeight="25.0" prefWidth="218.0" promptText="Search By ID Or Name" unFocusColor="#19559e" AnchorPane.leftAnchor="83.0" AnchorPane.topAnchor="23.0" />
-            <ImageView fx:id="btnSearch" fitHeight="40.0" fitWidth="40.0" layoutX="20.0" layoutY="16.0" onMouseClicked="#btnSearch_Clicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../image/icon-search.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-         </children>
-      </AnchorPane>
       <AnchorPane layoutX="738.0" layoutY="179.0" prefHeight="492.0" prefWidth="258.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="153.0" AnchorPane.rightAnchor="5.0">
          <children>
             <Label layoutX="42.0" layoutY="14.0" prefHeight="20.0" prefWidth="193.0" text="INFORMATION DETAILS" textFill="#12555d" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="5.0">
@@ -132,14 +126,37 @@
             </Label>
             <JFXTextField fx:id="txtID" focusColor="#156879" layoutX="92.0" layoutY="65.0" prefHeight="25.0" prefWidth="146.0" unFocusColor="#146572" AnchorPane.leftAnchor="92.0" AnchorPane.rightAnchor="30.0" />
             <JFXTextField fx:id="txtName" layoutX="10.0" layoutY="137.0" prefHeight="25.0" prefWidth="221.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="30.0" />
-            <JFXTextField fx:id="txtDOB" layoutX="10.0" layoutY="199.0" prefHeight="25.0" prefWidth="221.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="30.0" />
             <JFXTextField fx:id="txtPhone" layoutX="10.0" layoutY="266.0" prefHeight="25.0" prefWidth="221.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="30.0" />
             <JFXTextField fx:id="txtEmail" layoutX="10.0" layoutY="332.0" prefHeight="25.0" prefWidth="221.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="30.0" />
             <JFXTextField fx:id="txtAddress" layoutX="10.0" layoutY="395.0" prefHeight="25.0" prefWidth="221.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="30.0" />
+            <DatePicker fx:id="txtDate" layoutX="12.0" layoutY="202.0" prefHeight="26.0" prefWidth="217.0" />
          </children>
          <effect>
             <DropShadow />
          </effect>
       </AnchorPane>
+      <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="66.0" prefWidth="1060.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <Label layoutX="422.0" layoutY="14.0" text="View Customer" textAlignment="CENTER" textFill="#37a6b5" AnchorPane.leftAnchor="422.0" AnchorPane.rightAnchor="421.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="Arial Bold" size="30.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtSearch" focusColor="#0e798a" layoutX="83.0" layoutY="23.0" prefHeight="25.0" prefWidth="218.0" promptText="Search By ID Or Name" unFocusColor="#19559e" AnchorPane.leftAnchor="83.0" AnchorPane.topAnchor="23.0" />
+            <ImageView fx:id="btnSearch" fitHeight="40.0" fitWidth="40.0" layoutX="20.0" layoutY="16.0" onMouseClicked="#btnSearch_Clicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/icon-search.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="935.0" layoutY="661.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/icon-update.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -4,10 +4,9 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.DateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
@@ -15,6 +14,7 @@ import Model.*;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -71,7 +71,7 @@ public class CustomerController implements Initializable {
     private JFXTextField txtName;
 
     @FXML
-    private JFXTextField txtDOB;
+    private DatePicker txtDate;
 
     @FXML
     private JFXTextField txtPhone;
@@ -81,12 +81,15 @@ public class CustomerController implements Initializable {
 
     @FXML
     private JFXTextField txtAddress;
+    
+    @FXML
+    private JFXButton btnRefresh;
 
     @FXML
     void btnAdd_Clicked(MouseEvent event) {
     	int cusID = Integer.parseInt(txtID.getText());
     	String cusName = txtName.getText();
-    	Date cusDOB = txtDOB.getText();
+    	LocalDate cusDOB = txtDate.getValue();
     	String cusPhone = txtPhone.getText();
     	String cusEmail = txtEmail.getText();
     	String cusAddress = txtAddress.getText();
@@ -111,6 +114,16 @@ public class CustomerController implements Initializable {
 
     }
     
+    @FXML
+    void btnRefresh_Clicked(MouseEvent event) {
+    	txtID.setText("");
+    	txtName.setText("");
+    	txtDate.setPromptText("");
+    	txtPhone.setText("");
+    	txtEmail.setText("");
+    	txtAddress.setText("");
+    }
+    
     ObservableList<Customer> listM;
     int index = -1;
     Connection cnn = null;
@@ -124,7 +137,6 @@ public class CustomerController implements Initializable {
 		colPhone.setCellValueFactory(new PropertyValueFactory<Customer,String>("CusPhone"));
 		colEmail.setCellValueFactory(new PropertyValueFactory<Customer,String>("CusEmail"));
 		colAddress.setCellValueFactory(new PropertyValueFactory<Customer,String>("CusAddress"));
-		
 		listM = cu.getDataList();
 		tableCustomer.setItems(listM);
     }
