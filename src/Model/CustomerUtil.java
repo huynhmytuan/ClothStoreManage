@@ -1,7 +1,12 @@
 package Model;
 
+
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.Date;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -22,7 +27,7 @@ public class CustomerUtil {
 		}
 		return rs;
 	}
-	public void insertCustomer(int cusID,String cusName,Date cusDOB,String cusPhone,String cusEmail,String cusAddress) {
+	public void insertCustomer(int cusID,String cusName,LocalDate cusDOB,String cusPhone,String cusEmail,String cusAddress) {
 		String sql = " INSERT INTO Customer VALUES('" + cusID + "','" + cusName + "','" + cusDOB + "','" + cusPhone + "','"+ cusEmail + "','"+ cusAddress + "')";
 		try {
 			kn.ExecuteNonQuery(sql);
@@ -32,7 +37,7 @@ public class CustomerUtil {
 		catch(Exception e) {
 		}
 	}
-	public void updatetCustomer(int cusID,String cusName,Date cusDOB,String cusPhone,String cusEmail,String cusAddress) {
+	public void updatetCustomer(int cusID,String cusName,LocalDate cusDOB,String cusPhone,String cusEmail,String cusAddress) {
 		String sql = " UPDATE Customer SET CusID='" + cusID + "', CusName='" + cusName + "', CusDOB='" + cusDOB + "', CusPhone='" + cusPhone + "', CusEmail='"+ cusEmail + "', CusAddress='"+ cusAddress + "' WHERE CusID='" +cusID+"'";
 		try {
 			kn.ExecuteNonQuery(sql);
@@ -64,4 +69,23 @@ public class CustomerUtil {
         }
         return rs;
     }
+	
+	 public ObservableList<Customer> getDataList(){
+	        ObservableList<Customer> list = FXCollections.observableArrayList();
+	        ResultSet rs = null;
+	        try {
+	            String sql = "SELECT * from Customer";
+	            rs = kn.getTable(sql);
+	            LocalDate date = null;
+	            while (rs.next()){   
+	            	date = rs.getDate("CusDOB").toLocalDate();
+	                list.add(new Customer(rs.getInt("CusID"), rs.getString("CusName"), date, rs.getString("CusPhone"), rs.getString("CusEmail"), rs.getString("CusAddress")));               
+	            }
+	        } 
+	        catch (Exception e) {
+	        	Alert a = new Alert(AlertType.INFORMATION,"Database Error: "+e.getMessage());
+		        a.show();
+	        }
+	        return list;
+	    }
 }
