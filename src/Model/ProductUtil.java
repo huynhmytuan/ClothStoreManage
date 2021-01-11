@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
+
 public class ProductUtil {
 	ConnectDBUtil kn = new ConnectDBUtil();
 	
