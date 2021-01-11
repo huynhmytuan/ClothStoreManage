@@ -1,15 +1,16 @@
 package Model;
 
-import java.util.Date;
 
+import java.time.LocalDate;
 public class Customer {
 	private int cusID;
 	private String cusName;
-	private Date cusDOB;
+	private LocalDate cusDOB;
 	private String cusPhone;
 	private String cusEmail;
 	private String cusAddress;
 	
+
 	public int getCusID() {
 		return cusID;
 	}
@@ -22,10 +23,10 @@ public class Customer {
 	public void setCusName(String CusName) {
 		this.cusName = CusName;
 	}
-	public Date getCusDOB() {
+	public LocalDate getCusDOB() {
 		return cusDOB;
 	}
-	public void setCusDOB(Date CusDOB) {
+	public void setCusDOB(LocalDate CusDOB) {
 		this.cusDOB = CusDOB;
 	}
 	public String getCusPhone() {
@@ -46,7 +47,7 @@ public class Customer {
 	public void setCusAddress(String CusAddress) {
 		this.cusAddress = CusAddress;
 	}
-	public void setCustomter(int CusID,String CusName,Date CusDOB,String CusPhone,String CusEmail,String CusAddress) {
+	public Customer(int CusID,String CusName, LocalDate CusDOB,String CusPhone,String CusEmail,String CusAddress) {
 		this.cusID = CusID;
 		this.cusName = CusName;
 		this.cusDOB = CusDOB;
