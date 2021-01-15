@@ -7,6 +7,20 @@ public class Login {
 	private int loginRoleID;
 	private int userID;
 
+	public Login(int LoginID, String Username) {
+		this.loginID = LoginID;
+		this.userName = Username;
+		this.passWord = "";
+		this.loginRoleID = -1;
+		this.userID = -1;
+	}
+	public Login() {
+		this.loginID = -1;
+		this.userName = "";
+		this.passWord = "";
+		this.loginRoleID = -1;
+		this.userID = -1;
+	}
 	public int getLoginID() {
 		return loginID;
 	}

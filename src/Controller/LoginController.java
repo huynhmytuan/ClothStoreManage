@@ -52,7 +52,6 @@ public class LoginController  implements Initializable{
     public void btnLogin_Clicked(MouseEvent event) {
     	String username = tbUsername.getText();
         String pass = String.valueOf(tbPassword.getText());
-        LoginUtil kn = new LoginUtil();
         if("".equals(username) || "".equals(pass)){
             Alert a = new Alert(AlertType.WARNING, "Username or password can't be empty!");
             a.show();
