@@ -46,7 +46,7 @@ public class ProductUtil {
 	}
 	
 	public void deleteProduct(int productID) {
-		String sql = "DELETE Product WHERE ProductID = '" + productID + "'";
+		String sql = "DELETE Product WHERE ProductID='" + productID + "'";
 		try {
 			kn.ExecuteNonQuery(sql);
 			Alert a = new Alert(AlertType.INFORMATION,"Delete product successfully!");
@@ -58,7 +58,7 @@ public class ProductUtil {
 	public ObservableList<Product> Search(String condi) {
 		ObservableList<Product> list = FXCollections.observableArrayList();
 		ResultSet rs = null;
-        String sql = "SELECT * FROM Product WHERE ProductID like '%" + condi + "%' OR ProductName like '%" + condi + "%'";
+        String sql = "SELECT * FROM Product WHERE ProductID like '%" + condi + "%' OR ProductName like '%" + condi + "%'OR ProductType like '%" + condi + "%'";
         try {
 			rs = kn.getTable(sql);
             while (rs.next()){   

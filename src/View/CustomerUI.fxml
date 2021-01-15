@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
@@ -16,7 +15,7 @@
 
 <AnchorPane fx:id="customerUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #e6f2f7;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CustomerController">
    <children>
-      <TableView fx:id="tableCustomer" layoutY="84.0" onMouseClicked="#btnRefresh_Clicked" prefHeight="637.0" prefWidth="794.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="271.0">
+      <TableView fx:id="tableCustomer" layoutY="84.0" onMousePressed="#Row_Clicked" prefHeight="637.0" prefWidth="794.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="271.0">
          <columns>
             <TableColumn fx:id="colID" prefWidth="65.59997415542603" text="ID" />
             <TableColumn fx:id="colName" prefWidth="160.00000762939453" text="Name" />

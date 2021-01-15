@@ -18,9 +18,11 @@ import Model.*;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -28,7 +30,9 @@ import javafx.scene.layout.AnchorPane;
 
 public class CustomerController implements Initializable {
 	CustomerUtil cu = new CustomerUtil();
-
+	ObservableList<Customer> listM;
+    int index = -1;
+    ResultSet rs = null;
     @FXML
     private AnchorPane customerUI;
 
@@ -97,10 +101,10 @@ public class CustomerController implements Initializable {
     	String cusPhone = txtPhone.getText();
     	String cusEmail = txtEmail.getText();
     	String cusAddress = txtAddress.getText();
-    	CustomerUtil kn = new CustomerUtil();
     	
-    	kn.insertCustomer(cusID, cusName, cusDOB, cusPhone, cusEmail, cusAddress);
-    	loadTable();
+    	cu.insertCustomer(cusID, cusName, cusDOB, cusPhone, cusEmail, cusAddress);
+    	listM = cu.getDataList();
+    	loadTable(listM);
     }
 
     @FXML
@@ -109,50 +113,76 @@ public class CustomerController implements Initializable {
     	if(p==0) {
 			int cusID = Integer.parseInt(txtID.getText());
 			cu.deleteCustomer(cusID);
-			loadTable();
+			listM = cu.getDataList();
+			loadTable(listM);
     	} 	
     }
 
     @FXML
     void btnSearch_Clicked(MouseEvent event) {
-
+    	String search = txtSearch.getText();
+    	if("".equals(search)){
+            Alert a = new Alert(AlertType.WARNING, "Please enter your search keyword!");
+            a.show();
+        }
+    	else {
+    	 	listM = cu.Search(search);
+    	 	loadTable(listM);
+    	}
     }
 
     @FXML
     void btnUpdate_Clicked(MouseEvent event) {
-
+    	int cusID = Integer.parseInt(txtID.getText());
+    	String cusName = txtName.getText();
+    	LocalDate cusDOB = txtDate.getValue();
+    	String cusPhone = txtPhone.getText();
+    	String cusEmail = txtEmail.getText();
+    	String cusAddress = txtAddress.getText();
+  	
+    	cu.updateCustomer(cusID, cusName, cusDOB, cusPhone, cusEmail, cusAddress);
+    	listM = cu.getDataList();
+    	loadTable(listM);
     }
     
     @FXML
     void btnRefresh_Clicked(MouseEvent event) {
-    	txtID.setText("");
-    	txtName.setText("");
-    	txtDate.setPromptText("");
-    	txtPhone.setText("");
-    	txtEmail.setText("");
-    	txtAddress.setText("");
+    	listM = cu.getDataList();
+		loadTable(listM);
+		txtID.setText("");
+		txtName.setText("");
+		txtDate.setPromptText("");
+		txtPhone.setText("");
+		txtEmail.setText("");
+		txtAddress.setText("");
     }
     
-    ObservableList<Customer> listM;
-    int index = -1;
-    Connection cnn = null;
-    ResultSet rs = null;
-    PreparedStatement pst = null;
+    @FXML
+    void Row_Clicked(MouseEvent event) {
+    	Customer cus = tableCustomer.getSelectionModel().getSelectedItem();
+    	txtID.setText(""+ cus.getCusID());
+    	txtName.setText(cus.getCusName());
+    	txtDate.setValue(cus.getCusDOB());
+    	txtPhone.setText(cus.getCusPhone());
+    	txtEmail.setText("" + cus.getCusEmail());
+    	txtAddress.setText("" + cus.getCusAddress());
+    }
     
-    public void loadTable() {
+    public void loadTable(ObservableList<Customer> list) {
     	colID.setCellValueFactory(new PropertyValueFactory<Customer,Integer>("CusID"));
 		colName.setCellValueFactory(new PropertyValueFactory<Customer,String>("CusName"));
 		colDOB.setCellValueFactory(new PropertyValueFactory<Customer,Date>("CusDOB"));
 		colPhone.setCellValueFactory(new PropertyValueFactory<Customer,String>("CusPhone"));
 		colEmail.setCellValueFactory(new PropertyValueFactory<Customer,String>("CusEmail"));
 		colAddress.setCellValueFactory(new PropertyValueFactory<Customer,String>("CusAddress"));
-		listM = cu.getDataList();
-		tableCustomer.setItems(listM);
+		tableCustomer.setItems(list);
+		System.out.print("Load table");
     }
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		loadTable();
+		listM = cu.getDataList();
+		loadTable(listM);
 	}
 
 }
