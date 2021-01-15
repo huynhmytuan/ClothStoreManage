@@ -46,7 +46,8 @@ public class ConnectDBUtil {
 	        stm.close();
     	}
     	catch(SQLException e) {
-    		Alert a = new Alert(AlertType.ERROR, "Sql Error");
+    		Alert a = new Alert(AlertType.ERROR, "Sql Error: "+e.getMessage());
+    		System.out.println(e.getMessage());
     		a.show();
     	}
     }

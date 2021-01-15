@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -16,7 +15,7 @@
 
 <AnchorPane fx:id="productUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #e6f2f7;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProductController">
    <children>
-      <TableView fx:id="tableProduct" layoutX="5.0" layoutY="144.0" prefHeight="536.0" prefWidth="606.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="459.0">
+      <TableView fx:id="tableProduct" layoutX="5.0" layoutY="144.0" onMousePressed="#Row_Clicked" prefHeight="536.0" prefWidth="606.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="459.0">
         <columns>
           <TableColumn fx:id="colID" prefWidth="100.7999849319458" text="ID" />
           <TableColumn fx:id="colName" prefWidth="189.6000213623047" text="Name" />
@@ -115,8 +114,8 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <JFXComboBox layoutX="350.0" layoutY="85.0" prefHeight="25.0" prefWidth="138.0" />
-            <JFXComboBox layoutX="547.0" layoutY="87.0" prefHeight="25.0" prefWidth="54.0" />
+            <JFXComboBox fx:id="cmbCategory" layoutX="350.0" layoutY="85.0" onAction="#cmbCategory_Selected" prefHeight="25.0" prefWidth="138.0" />
+            <JFXComboBox fx:id="cmbSize" layoutX="547.0" layoutY="87.0" prefHeight="25.0" prefWidth="54.0" />
             <ImageView fx:id="btnSearch" fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="80.0" onMouseClicked="#btnSearch_Clicked" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/icon-search.png" />

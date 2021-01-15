@@ -15,7 +15,7 @@
 
 <AnchorPane fx:id="productUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #e1fcf6;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProductOfStaffController">
    <children>
-      <TableView fx:id="table_Product" layoutX="10.0" layoutY="171.0" onMousePressed="#Row_Clicked" prefHeight="538.0" prefWidth="712.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="348.0">
+      <TableView fx:id="table_Product" layoutX="10.0" layoutY="176.0" onMousePressed="#Row_Clicked" prefHeight="538.0" prefWidth="712.0" AnchorPane.bottomAnchor="15.600000000000023" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="348.0">
          <columns>
             <TableColumn fx:id="col_id" prefWidth="113.33333015441895" text="ID" />
             <TableColumn fx:id="col_name" prefWidth="141.86663818359375" text="Name" />
