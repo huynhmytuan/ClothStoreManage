@@ -2,8 +2,10 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -13,39 +15,31 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootpane" prefHeight="568.0" prefWidth="687.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RegisterController">
+<AnchorPane fx:id="rootpane" prefHeight="564.0" prefWidth="870.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RegisterController">
    <children>
       <AnchorPane layoutX="23.0" layoutY="34.0" prefHeight="470.0" prefWidth="657.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.0">
          <children>
-            <AnchorPane layoutX="325.0" layoutY="-6.0" maxWidth="311.0" prefHeight="397.0" prefWidth="290.0" style="-fx-background-color: white; -fx-background-radius: 10;" AnchorPane.bottomAnchor="-6.0" AnchorPane.leftAnchor="325.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="-6.0">
+            <AnchorPane layoutX="305.0" layoutY="14.0" maxWidth="556.0" prefHeight="460.0" prefWidth="531.0" style="-fx-background-color: white; -fx-background-radius: 10;" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="305.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
                <children>
-                  <JFXButton fx:id="btnRegister" buttonType="RAISED" layoutX="47.0" layoutY="325.0" onMouseClicked="#btnRegister_Clicked" prefHeight="46.0" prefWidth="229.0" ripplerFill="#094d8d" style="-fx-background-color: #92E7F0; -fx-background-radius: 1em;" text="REGISTER" textFill="#45a2c9">
+                  <JFXTextField fx:id="tbUsername" focusColor="#1289c9" labelFloat="true" layoutX="44.0" layoutY="59.0" prefHeight="30.0" prefWidth="206.0" promptText="Username " unFocusColor="#1289c9" />
+                  <JFXPasswordField fx:id="tbPassword" focusColor="#1289c9" labelFloat="true" layoutX="44.0" layoutY="110.0" prefHeight="30.0" prefWidth="206.0" promptText="Password" unFocusColor="#1289c9" />
+                  <JFXPasswordField fx:id="tbConfirmPassword" focusColor="#1289c9" labelFloat="true" layoutX="44.0" layoutY="162.0" prefHeight="30.0" prefWidth="206.0" promptText="Confirm Password" unFocusColor="#1289c9" />
+                  <JFXTextField fx:id="tbFullname" focusColor="#1289c9" labelFloat="true" layoutX="283.6" layoutY="58.0" prefHeight="30.0" prefWidth="230.0" promptText="FullName " unFocusColor="#1289c9" AnchorPane.rightAnchor="17.0" />
+                  <DatePicker fx:id="tbDate" layoutX="284.0" layoutY="118.0" prefHeight="26.0" prefWidth="230.0" />
+                  <JFXTextField fx:id="tbPhone" focusColor="#1289c9" labelFloat="true" layoutX="285.0" layoutY="168.0" prefHeight="25.0" prefWidth="229.0" promptText="Phone Number" unFocusColor="#1289c9" />
+                  <JFXTextArea fx:id="tbAddress" focusColor="#1289c9" labelFloat="true" layoutX="44.0" layoutY="217.0" prefHeight="49.0" prefWidth="474.0" promptText="Address" unFocusColor="#1289c9" />
+                  <JFXTextField fx:id="tbEmail" focusColor="#1289c9" labelFloat="true" layoutX="43.60000000000002" layoutY="284.0" prefHeight="30.0" prefWidth="270.0" promptText="Email" unFocusColor="#1289c9" AnchorPane.rightAnchor="217.0" />
+                  <JFXButton fx:id="btnRegister" buttonType="RAISED" layoutX="341.0" layoutY="280.0" onMouseClicked="#btnRegister_Clicked" prefHeight="38.0" prefWidth="154.0" ripplerFill="#094d8d" style="-fx-background-color: #92E7F0; -fx-background-radius: 1em;" text="REGISTER" textFill="#45a2c9">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>
-                  <JFXTextField focusColor="#1289c9" labelFloat="true" layoutX="44.0" layoutY="111.0" prefHeight="25.0" prefWidth="229.0" promptText="Username " unFocusColor="#1289c9">
+                  <Label layoutX="188.0" layoutY="366.0" prefHeight="17.0" prefWidth="187.0" text="Do you want to login the system ?" textFill="#2aa0ab" />
+                  <JFXButton fx:id="btnLoginNow" buttonType="RAISED" layoutX="204.0" layoutY="386.0" onMouseClicked="#btnLoginNow" prefHeight="10.0" prefWidth="138.0" ripplerFill="#0b6d75" style="-fx-background-color: #92E7F0;" text="LOGIN NOW !" textFill="#45a2c9">
                      <font>
-                        <Font size="14.0" />
-                     </font></JFXTextField>
-                  <JFXTextField focusColor="#1289c9" labelFloat="true" layoutX="44.0" layoutY="161.0" prefHeight="25.0" prefWidth="229.0" promptText="Email" unFocusColor="#1289c9">
-                     <font>
-                        <Font size="14.0" />
-                     </font></JFXTextField>
-                  <JFXTextField focusColor="#1289c9" labelFloat="true" layoutX="44.0" layoutY="211.0" prefHeight="25.0" prefWidth="229.0" promptText="Phone Number" unFocusColor="#1289c9">
-                     <font>
-                        <Font size="14.0" />
-                     </font></JFXTextField>
-                  <JFXPasswordField focusColor="#1289c9" labelFloat="true" layoutX="45.0" layoutY="262.0" prefHeight="30.0" prefWidth="229.0" promptText="Password" unFocusColor="#1289c9">
-                     <font>
-                        <Font size="14.0" />
-                     </font></JFXPasswordField>
-                  <Label layoutX="73.0" layoutY="407.0" prefHeight="17.0" prefWidth="187.0" text="Do you want to login the system ?" textFill="#2aa0ab" />
-                  <JFXButton fx:id="btnLoginNow" buttonType="RAISED" layoutX="69.0" layoutY="426.0" onMouseClicked="#btnLoginNow" prefHeight="37.0" prefWidth="187.0" ripplerFill="#0b6d75" style="-fx-background-color: #92E7F0;" text="LOGIN NOW !" textFill="#45a2c9">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="System Bold" size="12.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -59,6 +53,12 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
+                  <Label layoutX="284.0" layoutY="100.0" text="Date Of Birth :" />
+                  <Label layoutX="181.0" layoutY="20.0" prefHeight="27.0" prefWidth="187.0" text="CREATE A NEW USER" textFill="#1289c9">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
                </children>
                <effect>
                   <DropShadow height="26.93" radius="14.4475" width="32.86" />

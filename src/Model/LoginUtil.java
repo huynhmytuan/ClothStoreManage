@@ -3,7 +3,10 @@ package Model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -32,8 +35,7 @@ public class LoginUtil {
 		String sql = " INSERT INTO Login VALUES('" + loginID + "','" + userName + "','" + passWord + "','" + loginRoleID + "','"+ userID + "')";
 		try {
 			kn.ExecuteNonQuery(sql);
-			Alert a = new Alert(AlertType.INFORMATION,"Insert successfully!");
-	        a.show();
+			System.out.println("Insert user successfully!");
 		}
 		catch(Exception e) {
 		}
@@ -58,16 +60,20 @@ public class LoginUtil {
 		catch(Exception e) {
 		}
 	}
-	public ResultSet Search(String condi)
-    {
-		ResultSet rs = null;
-        String sql = "SELECT * FROM Login WHERE LoginID like '%" + condi + "%' OR UserName like '%" + condi + "%'";
+	public ObservableList<Login> getDataList(){
+        ObservableList<Login> list = FXCollections.observableArrayList();
+        ResultSet rs = null;
         try {
-        	kn.ExecuteNonQuery(sql);
-			rs = kn.getTable(sql);
+            String sql = "SELECT LoginID, Username FROM Login";
+            rs = kn.getTable(sql);
+            while (rs.next()){   	
+                list.add(new Login(rs.getInt("LoginID"), rs.getString("Username")));               
+            }
+        } 
+        catch (Exception e) {
+        	Alert a = new Alert(AlertType.INFORMATION,"Database Error: "+e.getMessage());
+	        a.show();
         }
-        catch(Exception e) {       	
-        }
-        return rs;
-    }
+        return list;
+   }
 }

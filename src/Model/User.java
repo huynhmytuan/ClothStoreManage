@@ -1,11 +1,11 @@
 package Model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class User {
 	private int userID;
 	private String userName;
-	private Date userDOB;
+	private LocalDate userDOB;
 	private String userPhone;
 	private String userEmail;
 	private String userAddress;
@@ -22,10 +22,10 @@ public class User {
 	public void setUserName(String UserName) {
 		this.userName = UserName;
 	}
-	public Date getUserDOB() {
+	public LocalDate getUserDOB() {
 		return userDOB;
 	}
-	public void setUserDOB(Date UserDOB) {
+	public void setUserDOB(LocalDate UserDOB) {
 		this.userDOB = UserDOB;
 	}
 	public String getUserPhone() {
@@ -47,7 +47,7 @@ public class User {
 		this.userAddress = UserAddress;
 	}
 	
-	public void setUser(int UserID,String UserName,Date UserDOB,String UserPhone,String UserEmail,String UserAddress) {
+	public User(int UserID,String UserName,LocalDate UserDOB,String UserPhone,String UserEmail,String UserAddress) {
 		this.userID = UserID;
 		this.userName = UserName;
 		this.userDOB = UserDOB;
