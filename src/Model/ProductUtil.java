@@ -58,7 +58,7 @@ public class ProductUtil {
 	public ObservableList<Product> Search(String condi) {
 		ObservableList<Product> list = FXCollections.observableArrayList();
 		ResultSet rs = null;
-        String sql = "SELECT * FROM Product WHERE ProductID like '%" + condi + "%' OR ProductName like '%" + condi + "%'OR ProductType like '%" + condi + "%'";
+        String sql = "SELECT * FROM Product WHERE ProductID like '%" + condi + "%' OR ProductName like '%" + condi + "%' OR ProductType like '%" + condi + "%' OR ProductSize like '%" + condi + "%'";
         try {
 			rs = kn.getTable(sql);
             while (rs.next()){   

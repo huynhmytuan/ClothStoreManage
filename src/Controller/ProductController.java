@@ -200,6 +200,7 @@ public class ProductController implements Initializable {
 		tableProduct.setItems(list);
 		System.out.print("Load table");
     }
+    
     public ObservableList<String> loadCategory() {
     	listM = pu.getDataList();
     	ObservableList<String> typeList = FXCollections.observableArrayList();
@@ -233,12 +234,48 @@ public class ProductController implements Initializable {
     	
     }
     
+    public ObservableList<String> loadSize() {
+    	listM = pu.getDataList();
+    	ObservableList<String> sizeList = FXCollections.observableArrayList();
+		for(Product one : listM) {
+			sizeList.add(one.getProductSize());
+		}
+		ObservableList<String> listSize = FXCollections.observableArrayList();
+		listSize.add(sizeList.get(0));
+		for(String i : sizeList) {
+			boolean check= false;
+			for(String j : listSize) {
+				if(i.equals(j)) {
+					check = false;
+					break;
+				}
+				else {
+					check = true;
+				}
+			}
+			if(check) {
+				listSize.add(i);
+			}
+		}
+		return listSize;
+    }
+    
+    
+    @FXML
+    public void cmbSize_Selected(ActionEvent event) {
+    	String size = cmbSize.getValue();
+    	listM = pu.Search(size);
+	 	loadTable(listM);
+    }
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		listM = pu.getDataList();
 		loadTable(listM);
 		ObservableList<String> listCategory = loadCategory();
 		cmbCategory.setItems(listCategory);
+		ObservableList<String> listSize = loadSize();
+		cmbSize.setItems(listSize);
 	}
 
 }

@@ -115,7 +115,7 @@
                </font>
             </Label>
             <JFXComboBox fx:id="cmbCategory" layoutX="350.0" layoutY="85.0" onAction="#cmbCategory_Selected" prefHeight="25.0" prefWidth="138.0" />
-            <JFXComboBox fx:id="cmbSize" layoutX="547.0" layoutY="87.0" prefHeight="25.0" prefWidth="54.0" />
+            <JFXComboBox fx:id="cmbSize" layoutX="547.0" layoutY="87.0" onAction="#cmbSize_Selected" prefHeight="25.0" prefWidth="54.0" />
             <ImageView fx:id="btnSearch" fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="80.0" onMouseClicked="#btnSearch_Clicked" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/icon-search.png" />
