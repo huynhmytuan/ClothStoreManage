@@ -268,6 +268,7 @@ public class ProductController implements Initializable {
 	 	loadTable(listM);
     }
     
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		listM = pu.getDataList();
