@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXTextField;
 import Model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -72,16 +73,78 @@ public class ProductOfStaffController implements Initializable {
     
     //ComboBox
     @FXML
-    private JFXComboBox<String> cmb_category;
+    private JFXComboBox<String> cmbCategory;
 
-    //@FXML
-    //private JFXComboBox<String> cmb_size;
+    @FXML
+    private JFXComboBox<String> cmbSize;
     
-    //ObservableList<String> list = FXCollections.observableArrayList("zczs");
-    //public void cmbCategory_Changed (ActionEvent event){
-    //	label.setText(cmb_category.getValue());
-    //}
+    public ObservableList<String> loadCategory() {
+    	listM = pu.getDataList();
+    	ObservableList<String> typeList = FXCollections.observableArrayList();
+		for(Product one : listM) {
+			typeList.add(one.getProductType());
+		}
+		ObservableList<String> listCategory = FXCollections.observableArrayList();
+		listCategory.add(typeList.get(0));
+		for(String i : typeList) {
+			boolean check= false;
+			for(String j : listCategory) {
+				if(i.equals(j)) {
+					check = false;
+					break;
+				}
+				else {
+					check = true;
+				}
+			}
+			if(check) {
+				listCategory.add(i);
+			}
+		}
+		return listCategory;
+    }
+    @FXML
+    public void cmbCategory_Selected(ActionEvent event) {
+    	String category = cmbCategory.getValue();
+    	listM = pu.Search(category);
+	 	loadTable(listM);
+    	
+    }
     
+    public ObservableList<String> loadSize() {
+    	listM = pu.getDataList();
+    	ObservableList<String> sizeList = FXCollections.observableArrayList();
+		for(Product one : listM) {
+			sizeList.add(one.getProductSize());
+		}
+		ObservableList<String> listSize = FXCollections.observableArrayList();
+		listSize.add(sizeList.get(0));
+		for(String i : sizeList) {
+			boolean check= false;
+			for(String j : listSize) {
+				if(i.equals(j)) {
+					check = false;
+					break;
+				}
+				else {
+					check = true;
+				}
+			}
+			if(check) {
+				listSize.add(i);
+			}
+		}
+		return listSize;
+    }
+    
+    
+    @FXML
+    public void cmbSize_Selected(ActionEvent event) {
+    	String size = cmbSize.getValue();
+    	listM = pu.Search(size);
+	 	loadTable(listM);
+    }
+  
     public void loadTable(ObservableList<Product> list) {
     	col_id.setCellValueFactory(new PropertyValueFactory<Product,Integer>("ProductID"));
 		col_name.setCellValueFactory(new PropertyValueFactory<Product,String>("ProductName"));
@@ -91,6 +154,7 @@ public class ProductOfStaffController implements Initializable {
 		table_Product.setItems(list);
 		System.out.print("Load table");
     }
+    
     //Search
     @FXML
     public void btnSearch_Clicked(MouseEvent event) {
@@ -127,25 +191,9 @@ public class ProductOfStaffController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		listM = pu.getDataList();
 		loadTable(listM);
-//		list = null;
-//		for(Product pro : listM) {
-//			int check = 0;
-//			if(list==null) {
-//				list.add(pro.getProductType());
-//			}
-//			else {
-//				for(String s : list) {
-//					if(pro.getProductType().equals(s)){
-//						check = 1;
-//						break;
-//					}
-//				}
-//			}
-//			if(check==0) {
-//				list.add(pro.getProductType());
-//			}
-//		}
-		ObservableList<String> list = FXCollections.observableArrayList("Ao", "Quan", "Phu kien");
-		cmb_category.setItems(list);
+		ObservableList<String> listCategory = loadCategory();
+		cmbCategory.setItems(listCategory);
+		ObservableList<String> listSize = loadSize();
+		cmbSize.setItems(listSize);
 	}
 }
