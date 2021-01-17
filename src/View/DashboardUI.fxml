@@ -136,6 +136,13 @@
       </VBox>
    </left>
    <center>
-      <AnchorPane fx:id="Content" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #1a343d;" BorderPane.alignment="CENTER" />
+      <AnchorPane fx:id="Content" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #1a343d;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="730.0" fitWidth="1070.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../FinalProject/ClothStoreManage/src/image/image-dashboardadmin.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
    </center>
 </BorderPane>
