@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.DatePicker?>
@@ -15,20 +16,17 @@
 
 <AnchorPane fx:id="customerUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #82e4ff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UserController">
    <children>
-      <TableView fx:id="tableUser" layoutY="84.0" onMousePressed="#Row_Clicked" prefHeight="637.0" prefWidth="794.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="271.0">
+      <TableView fx:id="tableUser" layoutY="84.0" onMousePressed="#Row_Clicked" prefHeight="384.0" prefWidth="357.0" AnchorPane.bottomAnchor="265.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="708.0">
          <columns>
             <TableColumn fx:id="colID" prefWidth="65.59997415542603" text="ID" />
             <TableColumn fx:id="colName" prefWidth="160.00000762939453" text="Name" />
-            <TableColumn fx:id="colDOB" prefWidth="120.800048828125" text="Date Of Birth" />
-            <TableColumn fx:id="colPhone" prefWidth="124.00006103515625" text="Phone Number" />
-            <TableColumn fx:id="colEmail" prefWidth="143.19992065429688" text="Email" />
-            <TableColumn fx:id="colAddress" prefWidth="180.0" text="Address" />
+            <TableColumn fx:id="colDOB" prefWidth="129.79998779296875" text="Date Of Birth" />
          </columns>
          <effect>
             <DropShadow />
          </effect>
       </TableView>
-      <JFXButton fx:id="btnAdd" layoutX="853.0" layoutY="665.0" onMouseClicked="#btnAdd_Clicked" prefHeight="30.0" prefWidth="79.0" ripplerFill="#fff0f0" style="-fx-background-color: #0a8f5c;" text="Add" textFill="#f6ffd1">
+      <JFXButton fx:id="btnAdd" layoutX="479.0" layoutY="674.0" onMouseClicked="#btnAdd_Clicked" prefHeight="30.0" prefWidth="200.0" ripplerFill="#fff0f0" style="-fx-background-color: #0a8f5c;" text="Add" textFill="#f6ffd1">
          <font>
             <Font size="14.0" />
          </font>
@@ -39,7 +37,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="853.0" layoutY="589.0" onMouseClicked="#btnUpdate_Clicked" prefHeight="30.0" prefWidth="79.0" ripplerFill="#ffeded" style="-fx-background-color: #0a8f5c;" text="Update" textFill="#efffe4">
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="479.0" layoutY="598.0" onMouseClicked="#btnUpdate_Clicked" prefHeight="30.0" prefWidth="200.0" ripplerFill="#ffeded" style="-fx-background-color: #0a8f5c;" text="Update" textFill="#efffe4">
          <font>
             <Font size="14.0" />
          </font>
@@ -50,7 +48,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnRefresh" buttonType="RAISED" layoutX="978.0" layoutY="666.0" onMouseClicked="#btnRefresh_Clicked" prefHeight="30.0" prefWidth="79.0" ripplerFill="#fff0f0" style="-fx-background-color: #0a8f5c;" text="Refresh" textFill="#f6ffd1">
+      <JFXButton fx:id="btnRefresh" buttonType="RAISED" layoutX="803.0" layoutY="672.0" onMouseClicked="#btnRefresh_Clicked" prefHeight="30.0" prefWidth="200.0" ripplerFill="#fff0f0" style="-fx-background-color: #0a8f5c;" text="Refresh" textFill="#f6ffd1">
          <font>
             <Font size="14.0" />
          </font>
@@ -61,7 +59,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="977.0" layoutY="591.0" onMouseClicked="#btnDelete_Clicked" prefHeight="30.0" prefWidth="79.0" ripplerFill="#ffeeee" style="-fx-background-color: #0a8f5c;" text="Delete" textFill="#f6ffd1" AnchorPane.rightAnchor="14.0">
+      <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="802.0" layoutY="598.0" onMouseClicked="#btnDelete_Clicked" prefHeight="30.0" prefWidth="200.0" ripplerFill="#ffeeee" style="-fx-background-color: #0a8f5c;" text="Delete" textFill="#f6ffd1" AnchorPane.rightAnchor="68.0">
          <font>
             <Font size="14.0" />
          </font>
@@ -72,24 +70,24 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="807.0" layoutY="657.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="433.0" layoutY="666.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/icon-add.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="808.0" layoutY="586.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="431.0" layoutY="595.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/icon-editProduct.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="935.0" layoutY="584.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="760.0" layoutY="590.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/icon-delete.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="738.0" layoutY="179.0" prefHeight="492.0" prefWidth="258.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="153.0" AnchorPane.rightAnchor="5.0">
+      <AnchorPane layoutX="738.0" layoutY="179.0" prefHeight="492.0" prefWidth="685.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="153.0" AnchorPane.rightAnchor="5.0">
          <children>
-            <Label layoutX="42.0" layoutY="14.0" prefHeight="20.0" prefWidth="193.0" text="INFORMATION DETAILS" textFill="#12555d" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="5.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="18.0" prefHeight="20.0" prefWidth="193.0" text="INFORMATION DETAILS" textAlignment="CENTER" textFill="#12555d" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="18.0">
                <font>
                   <Font name="Arial" size="16.0" />
                </font>
@@ -99,37 +97,54 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="10.0" layoutY="114.0" text="UserName :" textFill="#12555d" AnchorPane.leftAnchor="10.0">
+            <Label layoutX="292.0" layoutY="68.0" text="Full Name : " textFill="#12555d" AnchorPane.leftAnchor="292.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="10.0" layoutY="173.0" text="Date Of Birth :" textFill="#12555d" AnchorPane.leftAnchor="10.0">
+            <Label layoutX="14.0" layoutY="137.0" text="Date Of Birth :" textFill="#12555d" AnchorPane.leftAnchor="14.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="10.0" layoutY="236.0" text="Phone Number :" textFill="#12555d" AnchorPane.leftAnchor="10.0">
+            <Label layoutX="323.0" layoutY="133.0" text="Phone Number :" textFill="#12555d" AnchorPane.leftAnchor="323.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="10.0" layoutY="300.0" text="Email :" textFill="#12555d" AnchorPane.leftAnchor="10.0">
+            <Label layoutX="13.0" layoutY="194.0" text="Email :" textFill="#12555d" AnchorPane.leftAnchor="13.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="10.0" layoutY="364.0" text="Address :" textFill="#12555d" AnchorPane.leftAnchor="10.0">
+            <Label layoutX="12.0" layoutY="299.0" text="Address :" textFill="#12555d" AnchorPane.leftAnchor="12.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="txtID" focusColor="#156879" layoutX="71.0" layoutY="65.0" prefHeight="25.0" prefWidth="146.0" unFocusColor="#146572" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="51.0" />
-            <JFXTextField fx:id="txtName" layoutX="10.0" layoutY="136.0" prefHeight="25.0" prefWidth="242.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="6.0" />
-            <JFXTextField fx:id="txtPhone" layoutX="10.0" layoutY="264.0" prefHeight="25.0" prefWidth="242.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="6.0" />
-            <JFXTextField fx:id="txtEmail" layoutX="10.0" layoutY="326.0" prefHeight="25.0" prefWidth="242.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="6.0" />
-            <JFXTextField fx:id="txtAddress" layoutX="10.0" layoutY="390.0" prefHeight="25.0" prefWidth="242.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="6.0" />
-            <DatePicker fx:id="txtDate" layoutX="10.0" layoutY="202.0" prefHeight="26.0" prefWidth="242.0" />
+            <JFXTextField fx:id="txtID" disable="true" editable="false" focusColor="#156879" layoutX="71.0" layoutY="65.0" prefHeight="26.0" prefWidth="182.0" unFocusColor="#146572" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="433.0" />
+            <JFXTextField fx:id="txtName" layoutX="373.0" layoutY="63.0" prefHeight="26.0" prefWidth="296.0" AnchorPane.leftAnchor="373.0" AnchorPane.rightAnchor="17.0" />
+            <JFXTextField fx:id="txtPhone" layoutX="440.0" layoutY="131.0" prefHeight="26.0" prefWidth="230.0" AnchorPane.leftAnchor="440.0" AnchorPane.rightAnchor="16.0" />
+            <JFXTextField fx:id="txtEmail" layoutX="69.0" layoutY="190.0" prefHeight="26.0" prefWidth="600.0" AnchorPane.leftAnchor="69.0" AnchorPane.rightAnchor="17.0" />
+            <DatePicker fx:id="txtDate" layoutX="113.0" layoutY="132.0" prefHeight="26.0" prefWidth="176.0" />
+            <JFXTextArea fx:id="txtAddress" layoutX="80.0" layoutY="254.0" prefHeight="82.0" prefWidth="586.0" />
+            <Label layoutX="56.0" layoutY="438.0" text="Username :" textFill="#12555d">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtUserName" focusColor="#156879" layoutX="129.0" layoutY="427.0" prefHeight="26.0" prefWidth="182.0" unFocusColor="#146572" />
+            <Label layoutX="359.0" layoutY="433.0" text="Role : " textFill="#12555d">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtRole" focusColor="#156879" layoutX="416.0" layoutY="423.0" prefHeight="26.0" prefWidth="238.0" unFocusColor="#146572" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="239.0" layoutY="371.0" prefHeight="20.0" prefWidth="193.0" text="ACCOUNT" textAlignment="CENTER" textFill="#12555d">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Label>
          </children>
          <effect>
             <DropShadow />
@@ -153,10 +168,19 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="937.0" layoutY="661.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="762.0" layoutY="667.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/icon-update.png" />
          </image>
       </ImageView>
+      <TableView fx:id="tableRole" layoutX="7.0" layoutY="476.0" prefHeight="231.0" prefWidth="354.0">
+        <columns>
+          <TableColumn fx:id="colRoleID" prefWidth="98.66666793823242" text="Role ID" />
+          <TableColumn fx:id="colRoleName" prefWidth="249.33335876464844" text="Role Name" />
+        </columns>
+         <effect>
+            <DropShadow />
+         </effect>
+      </TableView>
    </children>
 </AnchorPane>

@@ -137,13 +137,13 @@ public class RegisterController implements Initializable{
 	    					Random rand = new Random();
 	    		    		loginID = rand.nextInt(10000);//Random a new loginID
 	    		    		userID = rand.nextInt(10000);//Random a new User ID
-	    		    		 int[] loginIDArr = new int[listM.size()]; //Create a list to store loginID in database
-	    		    		 int[] userIDArr = new int[listN.size()];//Create a list to store userID in database
-	    		    		 int n=0;
-	    		    		 for(Login lid : listM) {
-	    		    			 loginIDArr[n] = lid.getLoginID();
-	    		    			 n++;
-	    		    		 }
+	    		    		int[] loginIDArr = new int[listM.size()]; //Create a list to store loginID in database
+	    		    		int[] userIDArr = new int[listN.size()];//Create a list to store userID in database
+	    		    		int n=0;
+	    		    		for(Login lid : listM) {
+	    		    			loginIDArr[n] = lid.getLoginID();
+	    		    			n++;
+	    		    		}
 	    		    		 n=0;
 	    		    		 for(User uid : listN) {
 	    		    			 userIDArr[n] = uid.getUserID();

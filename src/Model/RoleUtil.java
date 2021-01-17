@@ -1,7 +1,10 @@
 package Model;
 
 import java.sql.ResultSet;
+import java.time.LocalDate;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -65,4 +68,19 @@ public class RoleUtil {
         }
         return rs;
     }
+	 public ObservableList<Role> getRoleList(){
+	        ObservableList<Role> list = FXCollections.observableArrayList();
+	        ResultSet rs = null;
+	        try {
+	            rs = getRole();
+	            while (rs.next()){
+	                list.add(new Role(rs.getInt("RoleID"), rs.getString("RoleName")));               
+	            }
+	        } 
+	        catch (Exception e) {
+	        	Alert a = new Alert(AlertType.INFORMATION,"Database Error: "+e.getMessage());
+		        a.show();
+	        }
+	        return list;
+	   }
 }

@@ -40,22 +40,28 @@ public class LoginUtil {
 		catch(Exception e) {
 		}
 	}
-	public void updateLogin(int loginID,String userName,String passWord,int loginRoleID,int userID) {
-		String sql = " UPDATE User SET LoginID='" + loginID + "', UserName='" + userName + "', PassWord='" + passWord + "', LoginRoleID='" + loginRoleID + "', UserID='"+ userID + "'WHERE LoginID='" +loginID+"'";
+	public void updateUsernameNRoleID(String userName, int loginRoleID,int userID) {
+		String sql = "UPDATE Login SET  UserName='" + userName +  "', LoginRoleID='" + loginRoleID + "'WHERE UserID='" +userID+"'";
 		try {			
 			kn.ExecuteNonQuery(sql);
-			Alert a = new Alert(AlertType.INFORMATION,"Update successfully!");
-	        a.show();
 		}
 		catch(Exception e) {
 		}
 	}
-	public void deleteLogin(int loginID) {
-		String sql = "DELETE User WHERE LoginID='" + loginID + "'";
+	
+	public void changePass(String newPass,int userID) {
+		String sql = "UPDATE Login SET Password='" + newPass + "'WHERE UserID='" +userID+"'";
+		try {			
+			kn.ExecuteNonQuery(sql);
+		}
+		catch(Exception e) {
+		}
+	}
+	
+	public void deleteLogin(int userID) {
+		String sql = "DELETE Login WHERE UserID='" + userID + "'";
 		try {
 			kn.ExecuteNonQuery(sql);
-			Alert a = new Alert(AlertType.INFORMATION,"Delete successfully!");
-	        a.show();
 		}
 		catch(Exception e) {
 		}
@@ -68,6 +74,23 @@ public class LoginUtil {
             rs = kn.getTable(sql);
             while (rs.next()){   	
                 list.add(new Login(rs.getInt("LoginID"), rs.getString("Username")));               
+            }
+        } 
+        catch (Exception e) {
+        	Alert a = new Alert(AlertType.INFORMATION,"Database Error: "+e.getMessage());
+	        a.show();
+        }
+        return list;
+   }
+	
+	public ObservableList<Login> getListByID(int id){
+        ObservableList<Login> list = FXCollections.observableArrayList();
+        ResultSet rs = null;
+        try {
+            String sql = "SELECT LoginID, Username, LoginRoleID FROM Login WHERE UserID='"+id+"'";
+            rs = kn.getTable(sql);
+            while (rs.next()){   	
+                list.add(new Login(rs.getInt("LoginID"), rs.getString("Username"), rs.getInt("LoginRoleID")));               
             }
         } 
         catch (Exception e) {

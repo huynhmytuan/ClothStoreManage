@@ -4,11 +4,13 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
 import Model.*;
@@ -28,6 +30,8 @@ import javafx.scene.layout.AnchorPane;
 public class UserController implements Initializable {
 	UserUtil us = new UserUtil();
 	ObservableList<User> listM;
+	LoginUtil lu = new LoginUtil();
+	RoleUtil ru = new RoleUtil();
     int index = -1;
     ResultSet rs = null;
 
@@ -45,15 +49,6 @@ public class UserController implements Initializable {
 
     @FXML
     private TableColumn<User, Date> colDOB;
-
-    @FXML
-    private TableColumn<User, String> colPhone;
-
-    @FXML
-    private TableColumn<User, String> colEmail;
-
-    @FXML
-    private TableColumn<User, String> colAddress;
 
     @FXML
     private JFXButton btnAdd;
@@ -80,17 +75,32 @@ public class UserController implements Initializable {
     private JFXTextField txtEmail;
 
     @FXML
-    private JFXTextField txtAddress;
+    private DatePicker txtDate;
 
     @FXML
-    private DatePicker txtDate;
+    private JFXTextArea txtAddress;
+
+    @FXML
+    private JFXTextField txtUserName;
+
+    @FXML
+    private JFXTextField txtRole;
 
     @FXML
     private JFXTextField txtSearch;
 
     @FXML
     private ImageView btnSearch;
+    
+    @FXML
+    private TableView<Role> tableRole;
 
+    @FXML
+    private TableColumn<Role, Integer> colRoleID;
+
+    @FXML
+    private TableColumn<Role, String> colRoleName;
+    
     @FXML
     void Row_Clicked(MouseEvent event) {
     	User us = tableUser.getSelectionModel().getSelectedItem();
@@ -100,18 +110,55 @@ public class UserController implements Initializable {
     	txtPhone.setText(us.getUserPhone());
     	txtEmail.setText("" + us.getUserEmail());
     	txtAddress.setText("" + us.getUserAddress());
+    	
+    	ObservableList<Login> listLogin  = lu.getListByID(us.getUserID());
+    	Login user = listLogin.get(0);
+    	String userName = user.getUserName();
+    	txtUserName.setText(userName);
+    	int loginRoleID = user.getLoginRoleID();
+    	txtRole.setText(Integer.toString(loginRoleID));
     }
-
+    public int getRandomLoginID() {
+    	ObservableList<Login> inputList = lu.getDataList();
+    	int numID;
+    	Random rand = new Random();
+		numID = rand.nextInt(10000);//Random a new numID
+		int[] loginIDArr = new int[listM.size()]; //Create a list to store ID in database
+		int n=0;
+		for(Login lid : inputList) {
+			loginIDArr[n] = lid.getLoginID();
+			n++;
+		}
+		return numID;
+    }
+    public int getRandomUserID() {
+    	ObservableList<User> inputList = us.getDataList();
+    	int numID;
+    	Random rand = new Random();
+		numID = rand.nextInt(10000);//Random a new numID
+		int[] loginIDArr = new int[listM.size()]; //Create a list to store ID in database
+		int n=0;
+		for(User lid : inputList) {
+			loginIDArr[n] = lid.getUserID();
+			n++;
+		}
+		return numID;
+    }
     @FXML
     void btnAdd_Clicked(MouseEvent event) {
-    	int userID = Integer.parseInt(txtID.getText());
+    	int userID = getRandomUserID();
     	String userName = txtName.getText();
     	LocalDate userDOB = txtDate.getValue();
     	String userPhone = txtPhone.getText();
     	String userEmail = txtEmail.getText();
     	String userAddress = txtAddress.getText();
+    	us.insertUser(userID, userName, userDOB, userPhone, userEmail, userAddress);//Create new User
     	
-    	us.insertUser(userID, userName, userDOB, userPhone, userEmail, userAddress);
+    	int loginID = getRandomLoginID();
+    	String username = txtUserName.getText();
+    	int roleID = Integer.parseInt(txtRole.getText());
+    	lu.insertLogin(loginID, username, "123456", roleID, userID);//Create new account with default password 123456
+    	
     	listM = us.getDataList();
     	loadTable(listM);
     }
@@ -122,9 +169,9 @@ public class UserController implements Initializable {
     	if(p==0) {
 			int userID = Integer.parseInt(txtID.getText());
 			us.deleteUser(userID);
-			listM = us.getDataList();
-			loadTable(listM);
-    	} 	
+			lu.deleteLogin(userID);//Thread
+    	}
+    	btnRefresh_Clicked(event);
     }
 
     @FXML
@@ -160,8 +207,12 @@ public class UserController implements Initializable {
     	String userPhone = txtPhone.getText();
     	String userEmail = txtEmail.getText();
     	String userAddress = txtAddress.getText();
-  	
-    	us.updatetUser(userID, userName, userDOB, userPhone, userEmail, userAddress);
+    	us.updatetUser(userID, userName, userDOB, userPhone, userEmail, userAddress);//Update A current User
+    	
+    	String username = txtUserName.getText();
+    	int roleID = Integer.parseInt(txtRole.getText());
+    	lu.updateUsernameNRoleID(username, roleID, userID);//Update username and role ID of user's Account.
+    	
     	listM = us.getDataList();
     	loadTable(listM);
     }
@@ -170,16 +221,22 @@ public class UserController implements Initializable {
     	colID.setCellValueFactory(new PropertyValueFactory<User,Integer>("UserID"));
 		colName.setCellValueFactory(new PropertyValueFactory<User,String>("UserName"));
 		colDOB.setCellValueFactory(new PropertyValueFactory<User,Date>("UserDOB"));
-		colPhone.setCellValueFactory(new PropertyValueFactory<User,String>("UserPhone"));
-		colEmail.setCellValueFactory(new PropertyValueFactory<User,String>("UserEmail"));
-		colAddress.setCellValueFactory(new PropertyValueFactory<User,String>("UserAddress"));
 		tableUser.setItems(list);
 		System.out.print("Load table");
     }
-    
+    public void loadRole() {
+    	ObservableList<Role> listR = ru.getRoleList();
+    	colRoleID.setCellValueFactory(new PropertyValueFactory<Role,Integer>("RoleID"));
+		colRoleName.setCellValueFactory(new PropertyValueFactory<Role,String>("RoleName"));
+		tableRole.setItems(listR);
+		System.out.print("Load table");
+    }
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		listM = us.getDataList();
+		txtID.setEditable(false);
 		loadTable(listM);
+		loadRole();
+		
 	}
 }

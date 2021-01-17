@@ -14,6 +14,13 @@ public class Login {
 		this.loginRoleID = -1;
 		this.userID = -1;
 	}
+	public Login(int LoginID, String Username, int Role) {
+		this.loginID = LoginID;
+		this.userName = Username;
+		this.passWord = "";
+		this.loginRoleID = Role;
+		this.userID = -1;
+	}
 	public Login() {
 		this.loginID = -1;
 		this.userName = "";
