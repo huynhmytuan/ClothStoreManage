@@ -91,12 +91,12 @@
                   <Insets top="10.0" />
                </VBox.margin>
                <children>
-                  <JFXButton buttonType="RAISED" layoutY="1.0" onMouseClicked="#btnStatisticsUI_Clicked" prefHeight="50.0" prefWidth="180.0" ripplerFill="WHITE" text="Statistics" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" layoutX="-2.0" layoutY="1.0" onMouseClicked="#btnUserDetail_Clicked" prefHeight="50.0" prefWidth="180.0" ripplerFill="WHITE" text="User Detail" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="16.0" />
                      </font>
                      <padding>
-                        <Insets left="45.0" />
+                        <Insets left="60.0" />
                      </padding>
                      <cursor>
                         <Cursor fx:constant="HAND" />

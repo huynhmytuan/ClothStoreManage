@@ -56,6 +56,26 @@ public class UserUtil {
 		}
 	}
 	
+	public ObservableList<User> Search(String condi) {
+		ObservableList<User> list = FXCollections.observableArrayList();
+		ResultSet rs = null;
+        String sql = "SELECT * FROM Users WHERE UserID like '%" + condi + "%' OR UserName like '%" + condi + "%'";
+        try {
+			rs = kn.getTable(sql);
+			LocalDate date = null;
+            while (rs.next()){
+            	date = rs.getDate("UserDOB").toLocalDate();
+            	list.add(new User(rs.getInt("UserID"), rs.getString("UserName"), date, rs.getString("UserPhone"), rs.getString("UserEmail"), rs.getString("UserAddress")));               
+            }
+        }
+        catch(Exception e) {  
+        	Alert a = new Alert(AlertType.INFORMATION,"Database Error: "+e.getMessage());
+        	a.show();
+        	System.out.print(e.getMessage());
+        }
+        return list;
+    }
+	
 	 public ObservableList<User> getDataList(){
 	        ObservableList<User> list = FXCollections.observableArrayList();
 	        ResultSet rs = null;

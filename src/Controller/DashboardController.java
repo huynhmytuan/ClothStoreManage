@@ -62,7 +62,7 @@ public class DashboardController implements Initializable {
 	    }
 
 	    @FXML
-	    void btnStatisticsUI_Clicked(MouseEvent event) {
+	    void btnUserDetail_Clicked(MouseEvent event) {
 	    	LoadUI("UserManageUI.fxml");
 	    }
 	    // ham loadUI 

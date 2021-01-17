@@ -13,16 +13,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="customerUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #82e4ff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CustomerController">
+<AnchorPane fx:id="customerUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #82e4ff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UserController">
    <children>
-      <TableView fx:id="tableCustomer" layoutY="84.0" onMousePressed="#Row_Clicked" prefHeight="637.0" prefWidth="794.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="271.0">
+      <TableView fx:id="tableUser" layoutY="84.0" onMousePressed="#Row_Clicked" prefHeight="637.0" prefWidth="794.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="271.0">
          <columns>
-            <TableColumn fx:id="colID" prefWidth="65.59997415542603" text="C1" />
-            <TableColumn fx:id="colName" prefWidth="160.00000762939453" />
-            <TableColumn fx:id="colDOB" prefWidth="120.800048828125" />
-            <TableColumn fx:id="colPhone" prefWidth="155.199951171875" />
-            <TableColumn fx:id="colEmail" prefWidth="111.99996948242188" />
-            <TableColumn fx:id="colAddress" prefWidth="180.0" />
+            <TableColumn fx:id="colID" prefWidth="65.59997415542603" text="ID" />
+            <TableColumn fx:id="colName" prefWidth="160.00000762939453" text="Name" />
+            <TableColumn fx:id="colDOB" prefWidth="120.800048828125" text="Date Of Birth" />
+            <TableColumn fx:id="colPhone" prefWidth="124.00006103515625" text="Phone Number" />
+            <TableColumn fx:id="colEmail" prefWidth="143.19992065429688" text="Email" />
+            <TableColumn fx:id="colAddress" prefWidth="180.0" text="Address" />
          </columns>
          <effect>
             <DropShadow />
