@@ -50,8 +50,8 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <JFXComboBox fx:id="cmb_category" layoutX="722.0" layoutY="94.0" prefHeight="25.0" prefWidth="138.0" />
-            <JFXComboBox fx:id="cmb_size" layoutX="915.0" layoutY="94.0" prefHeight="25.0" prefWidth="54.0" />
+            <JFXComboBox fx:id="cmbCategory" layoutX="722.0" layoutY="94.0" onAction="#cmbCategory_Selected" prefHeight="25.0" prefWidth="138.0" />
+            <JFXComboBox fx:id="cmbSize" layoutX="915.0" layoutY="94.0" onAction="#cmbSize_Selected" prefHeight="25.0" prefWidth="54.0" />
             <ImageView fx:id="btn_search" fitHeight="40.0" fitWidth="40.0" layoutX="47.0" layoutY="88.0" onMouseClicked="#btnSearch_Clicked" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/icon-search.png" />
