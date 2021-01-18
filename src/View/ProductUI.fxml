@@ -133,7 +133,7 @@
                   <Font name="Arial" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="12.0" layoutY="240.0" text="Product ID:" textFill="#12555d" AnchorPane.leftAnchor="12.0">
+            <Label layoutX="12.0" layoutY="240.0" text="Product ID:" textFill="#12555d" AnchorPane.leftAnchor="10.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -143,27 +143,27 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="13.0" layoutY="289.0" text="Product Type:" textFill="#12555d" AnchorPane.leftAnchor="13.0">
+            <Label layoutX="12.0" layoutY="291.0" text="Product Type:" textFill="#12555d" AnchorPane.leftAnchor="10.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="215.0" layoutY="289.0" text="Product Size:" textFill="#12555d" AnchorPane.leftAnchor="215.0">
+            <Label layoutX="225.0" layoutY="289.0" prefHeight="20.0" prefWidth="85.0" text="Product Size:" textFill="#12555d" AnchorPane.leftAnchor="225.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="11.0" layoutY="357.0" text="Product In Price:" textFill="#12555d" AnchorPane.leftAnchor="11.0">
+            <Label layoutX="11.0" layoutY="357.0" text="Product In Price:" textFill="#12555d" AnchorPane.leftAnchor="10.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
             <JFXTextField fx:id="txtID" focusColor="#156879" layoutX="96.0" layoutY="230.0" prefHeight="26.0" prefWidth="104.0" unFocusColor="#146572" AnchorPane.leftAnchor="96.0" AnchorPane.rightAnchor="422.0" />
             <JFXTextField fx:id="txtName" layoutX="325.0" layoutY="228.0" prefHeight="26.0" prefWidth="283.0" AnchorPane.leftAnchor="325.0" AnchorPane.rightAnchor="14.0" />
-            <JFXTextField fx:id="txtType" layoutX="113.0" layoutY="286.0" prefHeight="26.0" prefWidth="85.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="424.0" />
-            <JFXTextField fx:id="txtSize" layoutX="306.0" layoutY="286.0" prefHeight="26.0" prefWidth="70.0" AnchorPane.leftAnchor="306.0" AnchorPane.rightAnchor="246.0" />
+            <JFXTextField fx:id="txtType" layoutX="112.0" layoutY="287.0" prefHeight="26.0" prefWidth="85.0" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="425.0" />
+            <JFXTextField fx:id="txtSize" layoutX="321.0" layoutY="286.0" prefHeight="26.0" prefWidth="54.0" AnchorPane.leftAnchor="321.0" AnchorPane.rightAnchor="247.0" />
             <JFXTextField fx:id="txtInPrice" layoutX="120.0" layoutY="354.0" prefHeight="26.0" prefWidth="147.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="355.0" />
-            <Label layoutX="292.0" layoutY="357.0" text="Product Out Price:" textFill="#12555d">
+            <Label layoutX="283.0" layoutY="359.0" text="Product Out Price:" textFill="#12555d">
                <font>
                   <Font size="14.0" />
                </font>
@@ -175,24 +175,24 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="391.0" layoutY="288.0" text="Product Decs:" textFill="#12555d">
+            <Label layoutX="389.0" layoutY="289.0" text="Product Decs:" textFill="#12555d">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
             <JFXTextField fx:id="txtDecs" layoutX="484.0" layoutY="284.0" prefHeight="26.0" prefWidth="123.0" />
-            <Label layoutX="13.0" layoutY="422.0" text="Number Of Product In:" textFill="#12555d">
+            <Label layoutX="10.0" layoutY="420.0" text="Number Of Product In:" textFill="#12555d" AnchorPane.leftAnchor="10.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="txtNumberOfProductIn" layoutX="161.0" layoutY="416.0" prefHeight="26.0" prefWidth="438.0" />
-            <Label layoutX="11.0" layoutY="481.0" text="Quantity In Stock:" textFill="#12555d">
+            <JFXTextField fx:id="txtNumberOfProductIn" layoutX="159.0" layoutY="416.0" prefHeight="26.0" prefWidth="438.0" />
+            <Label layoutX="10.0" layoutY="475.0" text="Quantity In Stock:" textFill="#12555d" AnchorPane.leftAnchor="10.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="txtQuantityInStock" layoutX="128.0" layoutY="469.0" prefHeight="26.0" prefWidth="475.0" />
+            <JFXTextField fx:id="txtQuantityInStock" layoutX="128.0" layoutY="470.0" prefHeight="26.0" prefWidth="475.0" />
          </children>
          <effect>
             <DropShadow />
