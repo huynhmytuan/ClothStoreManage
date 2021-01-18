@@ -2,8 +2,6 @@ package Controller;
 
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.Date;
@@ -92,7 +90,7 @@ public class CustomerController implements Initializable {
     
     @FXML
     private JFXButton btnRefresh;
-
+    
     @FXML
     void btnAdd_Clicked(MouseEvent event) {
     	int cusID = Integer.parseInt(txtID.getText());

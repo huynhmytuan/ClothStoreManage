@@ -79,5 +79,24 @@ public class CustomerUtil {
 		        a.show();
 	        }
 	        return list;
-	    }
+	 }
+	 
+	 public Customer getCusByID(int CusID){
+		 	Customer cus = new Customer();
+	        ResultSet rs = null;
+	        try {
+	            String sql = "SELECT CusName, CusPhone, CusAddress  FROM Customer WHERE CusID='"+CusID+"'";
+	            rs = kn.getTable(sql);
+	            while (rs.next()){   
+	                cus.setCusName(rs.getString("CusName"));  
+	                cus.setCusPhone(rs.getString("CusPhone"));
+	                cus.setCusAddress(rs.getNString("CusAddress"));
+	            }
+	        }
+	        catch (Exception e) {
+	        	Alert a = new Alert(AlertType.INFORMATION,"This Customer do not exited!");
+		        a.show();
+	        }
+	        return cus;
+	 }
 }

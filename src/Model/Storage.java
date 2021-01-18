@@ -2,7 +2,7 @@ package Model;
 
 import java.util.Date;
 
-public class Stogare {
+public class Storage {
 	private int storID;
 	private int productID;
 	private int numOfProductIn;

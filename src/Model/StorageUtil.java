@@ -63,4 +63,19 @@ ConnectDBUtil kn = new ConnectDBUtil();
         }
         return rs;
     }
+	
+	public Storage getAvailableByProdID(int ProdID){
+	 	Storage sto = new Storage();
+        ResultSet rs = null;
+        try {
+            String sql = "SELECT NumOfProductIn ,QuantityInStock FROM Storage WHERE ProductID='"+ProdID+"'";
+            rs = kn.getTable(sql);
+            while (rs.next()){   
+            	sto.setQuantityInStock(rs.getInt("QuantityInStock"));
+            }
+        }
+        catch (Exception e) {
+        }
+        return sto;
+	}
 }

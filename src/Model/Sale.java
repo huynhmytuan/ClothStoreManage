@@ -60,7 +60,7 @@ public class Sale {
 	public void setTotalPrice(float TotalPrice) {
 		this.totalPrice = TotalPrice;
 	}
-	public void setSale(int SaleID,Date DateSale,int CusID,int StaffID,int ProductID,int NumOfProduct,float Price,float TotalPrice) {
+	public Sale(int SaleID,Date DateSale,int CusID,int StaffID,int ProductID,int NumOfProduct,float Price,float TotalPrice) {
 		this.saleID = SaleID;
 		this.dateSale = DateSale;
 		this.cusID = CusID;

@@ -47,6 +47,14 @@ public class Customer {
 	public void setCusAddress(String CusAddress) {
 		this.cusAddress = CusAddress;
 	}
+	public Customer() {
+		this.cusID = 0;
+		this.cusName = "";
+		this.cusDOB = null;
+		this.cusPhone = "";
+		this.cusEmail = "";
+		this.cusAddress = "";
+	}
 	public Customer(int CusID,String CusName, LocalDate CusDOB,String CusPhone,String CusEmail,String CusAddress) {
 		this.cusID = CusID;
 		this.cusName = CusName;
