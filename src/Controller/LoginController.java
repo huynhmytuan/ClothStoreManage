@@ -63,8 +63,6 @@ public class LoginController  implements Initializable{
                 rs = lu.getLogin(username, pass);
                 if(rs.next()){
                 	curUser.setLogin(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4),rs.getInt(5));
-        	        Alert a = new Alert(AlertType.INFORMATION,"Login successfully!");
-        	        a.show();
         	        if(rs.getInt(4)== 1) {
         	        	String frmName = "DashboardUI.fxml";
         	        	 LoadScene loader = new LoadScene();

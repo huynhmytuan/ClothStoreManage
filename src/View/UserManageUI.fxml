@@ -122,7 +122,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="txtID" disable="true" editable="false" focusColor="#156879" layoutX="71.0" layoutY="65.0" prefHeight="26.0" prefWidth="182.0" unFocusColor="#146572" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="433.0" />
+            <JFXTextField fx:id="txtID" focusColor="#156879" layoutX="71.0" layoutY="65.0" prefHeight="26.0" prefWidth="182.0" unFocusColor="#146572" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="433.0" />
             <JFXTextField fx:id="txtName" layoutX="373.0" layoutY="63.0" prefHeight="26.0" prefWidth="296.0" AnchorPane.leftAnchor="373.0" AnchorPane.rightAnchor="17.0" />
             <JFXTextField fx:id="txtPhone" layoutX="440.0" layoutY="131.0" prefHeight="26.0" prefWidth="230.0" AnchorPane.leftAnchor="440.0" AnchorPane.rightAnchor="16.0" />
             <JFXTextField fx:id="txtEmail" layoutX="69.0" layoutY="190.0" prefHeight="26.0" prefWidth="600.0" AnchorPane.leftAnchor="69.0" AnchorPane.rightAnchor="17.0" />

@@ -16,9 +16,7 @@ public class RoleUtil {
 		String sql = "SELECT * FROM Role";
 		try {			 
 			kn.ExecuteNonQuery(sql);
-			rs = kn.getTable(sql);
-	        Alert a = new Alert(AlertType.INFORMATION,"Get roles successfully!");
-	        a.show();
+			rs = kn.getTable(sql);	        
 		}
 		catch(Exception e) {
 		}
@@ -31,8 +29,6 @@ public class RoleUtil {
 		try {
 			kn.ExecuteNonQuery(sql);
 			rs = kn.getTable(sql);
-			Alert a = new Alert(AlertType.INFORMATION,"Insert role successfully!");
-	        a.show();
 		}
 		catch(Exception e) {
 		}
@@ -41,8 +37,6 @@ public class RoleUtil {
 		String sql = " UPDATE Role SET RoleID='" + roleID + "', RoleName='" + roleName + "'WHERE RoleID='" +roleID+"'";
 		try {
 			kn.ExecuteNonQuery(sql);
-			Alert a = new Alert(AlertType.INFORMATION,"Insert role successfully!");
-	        a.show();
 		}
 		catch(Exception e) {
 		}

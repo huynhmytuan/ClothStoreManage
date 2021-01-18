@@ -5,6 +5,8 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
@@ -31,6 +33,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class ProductController implements Initializable {
 	ProductUtil pu = new ProductUtil();
+	StorageUtil su = new StorageUtil();
 	ObservableList<Product> listM;
     int index = -1;
     ResultSet rs = null;
@@ -104,7 +107,25 @@ public class ProductController implements Initializable {
     @FXML
     private JFXComboBox<String> cmbSize;
 
-    
+    @FXML
+    private JFXTextField txtNumberOfProductIn;
+
+    @FXML
+    private JFXTextField txtQuantityInStock;
+
+    public int getRandomStorID() {
+    	ObservableList<Storage> inputList = su.getDataList();
+    	int storID;
+    	Random rand = new Random();
+    	storID = rand.nextInt(10000);//Random a new numID
+		int[] storIDArr = new int[listM.size()]; //Create a list to store ID in database
+		int n=0;
+		for(Storage lid : inputList) {
+			storIDArr[n] = lid.getStorID();
+			n++;
+		}
+		return storID;
+    }
 	@FXML
     void btnAdd_Clicked(MouseEvent event) {
     	int productID = Integer.parseInt(txtID.getText());
@@ -117,10 +138,25 @@ public class ProductController implements Initializable {
     	String productOutPrice = txtOutPrice.getText();
     	String productPicture = "";
 		productPicture = txtPicture.getText();
+		pu.insertProduct(productID, productName, productType, productSize, productDecs, Float.parseFloat(productInPrice), Float.parseFloat(productOutPrice), productPicture);
+    	int numIn = Integer.parseInt(txtNumberOfProductIn.getText());
+    	int numLeft = Integer.parseInt(txtQuantityInStock.getText());
+    	int storID = getRandomStorID();
+    	LocalDate today = LocalDate.now();
+		System.out.println("Current Date="+today);
+		
+		float totalPrice =  (float)numIn * Float.parseFloat(productInPrice);
+    	try {
+			
+			su.insertStorage(storID, productID, numIn, numLeft, today, totalPrice);
+			Alert a = new Alert(AlertType.INFORMATION,"Insert product successfully!");
+		    a.show();
+		    listM = pu.getDataList();
+		    loadTable(listM);
+		}
+		catch(Exception e) {
+		}
     	
-    	pu.insertProduct(productID, productName, productType, productSize, productDecs, Float.parseFloat(productInPrice), Float.parseFloat(productOutPrice), productPicture);
-    	listM = pu.getDataList();
-    	loadTable(listM);
     }
 
     @FXML
@@ -129,7 +165,17 @@ public class ProductController implements Initializable {
     	if(p==0) {
     		String id = txtID.getText().replace(" ", "");
 			int productID = Integer.parseInt(id);
-			pu.deleteProduct(productID);
+			try {
+				pu.deleteProduct(productID);
+				su.deleteStorage(productID);
+				Alert a = new Alert(AlertType.INFORMATION,"Delete product successfully!");
+				a.show();
+			
+			}
+			catch(Exception e) {
+				
+			}
+			
 			listM = pu.getDataList();
 			loadTable(listM);
     	} 	
@@ -147,7 +193,23 @@ public class ProductController implements Initializable {
     	String productOutPrice = txtOutPrice.getText();
     	String productPicture = "";
 		productPicture = txtPicture.getText();
-		pu.updatetProduct(productID, productName, productType, productSize, productDecs, Float.parseFloat(productInPrice), Float.parseFloat(productOutPrice), productPicture);
+		
+		
+		int numIn = Integer.parseInt(txtNumberOfProductIn.getText());
+    	int numLeft = Integer.parseInt(txtQuantityInStock.getText());
+    	LocalDate today = LocalDate.now();
+		System.out.println("Current Date="+today);
+		float totalPrice =  (float)numIn * Float.parseFloat(productInPrice);
+		try {
+			pu.updatetProduct(productID, productName, productType, productSize, productDecs, Float.parseFloat(productInPrice), Float.parseFloat(productOutPrice), productPicture);
+			su.updateStorage(productID, numIn, numLeft, totalPrice);
+
+			Alert a = new Alert(AlertType.INFORMATION,"Update product successfully!");
+		    a.show();
+		}
+		catch(Exception e) {
+		}
+    	
 		listM = pu.getDataList();
     	loadTable(listM);
     }
@@ -164,6 +226,8 @@ public class ProductController implements Initializable {
 		txtInPrice.setText("");
 		txtOutPrice.setText("");
 		txtPicture.setText("");
+		txtNumberOfProductIn.setText("");
+		txtQuantityInStock.setText("");
     }
 
     @FXML
@@ -188,6 +252,10 @@ public class ProductController implements Initializable {
     	txtSize.setText(pro.getProductSize());
     	txtInPrice.setText("" + pro.getProductInPrice());
     	txtOutPrice.setText("" + pro.getProductOutPrice());
+    	
+    	Storage sto = su.getAvailableByProdID(pro.getProductID());
+    	txtNumberOfProductIn.setText(""+sto.getNumOfProductIn());
+    	txtQuantityInStock.setText(""+ sto.getQuantityInStock());
     }
     
     public void loadTable(ObservableList<Product> list) {
@@ -197,7 +265,7 @@ public class ProductController implements Initializable {
 		colSize.setCellValueFactory(new PropertyValueFactory<Product,String>("ProductSize"));
 		colOutPrice.setCellValueFactory(new PropertyValueFactory<Product,Float>("ProductOutPrice"));
 		
-		tableProduct.setItems(list);
+		tableProduct.setItems(list); 
 		System.out.print("Load table");
     }
     

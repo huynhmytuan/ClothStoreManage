@@ -184,6 +184,8 @@ public class UserController implements Initializable {
 		txtPhone.setText("");
 		txtEmail.setText("");
 		txtAddress.setText("");
+		txtRole.setText("");
+		txtUserName.setText("");
     }
 
     @FXML
