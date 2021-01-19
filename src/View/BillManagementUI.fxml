@@ -49,7 +49,7 @@
             <Image url="@../image/icon-delete.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="6.0" layoutY="7.0" prefHeight="84.0" prefWidth="1055.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="10.0">
+      <AnchorPane layoutX="6.0" layoutY="7.0" prefHeight="84.0" prefWidth="1055.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
          <children>
             <Label layoutX="454.0" text="BILL MANAGEMENT" textAlignment="CENTER" textFill="#37a6b5" AnchorPane.topAnchor="5.0">
                <font>
