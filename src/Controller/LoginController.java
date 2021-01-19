@@ -75,7 +75,8 @@ public class LoginController  implements Initializable{
         	        }
                 }
                 else{
-                    JOptionPane.showMessageDialog(null, "Username or Password incorrect!");
+                	Alert a = new Alert(AlertType.WARNING, "Username or password is incorect!");
+                    a.show();
                 }
             }
             catch(Exception e){

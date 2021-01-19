@@ -1,5 +1,5 @@
 package Excpt;
 
-public class PasswordException {
-
+public class PasswordException extends Exception{
+	
 }

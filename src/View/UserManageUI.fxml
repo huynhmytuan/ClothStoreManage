@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="customerUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #82e4ff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UserController">
+<AnchorPane fx:id="customerUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #82e4ff;" stylesheets="@../CSS/TableView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UserController">
    <children>
       <TableView fx:id="tableUser" layoutY="84.0" onMousePressed="#Row_Clicked" prefHeight="384.0" prefWidth="357.0" AnchorPane.bottomAnchor="265.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="708.0" AnchorPane.topAnchor="85.0">
          <columns>
@@ -26,7 +26,7 @@
             <DropShadow />
          </effect>
       </TableView>
-      <JFXButton fx:id="btnAdd" layoutX="479.0" layoutY="674.0" onMouseClicked="#btnAdd_Clicked" prefHeight="30.0" prefWidth="200.0" ripplerFill="#fff0f0" style="-fx-background-color: #0a8f5c;" text="Add" textFill="#f6ffd1">
+      <JFXButton fx:id="btnAdd" layoutX="479.0" layoutY="674.0" onMouseClicked="#btnAdd_Clicked" prefHeight="30.0" prefWidth="200.0" ripplerFill="#fff0f0" style="-fx-background-color: #10a6ad;" text="Add" textFill="#f6ffd1">
          <font>
             <Font size="14.0" />
          </font>
@@ -37,7 +37,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="479.0" layoutY="598.0" onMouseClicked="#btnUpdate_Clicked" prefHeight="30.0" prefWidth="200.0" ripplerFill="#ffeded" style="-fx-background-color: #0a8f5c;" text="Update " textFill="#efffe4">
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="479.0" layoutY="598.0" onMouseClicked="#btnUpdate_Clicked" prefHeight="30.0" prefWidth="200.0" ripplerFill="#ffeded" style="-fx-background-color: #10a6ad;" text="Update " textFill="#efffe4">
          <font>
             <Font size="14.0" />
          </font>
@@ -48,7 +48,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnRefresh" buttonType="RAISED" layoutX="803.0" layoutY="672.0" onMouseClicked="#btnRefresh_Clicked" prefHeight="30.0" prefWidth="200.0" ripplerFill="#fff0f0" style="-fx-background-color: #0a8f5c;" text="Refresh" textFill="#f6ffd1">
+      <JFXButton fx:id="btnRefresh" buttonType="RAISED" layoutX="803.0" layoutY="672.0" onMouseClicked="#btnRefresh_Clicked" prefHeight="30.0" prefWidth="200.0" ripplerFill="#fff0f0" style="-fx-background-color: #10a6ad;" text="Refresh" textFill="#f6ffd1">
          <font>
             <Font size="14.0" />
          </font>
@@ -59,7 +59,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="802.0" layoutY="598.0" onMouseClicked="#btnDelete_Clicked" prefHeight="30.0" prefWidth="200.0" ripplerFill="#ffeeee" style="-fx-background-color: #0a8f5c;" text="Delete" textFill="#f6ffd1" AnchorPane.rightAnchor="68.0">
+      <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="802.0" layoutY="598.0" onMouseClicked="#btnDelete_Clicked" prefHeight="30.0" prefWidth="200.0" ripplerFill="#ffeeee" style="-fx-background-color: #10a6ad;" text="Delete" textFill="#f6ffd1" AnchorPane.rightAnchor="68.0">
          <font>
             <Font size="14.0" />
          </font>

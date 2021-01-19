@@ -3,9 +3,6 @@ package Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import com.jfoenix.controls.JFXButton;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,12 +11,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class DashboardController implements Initializable {
 	
-		@FXML
+	 @FXML
 	    private BorderPane mainPane;
 
 	    @FXML
@@ -33,6 +29,11 @@ public class DashboardController implements Initializable {
 
 	    @FXML
 	    private AnchorPane Content;
+
+	    @FXML
+	    void btnBillDetail_Clicked(MouseEvent event) {
+	    	LoadUI("BillManagementUI.fxml");
+	    }
 
 	    @FXML
 	    void btnClosed_Clicked(MouseEvent event) {
@@ -51,9 +52,9 @@ public class DashboardController implements Initializable {
 
 	    @FXML
 	    void btnLogOut_Clicked(MouseEvent event) throws IOException {
-	    	LoadScene loader = new LoadScene();
-	    	String frm = "LoginUI.fxml";
-	    	loader.loadSence(frm, event);
+	 	    	LoadScene loader = new LoadScene();
+	 	    	String frm = "LoginUI.fxml";
+	 	    	loader.loadSence(frm, event);
 	    }
 
 	    @FXML

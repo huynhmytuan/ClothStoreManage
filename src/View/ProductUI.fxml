@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="productUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #e6f2f7;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProductController">
+<AnchorPane fx:id="productUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #82e4ff;" stylesheets="@../CSS/TableView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProductController">
    <children>
-      <TableView fx:id="tableProduct" layoutX="5.0" layoutY="144.0" onMousePressed="#Row_Clicked" prefHeight="536.0" prefWidth="426.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="639.0">
+      <TableView fx:id="tableProduct" layoutX="5.0" layoutY="148.0" onMousePressed="#Row_Clicked" prefHeight="536.0" prefWidth="426.0" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="639.0">
         <columns>
           <TableColumn fx:id="colID" prefWidth="77.86670255661011" text="ID" />
           <TableColumn fx:id="colName" prefWidth="123.73326873779297" text="Name" />
@@ -27,9 +27,9 @@
             <DropShadow />
          </effect>
       </TableView>
-      <JFXButton fx:id="btnAdd" layoutX="107.0" layoutY="690.0" onMouseClicked="#btnAdd_Clicked" prefHeight="30.0" prefWidth="130.0" ripplerFill="#fff0f0" style="-fx-background-color: #10a6ad;" text="Add New Product" textFill="#f6ffd1">
+      <JFXButton fx:id="btnAdd" layoutX="107.0" layoutY="693.0" onMouseClicked="#btnAdd_Clicked" prefHeight="30.0" prefWidth="138.0" ripplerFill="#fff0f0" style="-fx-background-color: #10a6ad;" text="Add New Product" textFill="#f6ffd1">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
          <effect>
             <DropShadow />
@@ -38,9 +38,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="382.0" layoutY="691.0" onMouseClicked="#btnUpdate_Clicked" prefHeight="30.0" prefWidth="118.0" ripplerFill="#ffeded" style="-fx-background-color: #10a6ad;" text="Update Product" textFill="#efffe4">
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="382.0" layoutY="693.0" onMouseClicked="#btnUpdate_Clicked" prefHeight="30.0" prefWidth="130.0" ripplerFill="#ffeded" style="-fx-background-color: #10a6ad;" text="Update Product" textFill="#efffe4">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
          <effect>
             <DropShadow />
@@ -49,9 +49,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="638.0" layoutY="689.0" onMouseClicked="#btnDelete_Clicked" prefHeight="30.0" prefWidth="130.0" ripplerFill="#ffeeee" style="-fx-background-color: #10a6ad;" text="Delete Product" textFill="#f6ffd1">
+      <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="638.0" layoutY="692.0" onMouseClicked="#btnDelete_Clicked" prefHeight="30.0" prefWidth="130.0" ripplerFill="#ffeeee" style="-fx-background-color: #10a6ad;" text="Delete Product" textFill="#f6ffd1">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
          <effect>
             <DropShadow />
@@ -60,9 +60,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnRefresh" buttonType="RAISED" layoutX="894.0" layoutY="689.0" onMouseClicked="#btnRefresh_Clicked" prefHeight="30.0" prefWidth="130.0" ripplerFill="#fff0f0" style="-fx-background-color: #10a6ad;" text="Refresh" textFill="#f6ffd1">
+      <JFXButton fx:id="btnRefresh" buttonType="RAISED" layoutX="894.0" layoutY="692.0" onMouseClicked="#btnRefresh_Clicked" prefHeight="30.0" prefWidth="130.0" ripplerFill="#fff0f0" style="-fx-background-color: #10a6ad;" text="Refresh" textFill="#f6ffd1">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
          <effect>
             <DropShadow />
@@ -76,24 +76,24 @@
             <Image url="@../image/icon-add.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="339.0" layoutY="686.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="339.0" layoutY="687.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/icon-editProduct.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="595.0" layoutY="684.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="595.0" layoutY="686.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/icon-delete.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="848.0" layoutY="684.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="848.0" layoutY="686.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/icon-update.png" />
          </image>
       </ImageView>
       <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="130.0" prefWidth="1050.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0">
          <children>
-            <Label layoutX="422.0" layoutY="14.0" text="View Products" textAlignment="CENTER" textFill="#37a6b5" AnchorPane.leftAnchor="422.0" AnchorPane.rightAnchor="421.0" AnchorPane.topAnchor="0.0">
+            <Label layoutX="422.0" layoutY="9.0" text="View Products" textAlignment="CENTER" textFill="#37a6b5" AnchorPane.leftAnchor="422.0" AnchorPane.rightAnchor="421.0" AnchorPane.topAnchor="9.0">
                <font>
                   <Font name="Arial Bold" size="30.0" />
                </font>
@@ -126,9 +126,9 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="738.0" layoutY="179.0" prefHeight="536.0" prefWidth="622.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="11.0">
+      <AnchorPane layoutX="436.6" layoutY="148.0" prefHeight="536.0" prefWidth="622.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="46.0" AnchorPane.rightAnchor="11.0">
          <children>
-            <Label alignment="CENTER" layoutX="42.0" layoutY="14.0" prefHeight="20.0" prefWidth="193.0" text="INFORMATION DETAILS" textFill="#12555d" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="5.0">
+            <Label alignment="CENTER" layoutX="42.0" layoutY="6.0" prefHeight="20.0" prefWidth="193.0" text="INFORMATION DETAILS" textFill="#12555d" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="6.0">
                <font>
                   <Font name="Arial" size="16.0" />
                </font>

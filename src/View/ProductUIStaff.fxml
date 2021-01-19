@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="productUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #e1fcf6;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProductOfStaffController">
+<AnchorPane fx:id="productUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #82e4ff;" stylesheets="@../CSS/TableView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProductOfStaffController">
    <children>
-      <TableView fx:id="table_Product" layoutX="10.0" layoutY="176.0" onMousePressed="#Row_Clicked" prefHeight="538.0" prefWidth="712.0" AnchorPane.bottomAnchor="15.600000000000023" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="348.0">
+      <TableView fx:id="table_Product" layoutX="10.0" layoutY="176.0" onMousePressed="#Row_Clicked" prefHeight="528.0" prefWidth="712.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="348.0">
          <columns>
             <TableColumn fx:id="col_id" prefWidth="113.33333015441895" text="ID" />
             <TableColumn fx:id="col_name" prefWidth="141.86663818359375" text="Name" />
@@ -29,13 +29,13 @@
       </TableView>
       <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="166.0" prefWidth="1050.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <Label layoutX="422.0" layoutY="14.0" text="View Products" textAlignment="CENTER" textFill="#37a6b5" AnchorPane.leftAnchor="422.0" AnchorPane.rightAnchor="421.0" AnchorPane.topAnchor="0.0">
+            <Label layoutX="422.0" layoutY="2.0" text="View Products" textAlignment="CENTER" textFill="#37a6b5" AnchorPane.leftAnchor="422.0" AnchorPane.rightAnchor="421.0" AnchorPane.topAnchor="10.0">
                <font>
                   <Font name="Arial Bold" size="30.0" />
                </font>
             </Label>
             <JFXTextField fx:id="txt_search" focusColor="#0e798a" layoutX="99.0" layoutY="95.0" prefHeight="25.0" prefWidth="256.0" promptText="Search By ID Or Name" unFocusColor="#19559e" AnchorPane.leftAnchor="99.0" AnchorPane.topAnchor="95.0" />
-            <Label layoutX="634.0" layoutY="55.0" text="Detail Search:" textFill="#072a2f">
+            <Label layoutX="642.0" layoutY="70.0" text="Detail Search:" textFill="#072a2f">
                <font>
                   <Font size="14.0" />
                </font>
@@ -65,7 +65,7 @@
             <DropShadow />
          </effect>
       </AnchorPane>
-      <AnchorPane layoutX="738.0" layoutY="179.0" prefHeight="439.0" prefWidth="330.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="109.0" AnchorPane.rightAnchor="10.0">
+      <AnchorPane layoutX="729.0" layoutY="186.0" prefHeight="455.0" prefWidth="330.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="89.0" AnchorPane.rightAnchor="11.0">
          <children>
             <Label layoutX="42.0" layoutY="14.0" text="INFORMATION DETAILS" textFill="#12555d" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="5.0">
                <font>
@@ -113,9 +113,9 @@
             <DropShadow />
          </effect>
       </AnchorPane>
-      <JFXButton fx:id="btnRefresh" layoutX="803.0" layoutY="649.0" onMouseClicked="#btnRefresh_Clicked" prefHeight="40.0" prefWidth="183.0" style="-fx-background-color: white;" text="Refresh">
+      <JFXButton fx:id="btnRefresh" layoutX="804.0" layoutY="657.0" onMouseClicked="#btnRefresh_Clicked" prefHeight="36.0" prefWidth="174.0" style="-fx-background-color: #10a6ad; -fx-background-radius: 10;" text="Refresh" textFill="WHITE">
          <font>
-            <Font size="23.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
       </JFXButton>
    </children>

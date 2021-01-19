@@ -56,7 +56,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="22.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="22.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../image/icon-product.png" />
                      </image>
@@ -102,7 +102,27 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="25.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView accessibleRole="BUTTON" fitHeight="40.0" fitWidth="37.0" layoutX="25.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/icon-hoadon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="50.0" prefWidth="190.0">
+               <children>
+                  <JFXButton buttonType="RAISED" layoutX="-2.0" layoutY="4.0" onMouseClicked="#btnBillDetail_Clicked" prefHeight="50.0" prefWidth="180.0" ripplerFill="WHITE" text="Bill " textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </JFXButton>
+                  <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="24.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../image/icon-satistics.png" />
                      </image>
@@ -125,7 +145,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <ImageView fitHeight="35.0" fitWidth="32.0" layoutX="27.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="35.0" fitWidth="32.0" layoutX="27.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../image/icon-logout.png" />
                      </image>

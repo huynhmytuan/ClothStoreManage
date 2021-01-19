@@ -265,8 +265,7 @@ public class ProductController implements Initializable {
 		colSize.setCellValueFactory(new PropertyValueFactory<Product,String>("ProductSize"));
 		colOutPrice.setCellValueFactory(new PropertyValueFactory<Product,Float>("ProductOutPrice"));
 		
-		tableProduct.setItems(list); 
-		System.out.print("Load table");
+		tableProduct.setItems(list);
     }
     
     public ObservableList<String> loadCategory() {

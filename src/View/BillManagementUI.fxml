@@ -2,8 +2,8 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXDatePicker?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -13,10 +13,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #e6f2f7;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #82e4ff;" stylesheets="@../CSS/TableView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView layoutX="14.0" layoutY="81.0" prefHeight="578.0" prefWidth="599.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="100.0">
+      <TableView layoutX="14.0" layoutY="81.0" prefHeight="580.0" prefWidth="417.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="100.0">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />
@@ -25,7 +24,7 @@
             <DropShadow />
          </effect>
       </TableView>
-      <TableView layoutX="615.0" layoutY="81.0" prefHeight="578.0" prefWidth="445.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
+      <TableView layoutX="615.0" layoutY="81.0" prefHeight="580.0" prefWidth="625.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />
@@ -34,7 +33,7 @@
             <DropShadow />
          </effect>
       </TableView>
-      <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="879.0" layoutY="688.0" onMouseClicked="#btnDelete_Clicked" prefHeight="34.0" prefWidth="151.0" ripplerFill="#ffeeee" style="-fx-background-color: #10a6ad;" text="Delete Product" textFill="#f6ffd1" AnchorPane.bottomAnchor="8.0">
+      <JFXButton buttonType="RAISED" layoutX="879.0" layoutY="688.0" prefHeight="34.0" prefWidth="151.0" ripplerFill="#ffeeee" style="-fx-background-color: #10a6ad;" text="Delete Product" textFill="#f6ffd1" AnchorPane.bottomAnchor="8.0">
          <font>
             <Font size="14.0" />
          </font>
@@ -50,28 +49,32 @@
             <Image url="@../image/icon-delete.png" />
          </image>
       </ImageView>
-      <Label layoutX="468.0" layoutY="7.0" text="BILL MANAGEMENT" textAlignment="CENTER" textFill="#37a6b5" AnchorPane.topAnchor="7.0">
-         <font>
-            <Font name="Arial Bold" size="30.0" />
-         </font>
-      </Label>
-      <Label layoutX="14.0" layoutY="60.0" text="Search By" textFill="#227680">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <JFXComboBox layoutX="103.0" layoutY="60.0" prefHeight="25.0" prefWidth="97.0" />
-      <JFXDatePicker layoutX="227.0" layoutY="57.0" prefHeight="28.0" prefWidth="182.0" />
-      <JFXButton fx:id="btnDelete1" buttonType="RAISED" layoutX="420.0" layoutY="56.0" onMouseClicked="#btnDelete_Clicked" prefHeight="34.0" prefWidth="111.0" ripplerFill="#ffeeee" style="-fx-background-color: #10a6ad;" text="Refresh" textFill="#f6ffd1">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <effect>
-            <DropShadow />
-         </effect>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </JFXButton>
+      <AnchorPane layoutX="6.0" layoutY="7.0" prefHeight="84.0" prefWidth="1055.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="10.0">
+         <children>
+            <Label layoutX="454.0" text="BILL MANAGEMENT" textAlignment="CENTER" textFill="#37a6b5" AnchorPane.topAnchor="5.0">
+               <font>
+                  <Font name="Arial Bold" size="30.0" />
+               </font>
+            </Label>
+            <Label layoutX="6.0" layoutY="53.0" text="Search By" textFill="#227680">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <JFXComboBox layoutX="89.0" layoutY="53.0" prefHeight="26.0" prefWidth="111.0" />
+            <JFXButton buttonType="RAISED" layoutX="406.0" layoutY="46.0" prefHeight="34.0" prefWidth="111.0" ripplerFill="#ffeeee" style="-fx-background-color: #10a6ad;" text="Refresh" textFill="#f6ffd1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <DatePicker layoutX="208.0" layoutY="54.0" prefHeight="26.0" prefWidth="183.0" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
