@@ -4,29 +4,38 @@
 
 .table-view .column-header,
 .table-view .column-header-background .filler {
-    -fx-background-color: transpare;
+    -fx-background-color: transparent;
 }
 .table-view .column-header .label{
    -fx-text-fill: white;
    -fx-font-weight: bold; 
-   -fx-font-size: 15px; 
+   -fx-font-size: 14px; 
    -fx-padding: 10 0 10 0;
    -fx-alignment: CENTER; 
 }
 .table-view .cell{
-  -fx-cell-size: 50px;
+  -fx-cell-size: 45px;
   -fx-alignment: center-left;
   -fx-border-left: solid;
   -fx-text-fill: black;
   -fx-alignment: CENTER_LEFT;
-   
 }
 .table-row-cell {
    	-fx-border-color: black;
 }
+.table-cell {
+    -fx-border-color: transparent; /* Vertical Lines*/
+    -fx-border-width: 1;
+}
 .table-row-cell:selected {
    -fx-background-color:  #82e4ff; 
    -fx-text-background-color:  #6622CC;   
+}
+.table-view {
+    /* Constants used throughout the tableview. */
+    -fx-table-header-border-color: transparent;
+    -fx-table-cell-border-color: -fx-box-border; /* Horizontal Lines*/
+    -fx-background-color: transparent;
 }
 
 /* scroll bar starts here */

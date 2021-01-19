@@ -15,13 +15,13 @@
 
 <AnchorPane fx:id="productUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #82e4ff;" stylesheets="@../CSS/TableView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProductController">
    <children>
-      <TableView fx:id="tableProduct" layoutX="5.0" layoutY="148.0" onMousePressed="#Row_Clicked" prefHeight="536.0" prefWidth="426.0" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="639.0">
+      <TableView fx:id="tableProduct" layoutX="5.0" layoutY="148.0" onMousePressed="#Row_Clicked" prefHeight="536.0" prefWidth="426.0" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="639.0">
         <columns>
-          <TableColumn fx:id="colID" prefWidth="77.86670255661011" text="ID" />
-          <TableColumn fx:id="colName" prefWidth="123.73326873779297" text="Name" />
-            <TableColumn fx:id="colType" prefWidth="47.20001220703125" text="Type" />
-            <TableColumn fx:id="colSize" prefWidth="59.7333984375" text="Size" />
-            <TableColumn fx:id="colOutPrice" prefWidth="114.79998779296875" text="OutPrice" />
+          <TableColumn fx:id="colID" prefWidth="62.0" text="ID" />
+          <TableColumn fx:id="colName" prefWidth="147.0" text="Name" />
+            <TableColumn fx:id="colType" prefWidth="58.0" text="Type" />
+            <TableColumn fx:id="colSize" prefWidth="41.0" text="Size" />
+            <TableColumn fx:id="colOutPrice" prefWidth="117.0" text="OutPrice" />
         </columns>
          <effect>
             <DropShadow />
@@ -91,7 +91,7 @@
             <Image url="@../image/icon-update.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="130.0" prefWidth="1050.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0">
+      <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="130.0" prefWidth="1050.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
             <Label layoutX="422.0" layoutY="9.0" text="View Products" textAlignment="CENTER" textFill="#37a6b5" AnchorPane.leftAnchor="422.0" AnchorPane.rightAnchor="421.0" AnchorPane.topAnchor="9.0">
                <font>
@@ -126,11 +126,11 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="436.6" layoutY="148.0" prefHeight="536.0" prefWidth="622.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="46.0" AnchorPane.rightAnchor="11.0">
+      <AnchorPane layoutX="436.6" layoutY="148.0" prefHeight="536.0" prefWidth="621.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="46.0" AnchorPane.rightAnchor="10.0">
          <children>
             <Label alignment="CENTER" layoutX="42.0" layoutY="6.0" prefHeight="20.0" prefWidth="193.0" text="INFORMATION DETAILS" textFill="#12555d" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="6.0">
                <font>
-                  <Font name="Arial" size="16.0" />
+                  <Font name="Arial Bold" size="16.0" />
                </font>
             </Label>
             <Label layoutX="12.0" layoutY="240.0" text="Product ID:" textFill="#12555d" AnchorPane.leftAnchor="10.0">
