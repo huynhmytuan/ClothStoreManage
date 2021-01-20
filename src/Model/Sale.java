@@ -1,10 +1,10 @@
 package Model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Sale {
 	private int saleID;
-	private Date dateSale;
+	private LocalDate dateSale;
 	private int cusID;
 	private int staffID;
 	private int productID;
@@ -18,10 +18,10 @@ public class Sale {
 	public void setSaleID(int SaleID) {
 		this.saleID = SaleID;
 	}
-	public Date getDateSale() {
+	public LocalDate getDateSale() {
 		return dateSale;
 	}
-	public void setDateSale(Date DateSale) {
+	public void setDateSale(LocalDate DateSale) {
 		this.dateSale = DateSale;
 	}
 	public int getCusID() {
@@ -60,7 +60,7 @@ public class Sale {
 	public void setTotalPrice(float TotalPrice) {
 		this.totalPrice = TotalPrice;
 	}
-	public Sale(int SaleID,Date DateSale,int CusID,int StaffID,int ProductID,int NumOfProduct,float Price,float TotalPrice) {
+	public Sale(int SaleID, LocalDate DateSale,int CusID,int StaffID,int ProductID,int NumOfProduct,float Price,float TotalPrice) {
 		this.saleID = SaleID;
 		this.dateSale = DateSale;
 		this.cusID = CusID;

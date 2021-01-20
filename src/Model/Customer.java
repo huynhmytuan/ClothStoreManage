@@ -48,7 +48,7 @@ public class Customer {
 		this.cusAddress = CusAddress;
 	}
 	public Customer() {
-		this.cusID = 0;
+		this.cusID = -1;
 		this.cusName = "";
 		this.cusDOB = null;
 		this.cusPhone = "";

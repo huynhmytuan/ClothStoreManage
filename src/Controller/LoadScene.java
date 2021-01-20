@@ -1,7 +1,6 @@
 package Controller;
 
 import java.io.IOException;
-
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
