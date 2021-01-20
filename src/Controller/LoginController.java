@@ -13,11 +13,14 @@ import com.jfoenix.controls.JFXTextField;
 
 import Model.Login;
 import Model.LoginUtil;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -29,13 +32,13 @@ public class LoginController  implements Initializable{
     @FXML
     private JFXButton btnRegister;
     
-     @FXML
+    @FXML
     private ImageView btnClosed;
      
-     @FXML
+    @FXML
      private JFXTextField tbUsername;
 
-     @FXML
+    @FXML
      private JFXPasswordField tbPassword;
 
     @FXML
@@ -49,7 +52,7 @@ public class LoginController  implements Initializable{
     private JFXButton btnLogin;
     
     @FXML
-    public void btnLogin_Clicked(MouseEvent event) {
+    public void btnLogin_Clicked(Event event) {
     	String username = tbUsername.getText();
         String pass = String.valueOf(tbPassword.getText());
         if("".equals(username) || "".equals(pass)){
@@ -85,6 +88,13 @@ public class LoginController  implements Initializable{
         }
     }
 
+    @FXML
+    void Login_Pressed(KeyEvent event) {
+    	if(event.getCode() == KeyCode.ENTER) {
+    		btnLogin_Clicked(event);
+    	}
+    }
+    
     @FXML
     public void btnClosed_Clicked(MouseEvent event) {
     	System.exit(0);

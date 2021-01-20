@@ -43,7 +43,7 @@
                   <Font size="15.0" />
                </font>
             </JFXTextField>
-            <JFXPasswordField fx:id="tbPassword" focusColor="#1e90cd" labelFloat="true" layoutX="60.0" layoutY="225.0" prefHeight="30.0" prefWidth="200.0" promptText="Password" unFocusColor="#006986" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="30.0">
+            <JFXPasswordField fx:id="tbPassword" focusColor="#1e90cd" labelFloat="true" layoutX="60.0" layoutY="225.0" onKeyPressed="#Login_Pressed" prefHeight="30.0" prefWidth="200.0" promptText="Password" unFocusColor="#006986" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="30.0">
                <font>
                   <Font size="15.0" />
                </font>

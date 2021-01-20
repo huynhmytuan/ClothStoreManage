@@ -2,15 +2,10 @@ package Controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.ResultSet;
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.stream.IntStream;
-
-import javax.swing.JOptionPane;
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextArea;
@@ -20,7 +15,8 @@ import Excpt.PasswordException;
 import Excpt.PasswordValidator;
 import Excpt.PhoneException;
 import Excpt.PhoneValidator;
-import Model.Customer;
+import Excpt.UsernameException;
+import Excpt.UsernameValidator;
 import Model.Login;
 import Model.LoginUtil;
 import Model.User;
@@ -141,6 +137,7 @@ public class RegisterController implements Initializable{
 	    					try {
 	    						PasswordValidator.isValid(pass1);
 	    						PhoneValidator.isValid(userPhone);
+	    						UsernameValidator.isValid(userName);
 	    						Random rand = new Random();
 		    		    		loginID = rand.nextInt(10000);//Random a new loginID
 		    		    		userID = rand.nextInt(10000);//Random a new User ID
@@ -188,6 +185,10 @@ public class RegisterController implements Initializable{
 	    		    			Alert a = new Alert(AlertType.ERROR,e.printMessage());
 	    		        	    a.show();
 	    		    		}
+	    					catch(UsernameException e) {
+	    						Alert a = new Alert(AlertType.ERROR,e.printMessage());
+	    		        	    a.show();
+	    					}
 	    				}
 					}
 				}
