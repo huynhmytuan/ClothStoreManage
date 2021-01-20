@@ -14,28 +14,20 @@
    -fx-alignment: CENTER; 
 }
 .table-view .cell{
-  -fx-cell-size: 45px;
-  -fx-alignment: center-left;
-  -fx-border-left: solid;
-  -fx-text-fill: black;
-  -fx-alignment: CENTER_LEFT;
-}
-.table-row-cell {
-   	-fx-border-color: black;
-}
-.table-cell {
-    -fx-border-color: transparent; /* Vertical Lines*/
-    -fx-border-width: 1;
-}
-.table-row-cell:selected {
-   -fx-background-color:  #82e4ff; 
-   -fx-text-background-color:  #6622CC;   
-}
-.table-view {
-    /* Constants used throughout the tableview. */
-    -fx-table-header-border-color: transparent;
-    -fx-table-cell-border-color: -fx-box-border; /* Horizontal Lines*/
+	-fx-cell-size: 40px;
+  	-fx-text-fill: black;
+  	-fx-alignment: CENTER;
+  	-fx-background-insets: 0, 0 0 1 0;
     -fx-background-color: transparent;
+}
+
+.table-row-cell{ 
+    -fx-table-cell-border-color: transparent;
+}
+.table-view .cell:selected {
+   -fx-background-color:  #82e4ff; 
+   -fx-text-background-color:  #6622CC; 
+  	-fx-background-insets: 0, 0 0 1 0;
 }
 
 /* scroll bar starts here */

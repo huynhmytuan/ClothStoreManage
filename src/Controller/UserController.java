@@ -8,11 +8,15 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
+import javax.swing.event.ChangeEvent;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
+import Excpt.PasswordException;
+import Excpt.PhoneException;
+import Excpt.PhoneValidator;
 import Model.*;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -146,10 +150,12 @@ public class UserController implements Initializable {
     }
     @FXML
     void btnAdd_Clicked(MouseEvent event) {
+    	try {
     	int userID = getRandomUserID();
     	String userName = txtName.getText();
     	LocalDate userDOB = txtDate.getValue();
     	String userPhone = txtPhone.getText();
+    	PhoneValidator.isValid(userPhone);
     	String userEmail = txtEmail.getText();
     	String userAddress = txtAddress.getText();
     	us.insertUser(userID, userName, userDOB, userPhone, userEmail, userAddress);//Create new User
@@ -161,6 +167,11 @@ public class UserController implements Initializable {
     	
     	listM = us.getDataList();
     	loadTable(listM);
+    	}
+    	catch(PhoneException e){
+    		Alert a = new Alert(AlertType.WARNING, e.printMessage());
+            a.show();
+    	}
     }
 
     @FXML
@@ -203,10 +214,16 @@ public class UserController implements Initializable {
 
     @FXML
     void btnUpdate_Clicked(MouseEvent event) {
+    	
+    	try {
     	int userID = Integer.parseInt(txtID.getText());
     	String userName = txtName.getText();
     	LocalDate userDOB = txtDate.getValue();
-    	String userPhone = txtPhone.getText();
+    	String userPhone = "";
+    	
+    		userPhone = txtPhone.getText();
+    		PhoneValidator.isValid(userPhone);	
+    	
     	String userEmail = txtEmail.getText();
     	String userAddress = txtAddress.getText();
     	us.updatetUser(userID, userName, userDOB, userPhone, userEmail, userAddress);//Update A current User
@@ -217,6 +234,11 @@ public class UserController implements Initializable {
     	
     	listM = us.getDataList();
     	loadTable(listM);
+    	}
+    	catch(PhoneException e){
+    		Alert a = new Alert(AlertType.WARNING, e.printMessage());
+            a.show();
+    	}
     }
 
     public void loadTable(ObservableList<User> list) {
