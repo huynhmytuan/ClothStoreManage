@@ -1,6 +1,7 @@
 package Model;
 
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.Date;
 
 import javafx.collections.FXCollections;
@@ -13,7 +14,7 @@ public class SaleUtil {
 	
 	public ResultSet getSale() {
 		ResultSet rs = null;
-		String sql = "SELECT * FROM Sale";
+		String sql = "SELECT * FROM Sales";
 		try { 
 			kn.ExecuteNonQuery(sql);
 	        rs = kn.getTable(sql);
@@ -24,32 +25,32 @@ public class SaleUtil {
 		}
 		return rs;
 	}
-	public void insertSale(int saleID,Date dateSale,int cusID,int staffID,int productID,int numOfProduct,float price,float totalPrice) {
-		String sql = " INSERT INTO Sale VALUES('" + saleID + "','" + dateSale + "','" + cusID + "','" + staffID + "','"+ productID + "','"+ numOfProduct + "','"+ price + "','"+ totalPrice + "')";
+	public void insertSale(int saleID,LocalDate dateSale,int cusID,int staffID,int productID,int numOfProduct,float price,float totalPrice) {
+		String sql = "";
+		if(cusID!=-1) {
+			sql = " INSERT INTO Sales VALUES('" + saleID + "','" + dateSale + "','" + cusID + "','" + staffID + "','"+ productID + "','"+ numOfProduct + "','"+ price + "','"+ totalPrice + "')";
+		}
+		else {
+			sql = " INSERT INTO Sales VALUES('" + saleID + "','" + dateSale + "', NULL,'" + staffID + "','"+ productID + "','"+ numOfProduct + "','"+ price + "','"+ totalPrice + "')";
+		}
 		try {
 			kn.ExecuteNonQuery(sql);
-			Alert a = new Alert(AlertType.INFORMATION,"Insert customer successfully!");
-	        a.show();
 		}
 		catch(Exception e) {
 		}
 	}
 	public void updatetSale(int saleID,Date dateSale,int cusID,int staffID,int productID,int numOfProduct,float price,float totalPrice) {
-		String sql = " UPDATE Sale SET SaleID='" + saleID + "', DateSale='" + dateSale + "', CusID='" + cusID + "', StaffID='" + staffID + "', productID='"+ productID + "', NumOfProduct='"+ numOfProduct +"', Price='"+ price +"', TotalPrice='"+ totalPrice + "' WHERE SaleID='" +saleID+"'";
+		String sql = " UPDATE Sales SET SaleID='" + saleID + "', DateSale='" + dateSale + "', CusID='" + cusID + "', StaffID='" + staffID + "', productID='"+ productID + "', NumOfProduct='"+ numOfProduct +"', Price='"+ price +"', TotalPrice='"+ totalPrice + "' WHERE SaleID='" +saleID+"'";
 		try {
 			kn.ExecuteNonQuery(sql);
-			 Alert a = new Alert(AlertType.INFORMATION,"Uppdate successfully!");
-		        a.show();
 		}
 		catch(Exception e) {
 		}
 	}
 	public void deleteSale(int saleID) {
-		String sql = "DELETE Sale WHERE SaleID = '" + saleID + "'";
+		String sql = "DELETE Sales WHERE SaleID = '" + saleID + "'";
 		try {
 			kn.ExecuteNonQuery(sql);
-			Alert a = new Alert(AlertType.INFORMATION,"Delete successfully!");
-	        a.show();
 		}
 		catch(Exception e) {
 		}
@@ -57,7 +58,7 @@ public class SaleUtil {
 	public ResultSet Search(String condi)
     {
 		ResultSet rs = null;
-        String sql = "SELECT * FROM Sale WHERE SaleID like '%"+ condi + "%'";
+        String sql = "SELECT * FROM Sales WHERE SaleID like '%"+ condi + "%'";
         try {
         	kn.ExecuteNonQuery(sql);
 			rs = kn.getTable(sql);
@@ -68,14 +69,16 @@ public class SaleUtil {
     }
 	
 	//Get data Tableview_Product
-    public ObservableList<Product> getDataList(){
-        ObservableList<Product> list = FXCollections.observableArrayList();
-        ResultSet rs = null;
+    public ObservableList<Sale> getDataList(){
+        ObservableList<Sale> list = FXCollections.observableArrayList();
+        ResultSet rs;
         try {
-            String sql = "SELECT * from Product";
+            String sql = "SELECT * from Sales";
             rs = kn.getTable(sql);
-            while (rs.next()){   
-                list.add(new Product(Integer.parseInt(rs.getString("ProductID")), rs.getString("ProductName"), rs.getString("ProductType"), rs.getString("ProductSize"), rs.getString("ProductDecs"), rs.getFloat("ProductInPrice"), rs.getFloat("ProductOutPrice") ,rs.getString("ProductPicture")));               
+            LocalDate date = null;
+            while(rs.next()){   
+            	date = rs.getDate("DateSale").toLocalDate();
+                list.add(new Sale(rs.getInt("SaleID"), date, rs.getInt("CusID"), rs.getInt("StaffID"), rs.getInt("ProductID"), rs.getInt("NumOfProduct"), rs.getFloat("Price"), rs.getFloat("TotalPrice")));               
             }
         } 
         catch (Exception e) {

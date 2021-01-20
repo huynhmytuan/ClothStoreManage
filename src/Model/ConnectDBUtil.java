@@ -46,7 +46,6 @@ public class ConnectDBUtil {
 	        stm.close();
     	}
     	catch(SQLException e) {
-    		System.out.println(e.getMessage());
     	}
     }
 }

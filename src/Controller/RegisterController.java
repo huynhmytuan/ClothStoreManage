@@ -2,21 +2,17 @@ package Controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.ResultSet;
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.stream.IntStream;
 
-import javax.swing.JOptionPane;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
-import Model.Customer;
 import Model.Login;
 import Model.LoginUtil;
 import Model.User;

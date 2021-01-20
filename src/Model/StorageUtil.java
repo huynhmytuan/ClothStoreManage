@@ -66,11 +66,11 @@ ConnectDBUtil kn = new ConnectDBUtil();
 	
 	public Storage getAvailableByProdID(int ProdID){
 	 	Storage sto = new Storage();
-        ResultSet rs = null;
+        ResultSet rs;
         try {
             String sql = "SELECT NumOfProductIn ,QuantityInStock FROM Storage WHERE ProductID='"+ProdID+"'";
             rs = kn.getTable(sql);
-            while (rs.next()){   
+            while (rs.next()){
             	sto.setQuantityInStock(rs.getInt("QuantityInStock"));
             }
         }

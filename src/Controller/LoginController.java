@@ -22,7 +22,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class LoginController  implements Initializable{
-	Login curUser = new Login();
+	public final Login curUser = new Login();
+	static int userID = 0;
     @FXML
     private AnchorPane rootPane;
 
@@ -63,8 +64,10 @@ public class LoginController  implements Initializable{
                 rs = lu.getLogin(username, pass);
                 if(rs.next()){
                 	curUser.setLogin(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4),rs.getInt(5));
+                	userID = curUser.getUserID();
         	        Alert a = new Alert(AlertType.INFORMATION,"Login successfully!");
         	        a.show();
+        	        System.out.println("Tao ne: "+ userID);
         	        if(rs.getInt(4)== 1) {
         	        	String frmName = "DashboardUI.fxml";
         	        	 LoadScene loader = new LoadScene();
@@ -93,8 +96,7 @@ public class LoginController  implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
+	
 	}
     
 }
