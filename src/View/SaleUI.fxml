@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="productUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #e4f0f5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SaleController">
+<AnchorPane fx:id="productUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #82e4ff;" stylesheets="@../CSS/TableView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SaleController">
    <children>
       <AnchorPane fx:id="navigationPane" layoutX="593.0" layoutY="60.0" prefHeight="48.0" prefWidth="1050.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="672.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
@@ -41,17 +41,17 @@
       </AnchorPane>
       <AnchorPane fx:id="productView" layoutX="10.0" layoutY="65.0" prefHeight="655.0" prefWidth="636.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="65.0">
          <children>
-            <Label layoutX="13.0" layoutY="582.0" prefHeight="17.0" prefWidth="97.0" text="CustomerID :" textAlignment="CENTER" textFill="#116e7f">
+            <Label layoutX="11.0" layoutY="580.0" prefHeight="17.0" prefWidth="97.0" text="CustomerID :" textAlignment="CENTER" textFill="#116e7f">
                <font>
                   <Font name="Arial Bold" size="15.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="txtCusSearch" focusColor="#0b3972" layoutX="113.0" layoutY="576.0" prefHeight="30.0" prefWidth="170.0" promptText="Input ID" unFocusColor="#036861">
+            <JFXTextField fx:id="txtCusSearch" focusColor="#0b3972" layoutX="111.0" layoutY="576.0" prefHeight="30.0" prefWidth="170.0" promptText="Input ID" unFocusColor="#036861">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXTextField>
-            <JFXButton fx:id="btnCheck" layoutX="113.0" layoutY="626.0" onMouseClicked="#btnCheck_Clicked" prefHeight="30.0" prefWidth="105.0" ripplerFill="#d1ffc5" style="-fx-background-color: #1fb5b3; -fx-background-radius: 10;" text="Check ID" textAlignment="CENTER" textFill="#194645" AnchorPane.bottomAnchor="10.0">
+            <JFXButton fx:id="btnCheck" layoutX="111.0" layoutY="616.0" onMouseClicked="#btnCheck_Clicked" prefHeight="30.0" prefWidth="105.0" ripplerFill="#d1ffc5" style="-fx-background-color: #1fb5b3; -fx-background-radius: 10;" text="Check ID" textAlignment="CENTER" textFill="#194645" AnchorPane.bottomAnchor="9.0">
                <font>
                   <Font name="Arial" size="15.0" />
                </font>
@@ -77,7 +77,7 @@
                </font>
             </Label>
             <TextField fx:id="txtUAddress" layoutX="401.0" layoutY="618.0" prefHeight="25.0" prefWidth="225.0" />
-            <JFXButton fx:id="btnAddItems" layoutX="508.0" layoutY="507.0" onMouseClicked="#btnAddItems_Clicked" prefHeight="30.0" prefWidth="105.0" ripplerFill="#d1ffc5" style="-fx-background-color: #1fb5b3; -fx-background-radius: 10;" text="Add Items " textAlignment="CENTER" textFill="#194645">
+            <JFXButton fx:id="btnAddItems" layoutX="514.0" layoutY="497.0" onMouseClicked="#btnAddItems_Clicked" prefHeight="30.0" prefWidth="105.0" ripplerFill="#d1ffc5" style="-fx-background-color: #1fb5b3; -fx-background-radius: 10;" text="Add Items " textAlignment="CENTER" textFill="#194645">
                <font>
                   <Font name="Arial" size="15.0" />
                </font>
@@ -94,7 +94,7 @@
                   <TableColumn fx:id="col_outprice" prefWidth="132.0" text="OutPrice" />
               </columns>
             </TableView>
-            <JFXButton fx:id="btnRefresh" layoutX="25.0" layoutY="505.0" onMouseClicked="#btnRefresh_Clicked" prefHeight="30.0" prefWidth="105.0" ripplerFill="#d1ffc5" style="-fx-background-color: #1fb5b3; -fx-background-radius: 10;" text="Refresh" textAlignment="CENTER" textFill="#194645">
+            <JFXButton fx:id="btnRefresh" layoutX="14.0" layoutY="497.0" onMouseClicked="#btnRefresh_Clicked" prefHeight="30.0" prefWidth="105.0" ripplerFill="#d1ffc5" style="-fx-background-color: #1fb5b3; -fx-background-radius: 10;" text="Refresh" textAlignment="CENTER" textFill="#194645">
                <font>
                   <Font name="Arial" size="15.0" />
                </font>

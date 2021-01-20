@@ -17,8 +17,6 @@ public class ProductUtil {
 		try { 
 			kn.ExecuteNonQuery(sql);
 			rs = kn.getTable(sql);
-	        Alert a = new Alert(AlertType.INFORMATION,"Get product successfully!");
-	        a.show();
 		}
 		catch(Exception e) {
 		}
@@ -28,8 +26,6 @@ public class ProductUtil {
 		String sql = " INSERT INTO Product VALUES('" + productID + "','" + productName + "','" + productType + "','" + productSize + "','"+ productDecs + "','"+ productInPrice + "','"+ productOutPrice + "','"+ productPicture + "')";
 		try {
 			kn.ExecuteNonQuery(sql);
-			 Alert a = new Alert(AlertType.INFORMATION,"Insert product successfully!");
-		        a.show();
 		}
 		catch(Exception e) {
 		}
@@ -38,8 +34,6 @@ public class ProductUtil {
 		String sql = " UPDATE Product SET ProductID='" + productID + "', ProductName='" + productName + "', ProductType='" + productType + "', ProductSize='" + productSize + "', ProductDecs='"+ productDecs + "', ProductInPrice='"+ productInPrice + "', ProductOutPrice='"+ productOutPrice + "', ProductPicture='"+ productPicture +"' WHERE ProductID='" +productID+"'";
 		try {
 			kn.ExecuteNonQuery(sql);
-			 Alert a = new Alert(AlertType.INFORMATION,"Uppdate product successfully!");
-		        a.show();
 		}
 		catch(Exception e) {
 		}
@@ -49,8 +43,6 @@ public class ProductUtil {
 		String sql = "DELETE Product WHERE ProductID='" + productID + "'";
 		try {
 			kn.ExecuteNonQuery(sql);
-			Alert a = new Alert(AlertType.INFORMATION,"Delete product successfully!");
-	        a.show();
 		}
 		catch(Exception e) {
 		}	

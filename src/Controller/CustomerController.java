@@ -12,6 +12,10 @@ import javax.swing.JOptionPane;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
+import Excpt.FullnameException;
+import Excpt.FullnameValidator;
+import Excpt.PhoneException;
+import Excpt.PhoneValidator;
 import Model.*;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -93,16 +97,28 @@ public class CustomerController implements Initializable {
     
     @FXML
     void btnAdd_Clicked(MouseEvent event) {
+    	try {
     	int cusID = Integer.parseInt(txtID.getText());
     	String cusName = txtName.getText();
+    	FullnameValidator.isValid(cusName);
     	LocalDate cusDOB = txtDate.getValue();
     	String cusPhone = txtPhone.getText();
+    	PhoneValidator.isValid(cusPhone);
     	String cusEmail = txtEmail.getText();
     	String cusAddress = txtAddress.getText();
     	
     	cu.insertCustomer(cusID, cusName, cusDOB, cusPhone, cusEmail, cusAddress);
     	listM = cu.getDataList();
     	loadTable(listM);
+    	}
+    	catch(PhoneException e) {
+    		Alert a = new Alert(AlertType.WARNING, e.printMessage());
+            a.show();
+    	}
+    	catch(FullnameException e) {
+    		Alert a = new Alert(AlertType.WARNING, e.printMessage());
+            a.show();
+    	}
     }
 
     @FXML
@@ -131,16 +147,28 @@ public class CustomerController implements Initializable {
 
     @FXML
     void btnUpdate_Clicked(MouseEvent event) {
+    	try {
     	int cusID = Integer.parseInt(txtID.getText());
     	String cusName = txtName.getText();
+    	FullnameValidator.isValid(cusName);
     	LocalDate cusDOB = txtDate.getValue();
     	String cusPhone = txtPhone.getText();
+    	PhoneValidator.isValid(cusPhone);
     	String cusEmail = txtEmail.getText();
     	String cusAddress = txtAddress.getText();
   	
     	cu.updateCustomer(cusID, cusName, cusDOB, cusPhone, cusEmail, cusAddress);
     	listM = cu.getDataList();
     	loadTable(listM);
+    	}
+    	catch(PhoneException e) {
+    		Alert a = new Alert(AlertType.WARNING, e.printMessage());
+            a.show();
+    	}
+    	catch(FullnameException e) {
+    		Alert a = new Alert(AlertType.WARNING, e.printMessage());
+            a.show();
+    	}
     }
     
     @FXML
@@ -149,7 +177,7 @@ public class CustomerController implements Initializable {
 		loadTable(listM);
 		txtID.setText("");
 		txtName.setText("");
-		txtDate.setPromptText("");
+		txtDate.setValue(null);
 		txtPhone.setText("");
 		txtEmail.setText("");
 		txtAddress.setText("");

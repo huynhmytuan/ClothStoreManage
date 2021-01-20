@@ -6,13 +6,16 @@ import java.time.LocalDate;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.stream.IntStream;
-
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-
+import Excpt.PasswordException;
+import Excpt.PasswordValidator;
+import Excpt.PhoneException;
+import Excpt.PhoneValidator;
+import Excpt.UsernameException;
+import Excpt.UsernameValidator;
 import Model.Login;
 import Model.LoginUtil;
 import Model.User;
@@ -130,49 +133,61 @@ public class RegisterController implements Initializable{
 	    				}
 	    				else
 	    				{
-	    					Random rand = new Random();
-	    		    		loginID = rand.nextInt(10000);//Random a new loginID
-	    		    		userID = rand.nextInt(10000);//Random a new User ID
-	    		    		int[] loginIDArr = new int[listM.size()]; //Create a list to store loginID in database
-	    		    		int[] userIDArr = new int[listN.size()];//Create a list to store userID in database
-	    		    		int n=0;
-	    		    		for(Login lid : listM) {
-	    		    			loginIDArr[n] = lid.getLoginID();
-	    		    			n++;
-	    		    		}
-	    		    		 n=0;
-	    		    		 for(User uid : listN) {
-	    		    			 userIDArr[n] = uid.getUserID();
-	    		    			 n++;
-	    		    		 }
-	    		    		 boolean check = true;
-	    		    		 do{
-	    		    			 check  = IntStream.of(loginIDArr).anyMatch(x -> x == loginID);
-	    		    			 if(check){
-	    		    				 loginID = rand.nextInt(10000);
-	    		    			 }
-	    		    			 else {
-	    		    				 break;
-	    		    			 }
-	    		    		 }while(check);
-	    		    		 do {
-	    		    			 check  = IntStream.of(loginIDArr).anyMatch(x -> x == userID);
-	    		    			 if(check){
-	    		    				 userID = rand.nextInt(10000);
-	    		    			 }
-	    		    			 else {
-	    		    				 break;
-	    		    			 }
-	    		    		 }while(check);
-	    		    		 try {
+	    					try {
+	    						PasswordValidator.isValid(pass1);
+	    						PhoneValidator.isValid(userPhone);
+	    						UsernameValidator.isValid(userName);
+	    						Random rand = new Random();
+		    		    		loginID = rand.nextInt(10000);//Random a new loginID
+		    		    		userID = rand.nextInt(10000);//Random a new User ID
+		    		    		int[] loginIDArr = new int[listM.size()]; //Create a list to store loginID in database
+		    		    		int[] userIDArr = new int[listN.size()];//Create a list to store userID in database
+		    		    		int n=0;
+		    		    		for(Login lid : listM) {
+		    		    			loginIDArr[n] = lid.getLoginID();
+		    		    			n++;
+		    		    		}
+		    		    		 n=0;
+		    		    		 for(User uid : listN) {
+		    		    			 userIDArr[n] = uid.getUserID();
+		    		    			 n++;
+		    		    		 }
+		    		    		 boolean check = true;
+		    		    		 do{
+		    		    			 check  = IntStream.of(loginIDArr).anyMatch(x -> x == loginID);
+		    		    			 if(check){
+		    		    				 loginID = rand.nextInt(10000);
+		    		    			 }
+		    		    			 else {
+		    		    				 break;
+		    		    			 }
+		    		    		 }while(check);
+		    		    		 do {
+		    		    			 check  = IntStream.of(loginIDArr).anyMatch(x -> x == userID);
+		    		    			 if(check){
+		    		    				 userID = rand.nextInt(10000);
+		    		    			 }
+		    		    			 else {
+		    		    				 break;
+		    		    			 }
+		    		    		 }while(check);
 	    		    			 uu.insertUser(userID, fullname, userDOB, userPhone, userEmail, address);
 	    		    			 lu.insertLogin(loginID, userName, pass, 2, userID);	
 	    		    			 Alert a = new Alert(AlertType.INFORMATION,"Register successfully! Login Now!");
 	    		        	     a.show();
-	    		    		 }
-	    		    		 catch(Exception e)
-	    		    		 {	    		    			 		    		      
-	    		    		 }
+	    					}
+	    					catch(PasswordException e) {
+	    						Alert a = new Alert(AlertType.ERROR,e.printMessage());
+	    		        	    a.show();
+	    					}
+	    		    		catch(PhoneException e) {
+	    		    			Alert a = new Alert(AlertType.ERROR,e.printMessage());
+	    		        	    a.show();
+	    		    		}
+	    					catch(UsernameException e) {
+	    						Alert a = new Alert(AlertType.ERROR,e.printMessage());
+	    		        	    a.show();
+	    					}
 	    				}
 					}
 				}

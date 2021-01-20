@@ -1,6 +1,7 @@
 package Controller;
 
 import java.io.IOException;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -12,7 +13,7 @@ import javafx.stage.Stage;
 
 public class LoadScene {
 	double xOffset, yOffset;
-	public void loadSence(String formName, MouseEvent event) throws IOException {
+	public void loadSence(String formName, Event event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("../View/"+formName));
     	Scene scence = new Scene(root);
     	Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

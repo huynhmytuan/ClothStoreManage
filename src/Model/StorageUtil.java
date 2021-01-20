@@ -1,7 +1,11 @@
 package Model;
 
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.Date;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -14,39 +18,31 @@ ConnectDBUtil kn = new ConnectDBUtil();
 		try { 
 			kn.ExecuteNonQuery(sql);
 			rs = kn.getTable(sql);
-	        Alert a = new Alert(AlertType.INFORMATION,"Get successfully!");
-	        a.show();
 		}
 		catch(Exception e) {
 		}
 		return rs;
 	}
-	public void insertStorage(int storID,int productID,int numOfProductIn,int quantityInStock,Date dateIn,float totalPrice) {
+	public void insertStorage(int storID,int productID,int numOfProductIn,int quantityInStock,LocalDate dateIn,float totalPrice) {
 		String sql = " INSERT INTO Storage VALUES('" + storID + "','" + productID + "','" + numOfProductIn + "','" + quantityInStock + "','"+ dateIn + "','" + totalPrice +"')";
 		try {
 			kn.ExecuteNonQuery(sql);
-			Alert a = new Alert(AlertType.INFORMATION,"Insert successfully!");
-	        a.show();
 		}
 		catch(Exception e) {
 		}
 	}
-	public void updateStorage(int storID,int productID,int numOfProductIn,int quantityInStock,Date dateIn,float totalPrice) {
-		String sql = " UPDATE Storage SET StorID='" + storID + "', ProductID='" + productID + "', NumOfProductIn='" + numOfProductIn + "', QuantityInStock='" + quantityInStock + "', DateIn='"+ dateIn +"', TotalPrice='"+ totalPrice + "'WHERE StorID='" +storID+"'";
+	public void updateStorage(int productID, int numOfProductIn, int quantityInStock, float totalPrice) {
+		String sql = " UPDATE Storage SET NumOfProductIn='" + numOfProductIn + "', QuantityInStock='" + quantityInStock + "', TotalPrice='"+ totalPrice + "'WHERE ProductID='" +productID+"'";
 		try {			
 			kn.ExecuteNonQuery(sql);
-			Alert a = new Alert(AlertType.INFORMATION,"Update successfully!");
-	        a.show();
 		}
 		catch(Exception e) {
 		}
 	}
-	public void deleteStorage(int storID) {
-		String sql = "DELETE Storage WHERE StorID='" + storID + "'";
+	public void deleteStorage(int prodID) {
+		String sql = "DELETE Storage WHERE ProductID='" + prodID + "'";
 		try {
 			kn.ExecuteNonQuery(sql);
-			Alert a = new Alert(AlertType.INFORMATION,"Delete successfully!");
-	        a.show();
 		}
 		catch(Exception e) {
 		}
@@ -70,7 +66,8 @@ ConnectDBUtil kn = new ConnectDBUtil();
         try {
             String sql = "SELECT NumOfProductIn ,QuantityInStock FROM Storage WHERE ProductID='"+ProdID+"'";
             rs = kn.getTable(sql);
-            while (rs.next()){
+            while (rs.next()){   
+            	sto.setNumOfProductIn(rs.getInt("NumOfProductIn"));
             	sto.setQuantityInStock(rs.getInt("QuantityInStock"));
             }
         }
@@ -78,4 +75,22 @@ ConnectDBUtil kn = new ConnectDBUtil();
         }
         return sto;
 	}
+	
+	public ObservableList<Storage> getDataList(){
+        ObservableList<Storage> list = FXCollections.observableArrayList();
+        ResultSet rs = null;
+        try {
+            rs = getStorage();
+            LocalDate date = null;
+            while (rs.next()){   
+            	date = rs.getDate("DateIn").toLocalDate();
+                list.add(new Storage(rs.getInt("StorID"),rs.getInt("ProductId"),rs.getInt("NumOfProductIn"), rs.getInt("QuantityInStock"), date, rs.getFloat("TotalPrice")));               
+            }
+        } 
+        catch (Exception e) {
+        	Alert a = new Alert(AlertType.INFORMATION,"Database Error: "+e.getMessage());
+	        a.show();
+        }
+        return list;
+   }
 }
