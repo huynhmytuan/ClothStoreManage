@@ -18,11 +18,11 @@
       <TableView fx:id="tableCustomer" layoutY="84.0" onMousePressed="#Row_Clicked" prefHeight="637.0" prefWidth="783.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="277.0">
          <columns>
             <TableColumn fx:id="colID" prefWidth="52.79995536804199" text="ID" />
-            <TableColumn fx:id="colName" prefWidth="157.60004425048828" text="Name" />
-            <TableColumn fx:id="colDOB" prefWidth="115.99996948242188" text="Date Of Birth" />
-            <TableColumn fx:id="colPhone" prefWidth="136.79998779296875" text="Phone Number" />
-            <TableColumn fx:id="colEmail" prefWidth="223.99990844726562" text="Email" />
-            <TableColumn fx:id="colAddress" prefWidth="112.00006103515625" text="Address" />
+            <TableColumn fx:id="colName" prefWidth="145.59998321533203" text="Name" />
+            <TableColumn fx:id="colDOB" prefWidth="104.80001831054688" text="Date Of Birth" />
+            <TableColumn fx:id="colPhone" prefWidth="115.199951171875" text="Phone Number" />
+            <TableColumn fx:id="colEmail" prefWidth="196.79995727539062" text="Email" />
+            <TableColumn fx:id="colAddress" prefWidth="188.79998779296875" text="Address" />
          </columns>
          <effect>
             <DropShadow />

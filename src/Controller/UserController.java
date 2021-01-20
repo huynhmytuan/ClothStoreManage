@@ -14,6 +14,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
+import Excpt.FullnameException;
+import Excpt.FullnameValidator;
 import Excpt.PasswordException;
 import Excpt.PhoneException;
 import Excpt.PhoneValidator;
@@ -86,7 +88,7 @@ public class UserController implements Initializable {
 
     @FXML
     private JFXTextField txtUserName;
-
+    
     @FXML
     private JFXTextField txtRole;
 
@@ -153,6 +155,7 @@ public class UserController implements Initializable {
     	try {
     	int userID = getRandomUserID();
     	String userName = txtName.getText();
+    	FullnameValidator.isValid(userName);
     	LocalDate userDOB = txtDate.getValue();
     	String userPhone = txtPhone.getText();
     	PhoneValidator.isValid(userPhone);
@@ -169,6 +172,10 @@ public class UserController implements Initializable {
     	loadTable(listM);
     	}
     	catch(PhoneException e){
+    		Alert a = new Alert(AlertType.WARNING, e.printMessage());
+            a.show();
+    	}
+    	catch(FullnameException e) {
     		Alert a = new Alert(AlertType.WARNING, e.printMessage());
             a.show();
     	}
@@ -191,7 +198,7 @@ public class UserController implements Initializable {
 		loadTable(listM);
 		txtID.setText("");
 		txtName.setText("");
-		txtDate.setPromptText("");
+		txtDate.setValue(null);
 		txtPhone.setText("");
 		txtEmail.setText("");
 		txtAddress.setText("");
@@ -218,6 +225,7 @@ public class UserController implements Initializable {
     	try {
     	int userID = Integer.parseInt(txtID.getText());
     	String userName = txtName.getText();
+    	FullnameValidator.isValid(userName);
     	LocalDate userDOB = txtDate.getValue();
     	String userPhone = "";
     	
@@ -236,6 +244,10 @@ public class UserController implements Initializable {
     	loadTable(listM);
     	}
     	catch(PhoneException e){
+    		Alert a = new Alert(AlertType.WARNING, e.printMessage());
+            a.show();
+    	}
+    	catch(FullnameException e) {
     		Alert a = new Alert(AlertType.WARNING, e.printMessage());
             a.show();
     	}

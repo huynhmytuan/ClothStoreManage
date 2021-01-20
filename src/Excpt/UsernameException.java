@@ -16,13 +16,10 @@ public class UsernameException extends Exception{
     public String printMessage() {
     	switch (usernameConditionViolated) {
     	case 1: 
-            return ("Phone length should be"
-                    + " between 10 to 11 characters");
-    	case 2: 
-            return ("Phone should not"
+            return ("Username should not"
                     + " contain any space");
-    	case 3: 
-            return ("Phone should not"
+    	case 2: 
+            return ("Username should not"
                     + " contain any letter or special character");
     	}
     	return ("");	
