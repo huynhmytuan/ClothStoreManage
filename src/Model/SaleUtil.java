@@ -2,6 +2,7 @@ package Model;
 
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.Date;
 
 import javafx.collections.FXCollections;
@@ -55,25 +56,68 @@ public class SaleUtil {
 		catch(Exception e) {
 		}
 	}
-	public ResultSet Search(String condi)
-    {
-		ResultSet rs = null;
-        String sql = "SELECT * FROM Sales WHERE SaleID like '%"+ condi + "%'";
+	public ObservableList<Sale> searchBillByDate(LocalDate dateS){
+        ObservableList<Sale> list = FXCollections.observableArrayList();
+        ResultSet rs;
         try {
-        	kn.ExecuteNonQuery(sql);
-			rs = kn.getTable(sql);
+            String sql = "SELECT * from Sales WHERE DateSale ='"+dateS+"'";
+            rs = kn.getTable(sql);
+            LocalDate date = null;
+            while(rs.next()){   
+            	date = rs.getDate("DateSale").toLocalDate();
+                list.add(new Sale(rs.getInt("SaleID"), date, rs.getInt("CusID"), rs.getInt("StaffID"), rs.getInt("ProductID"), rs.getInt("NumOfProduct"), rs.getFloat("Price"), rs.getFloat("TotalPrice")));               
+            }
+        } 
+        catch (Exception e) {
+        	Alert a = new Alert(AlertType.INFORMATION,"Database Error: "+e.getMessage());
+	        a.show();
         }
-        catch(Exception e) {       	
-        }
-        return rs;
+        return list;
     }
-	
+	public ObservableList<Sale> searchBillByMonth(Month Month){
+        ObservableList<Sale> list = FXCollections.observableArrayList();
+        ResultSet rs;
+        try {
+        	
+            String sql = "SELECT * from Sales  WHERE  MONTH(DateSale) = '"+Month.toString()+"'";
+            rs = kn.getTable(sql);
+            LocalDate date = null;
+            while(rs.next()){   
+            	date = rs.getDate("DateSale").toLocalDate();
+                list.add(new Sale(rs.getInt("SaleID"), date, rs.getInt("CusID"), rs.getInt("StaffID"), rs.getInt("ProductID"), rs.getInt("NumOfProduct"), rs.getFloat("Price"), rs.getFloat("TotalPrice")));               
+            }
+        } 
+        catch (Exception e) {
+        	Alert a = new Alert(AlertType.INFORMATION,"Database Error: "+e.getMessage());
+	        a.show();
+        }
+        return list;
+    }
 	//Get data Tableview_Product
     public ObservableList<Sale> getDataList(){
         ObservableList<Sale> list = FXCollections.observableArrayList();
         ResultSet rs;
         try {
             String sql = "SELECT * from Sales";
+            rs = kn.getTable(sql);
+            LocalDate date = null;
+            while(rs.next()){   
+            	date = rs.getDate("DateSale").toLocalDate();
+                list.add(new Sale(rs.getInt("SaleID"), date, rs.getInt("CusID"), rs.getInt("StaffID"), rs.getInt("ProductID"), rs.getInt("NumOfProduct"), rs.getFloat("Price"), rs.getFloat("TotalPrice")));               
+            }
+        } 
+        catch (Exception e) {
+        	Alert a = new Alert(AlertType.INFORMATION,"Database Error: "+e.getMessage());
+	        a.show();
+        }
+        return list;
+    }
+    
+    public ObservableList<Sale> getBillBySaleID(int SaleID){
+        ObservableList<Sale> list = FXCollections.observableArrayList();
+        ResultSet rs;
+        try {
+            String sql = "SELECT * from Sales WHERE SaleID ='"+SaleID+"'";
             rs = kn.getTable(sql);
             LocalDate date = null;
             while(rs.next()){   

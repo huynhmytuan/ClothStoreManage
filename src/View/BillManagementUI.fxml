@@ -13,13 +13,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #82e4ff;" stylesheets="@../CSS/TableView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #82e4ff;" stylesheets="@../CSS/TableView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BillController">
    <children>
-      <TableView fx:id="tableBill" layoutX="14.0" layoutY="100.0" prefHeight="580.0" prefWidth="417.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="100.0">
+      <TableView fx:id="tableBill" layoutX="14.0" layoutY="100.0" onMouseClicked="#Row_Clicked" prefHeight="580.0" prefWidth="417.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="100.0">
         <columns>
           <TableColumn fx:id="colBillID" prefWidth="75.0" text="Bill ID" />
           <TableColumn fx:id="colDate" prefWidth="170.40003204345703" text="Date" />
-            <TableColumn fx:id="colDateID" prefWidth="171.19998168945312" text="Staff ID" />
+            <TableColumn fx:id="colStaffID" prefWidth="171.19998168945312" text="Staff ID" />
         </columns>
          <effect>
             <DropShadow />
@@ -63,8 +63,8 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <JFXComboBox fx:id="cmbSearch" layoutX="89.0" layoutY="53.0" prefHeight="26.0" prefWidth="111.0" />
-            <JFXButton fx:id="btnRefresh" buttonType="RAISED" layoutX="406.0" layoutY="46.0" prefHeight="34.0" prefWidth="111.0" ripplerFill="#ffeeee" style="-fx-background-color: #10a6ad;" text="Refresh" textFill="#f6ffd1">
+            <JFXComboBox fx:id="cmbSearch" layoutX="89.0" layoutY="53.0" onAction="#cmbSearch_Selected" prefHeight="26.0" prefWidth="163.0" />
+            <JFXButton fx:id="btnRefresh" buttonType="RAISED" layoutX="469.0" layoutY="46.0" prefHeight="34.0" prefWidth="111.0" ripplerFill="#ffeeee" style="-fx-background-color: #10a6ad;" text="Refresh" textFill="#f6ffd1">
                <font>
                   <Font size="14.0" />
                </font>
@@ -75,7 +75,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <DatePicker layoutX="208.0" layoutY="54.0" prefHeight="26.0" prefWidth="183.0" />
+            <DatePicker fx:id="datePicker" layoutX="271.0" layoutY="54.0" prefHeight="26.0" prefWidth="183.0" />
          </children>
       </AnchorPane>
    </children>
