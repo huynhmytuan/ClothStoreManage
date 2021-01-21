@@ -9,7 +9,7 @@ public class FullnameException extends Exception{
 		
 	    public FullnameException(int conditionViolated) 
 	    { 
-	        super("Invalid Password: "); 
+	        super("Invalid Fullname: "); 
 	        fullnameConditionViolated = conditionViolated; 
 	    }
 	    public String printMessage() {
