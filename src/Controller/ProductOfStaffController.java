@@ -1,5 +1,6 @@
 package Controller;
 
+import java.io.File;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
@@ -18,11 +19,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class ProductOfStaffController implements Initializable {
 	ProductUtil pu = new ProductUtil();
+	StorageUtil su = new StorageUtil();
 	ObservableList<Product> listM;
     int index = -1;
     ResultSet rs = null;
@@ -70,6 +73,12 @@ public class ProductOfStaffController implements Initializable {
     
     @FXML
     private JFXButton btnRefresh;
+
+    @FXML
+    private ImageView imageview;
+
+    @FXML
+    private JFXTextField txt_quantity;
     
     //ComboBox
     @FXML
@@ -173,12 +182,18 @@ public class ProductOfStaffController implements Initializable {
     @FXML
     public void Row_Clicked(MouseEvent event) {
         Product pro = table_Product.getSelectionModel().getSelectedItem();
+        Storage sto = su.getAvailableByProdID(pro.getProductID());
     	txt_id.setText(""+ pro.getProductID());
     	txt_proname.setText(pro.getProductName());
     	txt_protype.setText(pro.getProductType());
     	txt_prosize.setText(pro.getProductSize());
     	txt_proinprice.setText("" + pro.getProductInPrice());
     	txt_prooutprice.setText("" + pro.getProductOutPrice());
+    	txt_quantity.setText(""+ sto.getQuantityInStock());
+    	String path = pro.getProductPicture();
+    	File file = new File(path);
+        Image image = new Image(file.toURI().toString());
+        imageview.setImage(image);
     }
     
     @FXML
