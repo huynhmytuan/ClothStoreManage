@@ -2,6 +2,7 @@ package Controller;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Currency;
 import java.util.Optional;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -9,6 +10,9 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+
+import Excpt.QuantityException;
+import Excpt.QuantityValidator;
 import Model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +25,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -214,136 +219,89 @@ public class SaleController implements Initializable{
 		return numID;
     }
     
+    public void createProduct(Product prod, int inputNum) {
+    	LocalDate today = LocalDate.now();//Lay gia ngay hien tai
+		int saleID = getRandomSaleID();
+		int staffID = LoginController.userID; //Lay ID cua nhan vien thuc hien bill
+		Float totalprice = (float)inputNum * prod.getProductOutPrice();
+		listSale.add(new Sale(saleID, today, curCus.getCusID(), staffID, prod.getProductID(), inputNum, prod.getProductOutPrice(),totalprice));   
+		loadSale(listSale);
+    }
+    
     @FXML
     void btnAddItems_Clicked(MouseEvent event) {
     	Product prod = tableProduct.getSelectionModel().getSelectedItem();
+    	
     	if(prod == null) {
     		Alert a = new Alert(AlertType.WARNING, "Please choose an item to add!");
             a.show();
     	}
     	else {
+    		Storage sto = su.getAvailableByProdID(prod.getProductID());
     		TextInputDialog td = new TextInputDialog(); 
-        	td.setHeaderText("Insert quantity of item:");
+        	td.setHeaderText("Available stocks: "+sto.getQuantityInStock()+"\n"+"Insert quantity of item:");
         	td.showAndWait();
-        	String inputValue = td.getEditor().getText();
-        	if(inputValue.equals("")){
-        		td.setContentText("Quantity can't be empty! Please enter: ");
-                td.showAndWait();
+        	String inputValue = td.getEditor().getText(); //Lay gia tri tu nguoi dung nhap vao
+        	try {
+        		QuantityValidator.isValid(inputValue);
+        		int inputNum = Integer.parseInt(inputValue);
+        		if(inputNum<=0 || inputNum>sto.getQuantityInStock()) {
+        			Alert a = new Alert(AlertType.WARNING, "Quantity should be smaller than Available stock!");
+        			a.show();
+        		}
+        		else {
+        			createProduct(prod, inputNum);
+        		}
         	}
-        	else {
-            	int inputNum = Integer.parseInt(inputValue);
-            	Storage sto = su.getAvailableByProdID(prod.getProductID());
-            	int availNum = sto.getQuantityInStock();
-            	if(inputNum <=0 || inputNum > availNum){
-        			td.setContentText("Quantity invalid! Please re-enter: ");
-        			td.showAndWait();
-        			inputValue = td.getEditor().getText();
-        			inputNum = Integer.parseInt(inputValue);
-            		LocalDate today = LocalDate.now();
-            		int saleID = getRandomSaleID();
-            		int staffID = LoginController.userID;
-            		Float totalprice = (float)inputNum * prod.getProductOutPrice();
-        			listSale.add(new Sale(saleID, today, curCus.getCusID(), staffID, prod.getProductID(), inputNum, prod.getProductOutPrice(),totalprice));   
-        			loadSale(listSale);
-            	}
-            	else {
-            		LocalDate today = LocalDate.now();
-            		int saleID = getRandomSaleID();
-            		int staffID = LoginController.userID;
-            		Float totalprice = (float)inputNum * prod.getProductOutPrice();
-        			listSale.add(new Sale(saleID, today, curCus.getCusID(), staffID, prod.getProductID(), inputNum, prod.getProductOutPrice(),totalprice));   
-        			loadSale(listSale);
-            	}
+        	catch(QuantityException e){
+        		Alert a = new Alert(AlertType.WARNING, e.printMessage());
+                a.show();
         	}
     	}
     }
     
+    
+
     @FXML
     void btnEditBill_Clicked(MouseEvent event) {
-    	Optional<String> result;
-    	if(listSale.isEmpty()) {
+    	if(listSale.isEmpty()) {//check bill co dang rong hay khong
     		Alert a = new Alert(AlertType.WARNING, "Bill is empty!");
             a.show();
     	}
     	else {
-        	Sale curSale = tableSale.getSelectionModel().getSelectedItem();
+    		Sale curSale = tableSale.getSelectionModel().getSelectedItem();
+    		index = listSale.indexOf(curSale);
+    		System.out.println(index);
     		if(curSale == null) {
-    			Alert a = new Alert(AlertType.WARNING, "Please choose an item to Edit!");
+        		Alert a = new Alert(AlertType.WARNING, "Please choose an item to add!");
                 a.show();
-    		}
-    		else {
-    			int index= listSale.indexOf(curSale);
-    			TextInputDialog td = new TextInputDialog();
-    	    	td.setHeaderText("Insert quantity of item:");
-    	    	result = td.showAndWait();
-    	    	
-    	    		String inputStr = td.getEditor().getText();
-        			if(inputStr.equals("")) {
-        				do {
-        					td.setContentText("Quantity can't be empty! Please enter: ");
-        					result = td.showAndWait();
-        					inputStr = td.getEditor().getText();
-        					if(!result.isPresent()) {
-        						break;
-        					}
-        				}while(inputStr.equals(""));
-        				if(result.isPresent()) {
-        					int inputNum = Integer.parseInt(inputStr);
-	    	    			Storage sto = su.getAvailableByProdID(curSale.getProductID());
-	        	    		int availNum = sto.getQuantityInStock();
-	    	    			if(inputNum <=0 || inputNum > availNum){
-	    	    				do {
-	    	    					td.setContentText("Quantity invalid! Please re-enter: ");
-	    	    					td.showAndWait();
-	    	    					inputStr = td.getEditor().getText();
-	    	    					inputNum = Integer.parseInt(inputStr);
-	    	    				}while(inputNum <=0 || inputNum > availNum);
-	    		    			listSale.remove(index);
-	    		    			curSale.setNumOfProduct(inputNum);
-	    		    			listSale.add(curSale);
-	    		    			loadSale(listSale);
-	        	        	}
-	        	    		else {
-	        	    			listSale.remove(index);
-	        	    			curSale.setNumOfProduct(inputNum);
-	        	    			listSale.add(curSale);
-	        	    			loadSale(listSale);
-	        	    		}
-        				}
-    	    			
-        	    	}
-        	    	else {
-        	    		int inputNum = Integer.parseInt(inputStr);
-    	    			Storage sto = su.getAvailableByProdID(curSale.getProductID());
-        	    		int availNum = sto.getQuantityInStock();
-    	    			if(inputNum <=0 || inputNum > availNum){
-    	    				do {
-    	    					td.setContentText("Quantity invalid! Please re-enter: ");
-    	    					result = td.showAndWait();
-    	    					if(!result.isPresent()) {
-    	    						break;
-    	    					}
-    	    					inputStr = td.getEditor().getText();
-    	    					inputNum = Integer.parseInt(inputStr);
-    	    				}while(inputNum <=0 || inputNum > availNum);
-    	    				if(result.isPresent()) {
-    	    					listSale.remove(index);
-	    		    			curSale.setNumOfProduct(inputNum);
-	    		    			listSale.add(curSale);
-	    		    			loadSale(listSale);
-    	    				}
-        	        	}
-        	    		else {
-        	    			listSale.remove(index);
-        	    			curSale.setNumOfProduct(inputNum);
-        	    			listSale.add(curSale);
-        	    			loadSale(listSale);
-        	    		}
-        	    	}
-    	    	}
-    	    		
-    		}
-    	}
+        	}
+        	else {
+        		Storage sto = su.getAvailableByProdID(curSale.getProductID());
+        		TextInputDialog td = new TextInputDialog(); 
+            	td.setHeaderText("Available stocks: "+sto.getQuantityInStock()+"\n"+"Insert quantity of item:");
+            	td.showAndWait();
+            	String inputValue = td.getEditor().getText(); //Lay gia tri tu nguoi dung nhap vao
+            	try {
+            		QuantityValidator.isValid(inputValue);
+            		int inputNum = Integer.parseInt(inputValue);
+            		if(inputNum<=0 || inputNum>sto.getQuantityInStock()) {
+            			Alert a = new Alert(AlertType.WARNING, "Quantity should be smaller than Available stock!");
+            			a.show();
+            		}
+            		else {
+            			System.out.println(index); 
+            			curSale.setNumOfProduct(inputNum);
+            			listSale.set(index, curSale);
+            		}
+            	}
+            	catch(QuantityException e){
+            		Alert a = new Alert(AlertType.WARNING, e.printMessage());
+                    a.show();
+            	}
+        	}
+		}
+    }
     
     @FXML
     void btnDleteItem_Clicked(MouseEvent event) {
@@ -376,7 +334,10 @@ public class SaleController implements Initializable{
     	else {
     		//code add bill vao csdl
     		for(Sale one: listSale) {
+    			Storage sto = su.getAvailableByProdID(one.getProductID());
+    			int left = sto.getQuantityInStock() - one.getNumOfProduct();
     			sa.insertSale(one.getSaleID(), one.getDateSale(), one.getCusID(), one.getStaffID(), one.getProductID(), one.getNumOfProduct(), one.getPrice(), one.getTotalPrice());
+    			su.updateStock(one.getProductID(), left);
     		}
       		Alert a = new Alert(AlertType.INFORMATION, "Payment success!");
             a.show();
