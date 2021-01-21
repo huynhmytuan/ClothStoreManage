@@ -9,15 +9,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #f0f1f2;" stylesheets="@../CSS/TableView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BillController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #f0f1f2;" stylesheets="@../CSS/TableView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ChatController">
    <children>
-      <JFXTextArea editable="false" layoutX="64.0" layoutY="62.0" prefHeight="531.0" prefWidth="788.0" style="-fx-background-color: white;">
+      <JFXTextArea fx:id="taChatBox" editable="false" layoutX="64.0" layoutY="62.0" prefHeight="531.0" prefWidth="788.0" style="-fx-background-color: white;">
          <effect>
             <DropShadow blurType="TWO_PASS_BOX" color="#0e4546" spread="0.09" />
          </effect>
       </JFXTextArea>
-      <JFXTextField alignment="TOP_LEFT" layoutX="66.0" layoutY="616.0" prefHeight="57.0" prefWidth="662.0" promptText="Reply here..." style="-fx-background-color: white;" />
-      <JFXButton layoutX="748.0" layoutY="620.0" prefHeight="43.0" prefWidth="103.0" style="-fx-background-color: #009673;" text="SEND" textFill="WHITE">
+      <JFXTextField fx:id="txtChatText" alignment="TOP_LEFT" layoutX="66.0" layoutY="616.0" onKeyPressed="#txtChatText_EnterPress" prefHeight="57.0" prefWidth="662.0" promptText="Reply here..." style="-fx-background-color: white;" />
+      <JFXButton fx:id="btnSend" layoutX="743.0" layoutY="620.0" onMouseClicked="#btnSend_Clicked" prefHeight="50.0" prefWidth="108.0" style="-fx-background-color: #009673;" text="SEND" textFill="WHITE">
          <effect>
             <BoxBlur />
          </effect>
