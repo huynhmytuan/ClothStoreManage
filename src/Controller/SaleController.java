@@ -206,18 +206,33 @@ public class SaleController implements Initializable{
    	 		txtUAddress.setText(curCus.getCusAddress());
     	}
     }
-    
     public int getRandomSaleID() {
     	ObservableList<Sale> inputList = sa.getDataList();
     	int numID;
     	Random rand = new Random();
 		numID = rand.nextInt(10000);//Random a new numID
-		int[] loginIDArr = new int[listM.size()]; //Create a list to store ID in database
+		int[] saleIDArr = new int[inputList.size()]; //Create a list to store ID in database
 		int n=0;
 		for(Sale lid : inputList) {
-			loginIDArr[n] = lid.getSaleID();
+			saleIDArr[n] = lid.getSaleID();
 			n++;
 		}
+		boolean check = false;
+		 do{
+			 //Check if storID already in storIDArr
+			 for(int num : saleIDArr) {
+				 if(num == numID) {
+					 check = true;
+					 break;
+				 }
+			 }
+			 if(check){
+				 numID = rand.nextInt(10000);
+			 }
+			 else {
+				 return numID;
+			 }
+		 }while(check);
 		return numID;
     }
     

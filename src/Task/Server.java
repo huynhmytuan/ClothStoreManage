@@ -40,4 +40,13 @@ public class Server implements Runnable{
 	        }
 	    }catch(Exception e){}
 	}  
+	public static void main(String[] args) throws Exception{
+        ServerSocket s = new ServerSocket(2003);
+        while(true){
+            Socket socket = s.accept();
+            Server server = new Server(socket);
+            Thread thread = new Thread(server);
+            thread.start();
+        }
+    }
 }
