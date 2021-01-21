@@ -20,6 +20,7 @@ import Model.Login;
 import Model.LoginUtil;
 import Model.User;
 import Model.UserUtil;
+import Task.SoundTrack;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -71,7 +72,7 @@ public class RegisterController implements Initializable{
 	    @FXML
 	    private ImageView btnClosed_RegisUI;
  
-	    @FXML
+	    @FXML	   
 	    public void btnRegister_Clicked(MouseEvent event){
 	    	//Get all data which user insert.
 	    	String userName = "";
@@ -101,7 +102,10 @@ public class RegisterController implements Initializable{
 	    		userEmail.equals("")||
 	    		pass.equals    ("")|| 
 	    		userDOB == null ||
-	    		pass1.equals   ("")){					
+	    		pass1.equals   ("")){
+	    		String path = "src\\Music\\error-noti-sound.wav";
+	    		SoundTrack errorSound = new SoundTrack(path);
+	    		errorSound.start();
 	    		Alert a = new Alert(AlertType.ERROR,"Your information can't be empty!");
 		        a.show();
 	    	}
@@ -110,6 +114,9 @@ public class RegisterController implements Initializable{
 	    		for(Login one : listM) {
 	    			String TempUsername = one.getUserName();
 	    			if(userName.equals(TempUsername)){
+	    				String path = "src\\Music\\error-noti-sound.wav";
+	    				SoundTrack errorSound = new SoundTrack(path);
+	    				errorSound.start();
 	    				Alert a = new Alert(AlertType.ERROR,"Username has already! Please choose another username!");
 	    		        a.show();
 	    		        usernameCheck = false;
@@ -121,13 +128,19 @@ public class RegisterController implements Initializable{
 	    			int number = -1;
 					number = Integer.parseInt(userPhone);
 					if(number == -1) {
-						Alert a = new Alert(AlertType.ERROR,"Phone number must be numbers!");
+						String path = "src\\Music\\warning-sound.wav";
+						SoundTrack warnSound = new SoundTrack(path);
+						warnSound.start();
+						Alert a = new Alert(AlertType.WARNING,"Phone number must be numbers!");
 						a.show();
 					}
 					else {
 						//check match re-entered password
 						if(!pass.equals(pass1))
 	    				{
+							String path = "src\\Music\\error-noti-sound.wav";
+							SoundTrack errorSound = new SoundTrack(path);
+							errorSound.start();
 	    					Alert a = new Alert(AlertType.ERROR,"Password does not match! Please re-enter");
 		    		        a.show();
 	    				}
@@ -172,19 +185,31 @@ public class RegisterController implements Initializable{
 		    		    			 }
 		    		    		 }while(check);
 	    		    			 uu.insertUser(userID, fullname, userDOB, userPhone, userEmail, address);
-	    		    			 lu.insertLogin(loginID, userName, pass, 2, userID);	
+	    		    			 lu.insertLogin(loginID, userName, pass, 2, userID);
+	    		    			 String path = "src\\Music\\success-sound.wav";
+	    		    			 SoundTrack successSound = new SoundTrack(path);
+	    		    			 successSound.start();
 	    		    			 Alert a = new Alert(AlertType.INFORMATION,"Register successfully! Login Now!");
 	    		        	     a.show();
 	    					}
 	    					catch(PasswordException e) {
+	    						String path = "src\\Music\\warning-sound.wav";
+	    						SoundTrack warnSound = new SoundTrack(path);
+	    						warnSound.start();
 	    						Alert a = new Alert(AlertType.ERROR,e.printMessage());
 	    		        	    a.show();
 	    					}
 	    		    		catch(PhoneException e) {
+	    		    			String path = "src\\Music\\warning-sound.wav";
+	    		    			SoundTrack warnSound = new SoundTrack(path);
+	    		    			warnSound.start();
 	    		    			Alert a = new Alert(AlertType.ERROR,e.printMessage());
 	    		        	    a.show();
 	    		    		}
 	    					catch(UsernameException e) {
+	    						String path = "src\\Music\\warning-sound.wav";
+	    						SoundTrack warnSound = new SoundTrack(path);
+	    						warnSound.start();
 	    						Alert a = new Alert(AlertType.ERROR,e.printMessage());
 	    		        	    a.show();
 	    					}

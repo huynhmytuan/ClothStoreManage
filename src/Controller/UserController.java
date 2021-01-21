@@ -20,6 +20,7 @@ import Excpt.PasswordException;
 import Excpt.PhoneException;
 import Excpt.PhoneValidator;
 import Model.*;
+import Task.SoundTrack;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -153,29 +154,36 @@ public class UserController implements Initializable {
     @FXML
     void btnAdd_Clicked(MouseEvent event) {
     	try {
-    	int userID = getRandomUserID();
-    	String userName = txtName.getText();
-    	FullnameValidator.isValid(userName);
-    	LocalDate userDOB = txtDate.getValue();
-    	String userPhone = txtPhone.getText();
-    	PhoneValidator.isValid(userPhone);
-    	String userEmail = txtEmail.getText();
-    	String userAddress = txtAddress.getText();
-    	us.insertUser(userID, userName, userDOB, userPhone, userEmail, userAddress);//Create new User
-    	
-    	int loginID = getRandomLoginID();
-    	String username = txtUserName.getText();
-    	int roleID = Integer.parseInt(txtRole.getText());
-    	lu.insertLogin(loginID, username, "123456", roleID, userID);//Create new account with default password 123456
-    	
-    	listM = us.getDataList();
-    	loadTable(listM);
+	    	int userID = getRandomUserID();
+	    	String userName = txtName.getText();
+	    	FullnameValidator.isValid(userName);
+	    	LocalDate userDOB = txtDate.getValue();
+	    	String userPhone = txtPhone.getText();
+	    	PhoneValidator.isValid(userPhone);
+	    	String userEmail = txtEmail.getText();
+	    	String userAddress = txtAddress.getText();
+	    	us.insertUser(userID, userName, userDOB, userPhone, userEmail, userAddress);//Create new User	
+	    	int loginID = getRandomLoginID();
+	    	String username = txtUserName.getText();
+	    	int roleID = Integer.parseInt(txtRole.getText());
+	    	lu.insertLogin(loginID, username, "123456", roleID, userID);//Create new account with default password 123456	    	
+	    	listM = us.getDataList();
+	    	loadTable(listM);
+	    	String path = "src\\Music\\success-sound.wav";
+	    	SoundTrack successSound = new SoundTrack(path);
+	    	successSound.start();
     	}
     	catch(PhoneException e){
+    		String path = "src\\Music\\warning-sound.wav";
+    		SoundTrack warnSound = new SoundTrack(path);
+    		warnSound.start();
     		Alert a = new Alert(AlertType.WARNING, e.printMessage());
             a.show();
     	}
     	catch(FullnameException e) {
+    		String path = "src\\Music\\warning-sound.wav";
+    		SoundTrack warnSound = new SoundTrack(path);
+    		warnSound.start();
     		Alert a = new Alert(AlertType.WARNING, e.printMessage());
             a.show();
     	}
@@ -183,13 +191,25 @@ public class UserController implements Initializable {
 
     @FXML
     void btnDelete_Clicked(MouseEvent event) {
-    	int p = JOptionPane.showConfirmDialog(null, "Do you really want to delete ?", "Delete", JOptionPane.YES_NO_OPTION);
-    	if(p==0) {
-			int userID = Integer.parseInt(txtID.getText());
-			us.deleteUser(userID);
-			lu.deleteLogin(userID);//Thread
-    	}
-    	btnRefresh_Clicked(event);
+    	try {
+	    	int p = JOptionPane.showConfirmDialog(null, "Do you really want to delete ?", "Delete", JOptionPane.YES_NO_OPTION);
+	    	if(p==0) {
+				int userID = Integer.parseInt(txtID.getText());
+				us.deleteUser(userID);
+				lu.deleteLogin(userID);//Thread
+				String path = "src\\Music\\success-sound.wav";
+				SoundTrack successSound = new SoundTrack(path);
+				successSound.start();
+	    	}
+	    	btnRefresh_Clicked(event);
+	    	}
+    	catch (Exception e) {
+			Alert a = new Alert(AlertType.ERROR, "Error: "+"\n"+e.getMessage());
+        	String path = "src\\Music\\error-noti-sound.wav";
+    	 	SoundTrack error = new SoundTrack(path);
+            error.start();
+            a.show();
+		}
     }
 
     @FXML
@@ -223,31 +243,36 @@ public class UserController implements Initializable {
     void btnUpdate_Clicked(MouseEvent event) {
     	
     	try {
-    	int userID = Integer.parseInt(txtID.getText());
-    	String userName = txtName.getText();
-    	FullnameValidator.isValid(userName);
-    	LocalDate userDOB = txtDate.getValue();
-    	String userPhone = "";
-    	
-    		userPhone = txtPhone.getText();
-    		PhoneValidator.isValid(userPhone);	
-    	
-    	String userEmail = txtEmail.getText();
-    	String userAddress = txtAddress.getText();
-    	us.updatetUser(userID, userName, userDOB, userPhone, userEmail, userAddress);//Update A current User
-    	
-    	String username = txtUserName.getText();
-    	int roleID = Integer.parseInt(txtRole.getText());
-    	lu.updateUsernameNRoleID(username, roleID, userID);//Update username and role ID of user's Account.
-    	
-    	listM = us.getDataList();
-    	loadTable(listM);
+	    	int userID = Integer.parseInt(txtID.getText());
+	    	String userName = txtName.getText();
+	    	FullnameValidator.isValid(userName);
+	    	LocalDate userDOB = txtDate.getValue();
+	    	String userPhone = "";
+	    	userPhone = txtPhone.getText();
+	    	PhoneValidator.isValid(userPhone);	  	
+	    	String userEmail = txtEmail.getText();
+	    	String userAddress = txtAddress.getText();
+	    	us.updatetUser(userID, userName, userDOB, userPhone, userEmail, userAddress);//Update A current User  	
+	    	String username = txtUserName.getText();
+	    	int roleID = Integer.parseInt(txtRole.getText());
+	    	lu.updateUsernameNRoleID(username, roleID, userID);//Update username and role ID of user's Account.   	
+	    	listM = us.getDataList();
+	    	loadTable(listM);
+	    	String path = "src\\Music\\success-sound.wav";
+	    	SoundTrack successSound = new SoundTrack(path);
+	    	successSound.start();
     	}
     	catch(PhoneException e){
+    		String path = "src\\Music\\warning-sound.wav";
+    		SoundTrack warnSound = new SoundTrack(path);
+    		warnSound.start();
     		Alert a = new Alert(AlertType.WARNING, e.printMessage());
             a.show();
     	}
     	catch(FullnameException e) {
+    		String path = "src\\Music\\warning-sound.wav";
+    		SoundTrack warnSound = new SoundTrack(path);
+    		warnSound.start();
     		Alert a = new Alert(AlertType.WARNING, e.printMessage());
             a.show();
     	}

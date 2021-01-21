@@ -14,6 +14,7 @@ import Model.Product;
 import Model.Sale;
 import Model.SaleUtil;
 import Model.Storage;
+import Task.SoundTrack;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -141,23 +142,42 @@ public class BillController implements Initializable{
     
     @FXML
     public void btnDelete_Clicked(MouseEvent event) {
-    	ObservableList<Sale> items = tableBill.getItems();
-    	Sale pro = tableBill.getSelectionModel().getSelectedItem();
-    	if(items.isEmpty()) {
-    		Alert a = new Alert(AlertType.WARNING, "List of bill is empty!");
-            a.show();
+    	try {
+    		ObservableList<Sale> items = tableBill.getItems();
+	    	Sale pro = tableBill.getSelectionModel().getSelectedItem();
+	    	if(items.isEmpty()) {
+	    		String path = "src\\Music\\error-noti-sound.wav";
+	    		SoundTrack errorSound = new SoundTrack(path);
+	    		errorSound.start();
+	    		Alert a = new Alert(AlertType.WARNING, "List of bill is empty!");
+	            a.show();
+	    	}
+	    	else {
+	    		if(pro == null) {
+	    			String path = "src\\Music\\error-noti-sound.wav";
+	        		SoundTrack errorSound = new SoundTrack(path);
+	        		errorSound.start();
+	    			Alert a = new Alert(AlertType.WARNING, "Please choose a Bill to Delete!");
+	                a.show();
+	    		}
+	    		else {
+	    			String path = "src\\Music\\success-sound.wav";
+	    			SoundTrack successSound = new SoundTrack(path);
+	    			successSound.start();
+	    			su.deleteSale(pro.getSaleID());
+	    			billList = getBillList();
+	    	    	loadBill(billList);
+	    		}
+	    	}
     	}
-    	else {
-    		if(pro == null) {
-    			Alert a = new Alert(AlertType.WARNING, "Please choose a Bill to Delete!");
-                a.show();
-    		}
-    		else {
-    			su.deleteSale(pro.getSaleID());
-    			billList = getBillList();
-    	    	loadBill(billList);
-    		}
+    	catch(Exception e) {
+    		String path = "src\\Music\\error-noti-sound.wav";
+    		SoundTrack errorSound = new SoundTrack(path);
+    		errorSound.start();
+    		Alert a = new Alert(AlertType.ERROR, "Error: "+"\n"+e.getMessage());
+	        a.show();
     	}
+    	
     }
     public String totalPrice() {
     	float totalPrice = 0;

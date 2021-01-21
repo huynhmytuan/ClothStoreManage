@@ -16,6 +16,7 @@ import com.jfoenix.controls.JFXTextField;
 import Excpt.FullnameException;
 import Excpt.FullnameValidator;
 import Model.*;
+import Task.SoundTrack;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -128,33 +129,37 @@ public class ProductController implements Initializable {
 	@FXML
     void btnAdd_Clicked(MouseEvent event) {
     	try {
-		int productID = Integer.parseInt(txtID.getText());
-    	String productName = txtName.getText();
-    	FullnameValidator.isValid(productName);
-    	String productType = txtType.getText();
-    	String productSize = txtSize.getText();
-    	String productDecs = "";
-    	productDecs = txtDecs.getText();
-    	String productInPrice = txtInPrice.getText();
-    	String productOutPrice = txtOutPrice.getText();
-    	String productPicture = "";
-		productPicture = txtPicture.getText();
-		pu.insertProduct(productID, productName, productType, productSize, productDecs, Float.parseFloat(productInPrice), Float.parseFloat(productOutPrice), productPicture);
-    	int numIn = Integer.parseInt(txtNumberOfProductIn.getText());
-    	int numLeft = Integer.parseInt(txtQuantityInStock.getText());
-    	int storID = getRandomStorID();
-    	LocalDate today = LocalDate.now();
-		System.out.println("Current Date="+today);
-		
-		float totalPrice =  (float)numIn * Float.parseFloat(productInPrice);
-			
+			int productID = Integer.parseInt(txtID.getText());
+	    	String productName = txtName.getText();
+	    	FullnameValidator.isValid(productName);
+	    	String productType = txtType.getText();
+	    	String productSize = txtSize.getText();
+	    	String productDecs = "";
+	    	productDecs = txtDecs.getText();
+	    	String productInPrice = txtInPrice.getText();
+	    	String productOutPrice = txtOutPrice.getText();
+	    	String productPicture = "";
+			productPicture = txtPicture.getText();
+			pu.insertProduct(productID, productName, productType, productSize, productDecs, Float.parseFloat(productInPrice), Float.parseFloat(productOutPrice), productPicture);
+	    	int numIn = Integer.parseInt(txtNumberOfProductIn.getText());
+	    	int numLeft = Integer.parseInt(txtQuantityInStock.getText());
+	    	int storID = getRandomStorID();
+	    	LocalDate today = LocalDate.now();
+			System.out.println("Current Date="+today);
+			float totalPrice =  (float)numIn * Float.parseFloat(productInPrice);				
 			su.insertStorage(storID, productID, numIn, numLeft, today, totalPrice);
 			Alert a = new Alert(AlertType.INFORMATION,"Insert product successfully!");
 		    a.show();
 		    listM = pu.getDataList();
 		    loadTable(listM);
+		    String path = "src\\Music\\success-sound.wav";
+		    SoundTrack successSound = new SoundTrack(path);
+		    successSound.start();
 		}
 		catch(FullnameException e) {
+			String path = "src\\Music\\warning-sound.wav";
+			SoundTrack warnSound = new SoundTrack(path);
+			warnSound.start();
 			Alert a = new Alert(AlertType.WARNING, e.printMessage());
             a.show();
 		}	
@@ -162,20 +167,26 @@ public class ProductController implements Initializable {
 
     @FXML
     void btnDelete_Clicked(MouseEvent event) {
-    	int p = JOptionPane.showConfirmDialog(null, "Do you really want to delete ?", "Delete", JOptionPane.YES_NO_OPTION);
-    	if(p==0) {
-    		String id = txtID.getText().replace(" ", "");
-			int productID = Integer.parseInt(id);
-			try {
+    		int p = JOptionPane.showConfirmDialog(null, "Do you really want to delete ?", "Delete", JOptionPane.YES_NO_OPTION);
+    		if(p==0) {
+	    		String id = txtID.getText().replace(" ", "");
+				int productID = Integer.parseInt(id);
+			try {			
+				String path = "src\\Music\\success-sound.wav";
+				SoundTrack successSound = new SoundTrack(path);
+				successSound.start();
 				pu.deleteProduct(productID);
 				su.deleteStorage(productID);
 				Alert a = new Alert(AlertType.INFORMATION,"Delete product successfully!");
 				a.show();
 			}
 			catch(Exception e) {
-				
+				Alert a = new Alert(AlertType.ERROR, "Error: "+"\n"+e.getMessage());
+            	String path = "src\\Music\\error-noti-sound.wav";
+        	 	SoundTrack error = new SoundTrack(path);
+                error.start();
+                a.show();
 			}
-			
 			listM = pu.getDataList();
 			loadTable(listM);
     	} 	
@@ -184,31 +195,36 @@ public class ProductController implements Initializable {
     @FXML
     void btnUpdate_Clicked(MouseEvent event) {
     	try {
-    	int productID = Integer.parseInt(txtID.getText());
-    	String productName = txtName.getText();
-    	FullnameValidator.isValid(productName);
-    	String productType = txtType.getText();
-    	String productSize = txtSize.getText();
-    	String productDecs = "";
-    	productDecs = txtDecs.getText();
-    	String productInPrice = txtInPrice.getText();
-    	String productOutPrice = txtOutPrice.getText();
-    	String productPicture = "";
-		productPicture = txtPicture.getText();
-		int numIn = Integer.parseInt(txtNumberOfProductIn.getText());
-    	int numLeft = Integer.parseInt(txtQuantityInStock.getText());
-    	LocalDate today = LocalDate.now();
-		System.out.println("Current Date="+today);
-		float totalPrice =  (float)numIn * Float.parseFloat(productInPrice);
+	    	int productID = Integer.parseInt(txtID.getText());
+	    	String productName = txtName.getText();
+	    	FullnameValidator.isValid(productName);
+	    	String productType = txtType.getText();
+	    	String productSize = txtSize.getText();
+	    	String productDecs = "";
+	    	productDecs = txtDecs.getText();
+	    	String productInPrice = txtInPrice.getText();
+	    	String productOutPrice = txtOutPrice.getText();
+	    	String productPicture = "";
+			productPicture = txtPicture.getText();
+			int numIn = Integer.parseInt(txtNumberOfProductIn.getText());
+	    	int numLeft = Integer.parseInt(txtQuantityInStock.getText());
+	    	LocalDate today = LocalDate.now();
+			System.out.println("Current Date="+today);
+			float totalPrice =  (float)numIn * Float.parseFloat(productInPrice);
 			pu.updatetProduct(productID, productName, productType, productSize, productDecs, Float.parseFloat(productInPrice), Float.parseFloat(productOutPrice), productPicture);
 			su.updateStorage(productID, numIn, numLeft, totalPrice);
-
 			Alert a = new Alert(AlertType.INFORMATION,"Update product successfully!");
 		    a.show();
-		listM = pu.getDataList();
-    	loadTable(listM);
+			listM = pu.getDataList();
+	    	loadTable(listM);
+			String path = "src\\Music\\success-sound.wav";
+			SoundTrack successSound = new SoundTrack(path);
+			successSound.start();
     	}
     	catch(FullnameException e) {
+    		String path = "src\\Music\\warning-sound.wav";
+    		SoundTrack warnSound = new SoundTrack(path);
+    		warnSound.start();
 			Alert a = new Alert(AlertType.WARNING, e.printMessage());
             a.show();
 		}

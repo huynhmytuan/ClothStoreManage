@@ -14,6 +14,7 @@ import com.jfoenix.controls.JFXTextField;
 import Excpt.QuantityException;
 import Excpt.QuantityValidator;
 import Model.*;
+import Task.SoundTrack;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -108,7 +109,7 @@ public class SaleController implements Initializable{
     @FXML
     private JFXButton btnPayment;
 
-    public void loadTable(ObservableList<Product> list) {
+    public void loadTable(ObservableList<Product> list) {   	
     	col_id.setCellValueFactory(new PropertyValueFactory<Product,Integer>("ProductID"));
 		col_name.setCellValueFactory(new PropertyValueFactory<Product,String>("ProductName"));
 		col_type.setCellValueFactory(new PropertyValueFactory<Product,String>("ProductType"));
@@ -236,6 +237,9 @@ public class SaleController implements Initializable{
     		saleID = getRandomSaleID();
     	}
     	if(prod == null) {
+    		String path = "src\\Music\\warning-sound.wav";
+    		SoundTrack warnSound = new SoundTrack(path);
+    		warnSound.start();
     		Alert a = new Alert(AlertType.WARNING, "Please choose an item to add!");
             a.show();
     	}
@@ -250,14 +254,23 @@ public class SaleController implements Initializable{
         		QuantityValidator.isValid(inputValue);
         		int inputNum = Integer.parseInt(inputValue);
         		if(inputNum<=0 || inputNum>sto.getQuantityInStock()) {
+        			String path = "src\\Music\\warning-sound.wav";
+        			SoundTrack warnSound = new SoundTrack(path);
+        			warnSound.start();
         			Alert a = new Alert(AlertType.WARNING, "Quantity should be smaller than Available stock!");
         			a.show();
         		}
         		else {
         			createProduct(prod, inputNum);
+        			String path = "src\\Music\\success-sound.wav";
+        			SoundTrack successSound = new SoundTrack(path);
+        			successSound.start();
         		}
         	}
         	catch(QuantityException e){
+        		String path = "src\\Music\\warning-sound.wav";
+        		SoundTrack warnSound = new SoundTrack(path);
+        		warnSound.start();
         		Alert a = new Alert(AlertType.WARNING, e.printMessage());
                 a.show();
         	}
@@ -269,6 +282,9 @@ public class SaleController implements Initializable{
     @FXML
     void btnEditBill_Clicked(MouseEvent event) {
     	if(listSale.isEmpty()) {//check bill co dang rong hay khong
+    		String path = "src\\Music\\warning-sound.wav";
+    		SoundTrack warnSound = new SoundTrack(path);
+    		warnSound.start();
     		Alert a = new Alert(AlertType.WARNING, "Bill is empty!");
             a.show();
     	}
@@ -277,6 +293,9 @@ public class SaleController implements Initializable{
     		index = listSale.indexOf(curSale);
     		System.out.println(index);
     		if(curSale == null) {
+    			String path = "src\\Music\\warning-sound.wav";
+    			SoundTrack warnSound = new SoundTrack(path);
+    			warnSound.start();
         		Alert a = new Alert(AlertType.WARNING, "Please choose an item to add!");
                 a.show();
         	}
@@ -290,6 +309,9 @@ public class SaleController implements Initializable{
             		QuantityValidator.isValid(inputValue);
             		int inputNum = Integer.parseInt(inputValue);
             		if(inputNum<=0 || inputNum>sto.getQuantityInStock()) {
+            			String path = "src\\Music\\warning-sound.wav";
+            			SoundTrack warnSound = new SoundTrack(path);
+            			warnSound.start();
             			Alert a = new Alert(AlertType.WARNING, "Quantity should be smaller than Available stock!");
             			a.show();
             		}
@@ -297,9 +319,15 @@ public class SaleController implements Initializable{
             			System.out.println(index); 
             			curSale.setNumOfProduct(inputNum);
             			listSale.set(index, curSale);
+            			String path = "src\\Music\\success-sound.wav";
+            			SoundTrack successSound = new SoundTrack(path);
+            			successSound.start();
             		}
             	}
             	catch(QuantityException e){
+            		String path = "src\\Music\\warning-sound.wav";
+            		SoundTrack warnSound = new SoundTrack(path);
+            		warnSound.start();
             		Alert a = new Alert(AlertType.WARNING, e.printMessage());
                     a.show();
             	}
@@ -309,29 +337,44 @@ public class SaleController implements Initializable{
     
     @FXML
     void btnDleteItem_Clicked(MouseEvent event) {
-    	ObservableList<Sale> items = tableSale.getItems();
-    	Sale pro = tableSale.getSelectionModel().getSelectedItem();
-    	int index= listSale.indexOf(pro);
-    	if(items.isEmpty()) {
-    		Alert a = new Alert(AlertType.WARNING, "Bill is empty!");
+    	try {
+	    	ObservableList<Sale> items = tableSale.getItems();
+	    	Sale pro = tableSale.getSelectionModel().getSelectedItem();
+	    	int index= listSale.indexOf(pro);
+	    	if(items.isEmpty()) {
+	    		Alert a = new Alert(AlertType.WARNING, "Bill is empty!");
+	            a.show();
+	    	}
+	    	else {
+	    		if(pro == null) {
+	    			Alert a = new Alert(AlertType.WARNING, "Please choose an item to Delete!");
+	                a.show();
+	    		}
+	    		else {
+	    			listSale.remove(index);
+	    	    	loadSale(listSale);
+	    	    	String path = "src\\Music\\success-sound.wav";
+	    	    	SoundTrack successSound = new SoundTrack(path);
+	    	    	successSound.start();
+	    		}
+	    	}
+    	}
+    	catch (Exception e) {
+			Alert a = new Alert(AlertType.ERROR, "Error: "+"\n"+e.getMessage());
+        	String path = "src\\Music\\error-noti-sound.wav";
+    	 	SoundTrack error = new SoundTrack(path);
+            error.start();
             a.show();
-    	}
-    	else {
-    		if(pro == null) {
-    			Alert a = new Alert(AlertType.WARNING, "Please choose an item to Delete!");
-                a.show();
-    		}
-    		else {
-    			listSale.remove(index);
-    	    	loadSale(listSale);
-    		}
-    	}
+		}
     }
     
     @FXML
     void btnPayment_Clicked(MouseEvent event) {
     	ObservableList<Sale> items = tableSale.getItems();
     	if(items.isEmpty()) {
+    		String path = "src\\Music\\warning-sound.wav";
+    		SoundTrack warnSound = new SoundTrack(path);
+    		warnSound.start();
     		Alert a = new Alert(AlertType.WARNING, "Bill is empty!");
             a.show();
     	}
@@ -343,6 +386,9 @@ public class SaleController implements Initializable{
     			sa.insertSale(one.getSaleID(), one.getDateSale(), one.getCusID(), one.getStaffID(), one.getProductID(), one.getNumOfProduct(), one.getPrice(), one.getTotalPrice());
     			su.updateStock(one.getProductID(), left);
     		}
+    		String path = "src\\Music\\cash-register.wav";
+    		SoundTrack cashSound = new SoundTrack(path);
+    		cashSound.start();
       		Alert a = new Alert(AlertType.INFORMATION, "Payment success!");
             a.show();
             //clear table view

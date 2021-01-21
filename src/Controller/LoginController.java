@@ -13,6 +13,7 @@ import com.jfoenix.controls.JFXTextField;
 
 import Model.Login;
 import Model.LoginUtil;
+import Task.SoundTrack;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -71,16 +72,26 @@ public class LoginController  implements Initializable{
         	        if(rs.getInt(4)== 1) {
         	        	String frmName = "DashboardUI.fxml";
         	        	 LoadScene loader = new LoadScene();
+        	        	 String path = "src\\Music\\welcome-bg-music.wav";
+        	        	 SoundTrack welcome = new SoundTrack(path);
+                         welcome.start();
                          loader.loadSence(frmName, event);
         	        }
         	        else {
         	        	String frmName = "DashboardStaffUI.fxml";
         	        	 LoadScene loader = new LoadScene();
+        	        	 String path = "src\\Music\\welcome-bg-music.wav";
+        	        	 SoundTrack welcome = new SoundTrack(path);
+                         welcome.start();
                          loader.loadSence(frmName, event);
+                         
         	        }
                 }
                 else{
                 	Alert a = new Alert(AlertType.WARNING, "Username or password is incorect!");
+                	String path = "src\\Music\\error-noti-sound.wav";
+   	        	 	SoundTrack error = new SoundTrack(path);
+                    error.start();
                     a.show();
                 }
             }
@@ -104,7 +115,6 @@ public class LoginController  implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-	
 	}
     
 }

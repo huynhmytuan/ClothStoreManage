@@ -17,6 +17,7 @@ import Excpt.FullnameValidator;
 import Excpt.PhoneException;
 import Excpt.PhoneValidator;
 import Model.*;
+import Task.SoundTrack;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -95,27 +96,35 @@ public class CustomerController implements Initializable {
     @FXML
     private JFXButton btnRefresh;
     
-    @FXML
+    @FXML 
     void btnAdd_Clicked(MouseEvent event) {
     	try {
-    	int cusID = Integer.parseInt(txtID.getText());
-    	String cusName = txtName.getText();
-    	FullnameValidator.isValid(cusName);
-    	LocalDate cusDOB = txtDate.getValue();
-    	String cusPhone = txtPhone.getText();
-    	PhoneValidator.isValid(cusPhone);
-    	String cusEmail = txtEmail.getText();
-    	String cusAddress = txtAddress.getText();
-    	
-    	cu.insertCustomer(cusID, cusName, cusDOB, cusPhone, cusEmail, cusAddress);
-    	listM = cu.getDataList();
-    	loadTable(listM);
+	    	int cusID = Integer.parseInt(txtID.getText());
+	    	String cusName = txtName.getText();
+	    	FullnameValidator.isValid(cusName);
+	    	LocalDate cusDOB = txtDate.getValue();
+	    	String cusPhone = txtPhone.getText();
+	    	PhoneValidator.isValid(cusPhone);
+	    	String cusEmail = txtEmail.getText();
+	    	String cusAddress = txtAddress.getText();    	
+	    	cu.insertCustomer(cusID, cusName, cusDOB, cusPhone, cusEmail, cusAddress);
+	    	listM = cu.getDataList();
+	    	loadTable(listM);
+	    	String path = "src\\Music\\success-sound.wav";
+	    	SoundTrack successSound = new SoundTrack(path);
+	    	successSound.start();
     	}
     	catch(PhoneException e) {
+    		String path = "src\\Music\\warning-sound.wav";
+    		SoundTrack warnSound = new SoundTrack(path);
+    		warnSound.start();
     		Alert a = new Alert(AlertType.WARNING, e.printMessage());
             a.show();
     	}
     	catch(FullnameException e) {
+    		String path = "src\\Music\\warning-sound.wav";
+    		SoundTrack warnSound = new SoundTrack(path);
+    		warnSound.start();
     		Alert a = new Alert(AlertType.WARNING, e.printMessage());
             a.show();
     	}
@@ -125,10 +134,22 @@ public class CustomerController implements Initializable {
     void btnDelete_Clicked(MouseEvent event) {
     	int p = JOptionPane.showConfirmDialog(null, "Do you really want to delete ?", "Delete", JOptionPane.YES_NO_OPTION);
     	if(p==0) {
-			int cusID = Integer.parseInt(txtID.getText());
+    		try {
+    			int cusID = Integer.parseInt(txtID.getText());
 			cu.deleteCustomer(cusID);
 			listM = cu.getDataList();
 			loadTable(listM);
+			String path = "src\\Music\\success-sound.wav";
+	    	SoundTrack successSound = new SoundTrack(path);
+	    	successSound.start();
+    		}
+    		catch (Exception e) {
+    			Alert a = new Alert(AlertType.ERROR, "Error: "+"\n"+e.getMessage());
+            	String path = "src\\Music\\error-noti-sound.wav";
+        	 	SoundTrack error = new SoundTrack(path);
+                error.start();
+                a.show();
+			}
     	} 	
     }
 
@@ -148,25 +169,40 @@ public class CustomerController implements Initializable {
     @FXML
     void btnUpdate_Clicked(MouseEvent event) {
     	try {
-    	int cusID = Integer.parseInt(txtID.getText());
-    	String cusName = txtName.getText();
-    	FullnameValidator.isValid(cusName);
-    	LocalDate cusDOB = txtDate.getValue();
-    	String cusPhone = txtPhone.getText();
-    	PhoneValidator.isValid(cusPhone);
-    	String cusEmail = txtEmail.getText();
-    	String cusAddress = txtAddress.getText();
-  	
-    	cu.updateCustomer(cusID, cusName, cusDOB, cusPhone, cusEmail, cusAddress);
-    	listM = cu.getDataList();
-    	loadTable(listM);
+	    	int cusID = Integer.parseInt(txtID.getText());
+	    	String cusName = txtName.getText();
+	    	FullnameValidator.isValid(cusName);
+	    	LocalDate cusDOB = txtDate.getValue();
+	    	String cusPhone = txtPhone.getText();
+	    	PhoneValidator.isValid(cusPhone);
+	    	String cusEmail = txtEmail.getText();
+	    	String cusAddress = txtAddress.getText();
+	    	cu.updateCustomer(cusID, cusName, cusDOB, cusPhone, cusEmail, cusAddress);
+	    	listM = cu.getDataList();
+	    	loadTable(listM);
+			String path = "src\\Music\\success-sound.wav";
+			SoundTrack successSound = new SoundTrack(path);
+			successSound.start();
     	}
     	catch(PhoneException e) {
+			String path = "src\\Music\\warning-sound.wav";
+			SoundTrack warnSound = new SoundTrack(path);
+			warnSound.start();
     		Alert a = new Alert(AlertType.WARNING, e.printMessage());
             a.show();
     	}
     	catch(FullnameException e) {
+			String path = "src\\Music\\warning-sound.wav";
+			SoundTrack warnSound = new SoundTrack(path);
+			warnSound.start();
     		Alert a = new Alert(AlertType.WARNING, e.printMessage());
+            a.show();
+    	}
+    	catch(Exception e) {
+    		String path = "src\\Music\\error-noti-sound.wav";
+    		SoundTrack errorSound = new SoundTrack(path);
+    		errorSound.start();
+    		Alert a = new Alert(AlertType.ERROR,"Error : "+"\n"+ e.getMessage());
             a.show();
     	}
     }
