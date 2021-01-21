@@ -70,16 +70,17 @@ public class SaleUtil {
         } 
         catch (Exception e) {
         	Alert a = new Alert(AlertType.INFORMATION,"Database Error: "+e.getMessage());
+        	System.out.println(e.getMessage());
 	        a.show();
         }
         return list;
     }
-	public ObservableList<Sale> searchBillByMonth(Month Month){
+	public ObservableList<Sale> searchBillByMonth(int Month){
         ObservableList<Sale> list = FXCollections.observableArrayList();
         ResultSet rs;
         try {
         	
-            String sql = "SELECT * from Sales  WHERE  MONTH(DateSale) = '"+Month.toString()+"'";
+            String sql = "SELECT * from Sales  WHERE  MONTH(DateSale) = "+Month+"";
             rs = kn.getTable(sql);
             LocalDate date = null;
             while(rs.next()){   

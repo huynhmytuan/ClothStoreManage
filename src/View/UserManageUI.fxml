@@ -26,9 +26,9 @@
             <DropShadow />
          </effect>
       </TableView>
-      <JFXButton fx:id="btnAdd" layoutX="479.0" layoutY="674.0" onMouseClicked="#btnAdd_Clicked" prefHeight="30.0" prefWidth="200.0" ripplerFill="#fff0f0" style="-fx-background-color: #10a6ad;" text="Add" textFill="#f6ffd1">
+      <JFXButton fx:id="btnAdd" layoutX="479.0" layoutY="674.0" onMouseClicked="#btnAdd_Clicked" prefHeight="30.0" prefWidth="200.0" ripplerFill="#fff0f0" style="-fx-background-color: #10a6ad; -fx-background-radius: 10;" text="Add" textFill="#f6ffd1">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
          <effect>
             <DropShadow />
@@ -37,9 +37,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="479.0" layoutY="598.0" onMouseClicked="#btnUpdate_Clicked" prefHeight="30.0" prefWidth="200.0" ripplerFill="#ffeded" style="-fx-background-color: #10a6ad;" text="Update " textFill="#efffe4">
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="479.0" layoutY="598.0" onMouseClicked="#btnUpdate_Clicked" prefHeight="30.0" prefWidth="200.0" ripplerFill="#ffeded" style="-fx-background-color: #10a6ad; -fx-background-radius: 10;" text="Update " textFill="#efffe4">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
          <effect>
             <DropShadow />
@@ -48,9 +48,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnRefresh" buttonType="RAISED" layoutX="803.0" layoutY="672.0" onMouseClicked="#btnRefresh_Clicked" prefHeight="30.0" prefWidth="200.0" ripplerFill="#fff0f0" style="-fx-background-color: #10a6ad;" text="Refresh" textFill="#f6ffd1">
+      <JFXButton fx:id="btnRefresh" buttonType="RAISED" layoutX="803.0" layoutY="672.0" onMouseClicked="#btnRefresh_Clicked" prefHeight="30.0" prefWidth="200.0" ripplerFill="#fff0f0" style="-fx-background-color: #10a6ad; -fx-background-radius: 10;" text="Refresh" textFill="#f6ffd1">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
          <effect>
             <DropShadow />
@@ -59,9 +59,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="802.0" layoutY="598.0" onMouseClicked="#btnDelete_Clicked" prefHeight="30.0" prefWidth="200.0" ripplerFill="#ffeeee" style="-fx-background-color: #10a6ad;" text="Delete" textFill="#f6ffd1" AnchorPane.rightAnchor="68.0">
+      <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="802.0" layoutY="598.0" onMouseClicked="#btnDelete_Clicked" prefHeight="30.0" prefWidth="200.0" ripplerFill="#ffeeee" style="-fx-background-color: #10a6ad; -fx-background-radius: 10;" text="Delete" textFill="#f6ffd1" AnchorPane.rightAnchor="68.0">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
          <effect>
             <DropShadow />
@@ -127,7 +127,10 @@
             <JFXTextField fx:id="txtPhone" layoutX="440.0" layoutY="131.0" prefHeight="26.0" prefWidth="230.0" AnchorPane.leftAnchor="440.0" AnchorPane.rightAnchor="16.0" />
             <JFXTextField fx:id="txtEmail" layoutX="69.0" layoutY="190.0" prefHeight="26.0" prefWidth="600.0" AnchorPane.leftAnchor="69.0" AnchorPane.rightAnchor="17.0" />
             <DatePicker fx:id="txtDate" layoutX="113.0" layoutY="132.0" prefHeight="26.0" prefWidth="176.0" />
-            <JFXTextArea fx:id="txtAddress" layoutX="78.0" layoutY="276.0" prefHeight="51.0" prefWidth="586.0" />
+            <JFXTextArea fx:id="txtAddress" layoutX="78.0" layoutY="278.0" prefHeight="51.0" prefWidth="586.0">
+               <font>
+                  <Font size="14.0" />
+               </font></JFXTextArea>
             <Label layoutX="36.0" layoutY="419.0" text="Username :" textFill="#12555d">
                <font>
                   <Font size="14.0" />
@@ -139,7 +142,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="txtRole" focusColor="#156879" layoutX="405.0" layoutY="415.0" prefHeight="26.0" prefWidth="110.0" unFocusColor="#146572" />
+            <JFXTextField fx:id="txtRole" focusColor="#156879" layoutX="405.0" layoutY="415.0" prefHeight="26.0" prefWidth="107.0" unFocusColor="#146572" />
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="248.0" layoutY="344.0" prefHeight="20.0" prefWidth="193.0" text="ACCOUNT DETAILS" textAlignment="CENTER" textFill="#12555d">
                <font>
                   <Font name="Arial Bold" size="16.0" />

@@ -113,10 +113,15 @@
             <DropShadow />
          </effect>
       </AnchorPane>
-      <JFXButton fx:id="btnRefresh" layoutX="804.0" layoutY="657.0" onMouseClicked="#btnRefresh_Clicked" prefHeight="36.0" prefWidth="174.0" style="-fx-background-color: #10a6ad; -fx-background-radius: 10;" text="Refresh" textFill="WHITE">
+      <JFXButton fx:id="btnRefresh" layoutX="833.0" layoutY="658.0" onMouseClicked="#btnRefresh_Clicked" prefHeight="36.0" prefWidth="174.0" style="-fx-background-color: #10a6ad; -fx-background-radius: 10;" text="Refresh" textFill="WHITE" AnchorPane.rightAnchor="62.60000000000002">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </JFXButton>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="783.0" layoutY="649.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="783.0">
+         <image>
+            <Image url="@../image/icon-update.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

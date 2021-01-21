@@ -19,15 +19,19 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Pair;
 
 public class BillController implements Initializable{
 	SaleUtil su = new SaleUtil();
+	ObservableList<Sale> billList = getBillList();
     @FXML
     private TableView<Sale> tableBill;
 
@@ -60,9 +64,14 @@ public class BillController implements Initializable{
 
     @FXML
     private JFXButton btnRefresh;
+    @FXML
+    private JFXButton btnCheck;
     
     @FXML
     private DatePicker datePicker;
+    
+    @FXML
+    private Label txtPrice;
 
     public void loadBill(ObservableList<Sale> list) {
     	colBillID.setCellValueFactory(new PropertyValueFactory<Sale,Integer>("SaleID"));
@@ -99,16 +108,16 @@ public class BillController implements Initializable{
     }
     @FXML
     void Row_Clicked(MouseEvent event) {
-    	System.out.print("Get data");
     	Sale curBill = tableBill.getSelectionModel().getSelectedItem();
     	int billID = curBill.getSaleID();
     	ObservableList<Sale> proList = su.getBillBySaleID(billID);
     	loadProduct(proList);
+    	String price = totalPrice();
+    	txtPrice.setText(price);
     }
     
-    
-    public void cmbSearch_Selected(ActionEvent event) {
-    	System.out.println("Event ne");
+    @FXML
+    public void btnCheck_Selected(MouseEvent event) {
     	String category = cmbSearch.getValue();
     	ObservableList<Sale> bill = FXCollections.observableArrayList();
     	if(category.equals("Search By Date")) {
@@ -118,17 +127,55 @@ public class BillController implements Initializable{
     	}
     	else {
     		LocalDate date = datePicker.getValue();
-    		Month month = date.getMonth();
+    		int month = date.getMonthValue();
     		bill = su.searchBillByMonth(month);
     		loadBill(bill);
     	}
+    	loadProduct(null);
+    }
+    @FXML
+    public void btnRefresh_Clicked(MouseEvent event) {
+    	loadBill(billList);
+    	tableProduct.setItems(null);
     }
     
+    @FXML
+    public void btnDelete_Clicked(MouseEvent event) {
+    	ObservableList<Sale> items = tableBill.getItems();
+    	Sale pro = tableBill.getSelectionModel().getSelectedItem();
+    	if(items.isEmpty()) {
+    		Alert a = new Alert(AlertType.WARNING, "List of bill is empty!");
+            a.show();
+    	}
+    	else {
+    		if(pro == null) {
+    			Alert a = new Alert(AlertType.WARNING, "Please choose a Bill to Delete!");
+                a.show();
+    		}
+    		else {
+    			su.deleteSale(pro.getSaleID());
+    			billList = getBillList();
+    	    	loadBill(billList);
+    		}
+    	}
+    }
+    public String totalPrice() {
+    	float totalPrice = 0;
+    	ObservableList<Sale> pro = tableProduct.getItems();
+    	if(pro == null) {
+    		return totalPrice + " $";
+    	}
+    	else {
+    		totalPrice = 0;
+    		for(Sale one : pro){
+    			totalPrice += one.getTotalPrice();
+    		}
+    	}
+    	return totalPrice + " $";
+    }
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		cmbSearch.getItems().addAll("Search By Date", "Search By Month");
-		ObservableList<Sale> billList = getBillList();
 		loadBill(billList);
 	}
 }

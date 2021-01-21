@@ -28,9 +28,9 @@
             <DropShadow />
          </effect>
       </TableView>
-      <JFXButton fx:id="btnAdd" layoutX="847.0" layoutY="665.0" onMouseClicked="#btnAdd_Clicked" prefHeight="30.0" prefWidth="79.0" ripplerFill="#fff0f0" style="-fx-background-color: #10a6ad;" text="Add" textFill="#f6ffd1">
+      <JFXButton fx:id="btnAdd" layoutX="847.0" layoutY="665.0" onMouseClicked="#btnAdd_Clicked" prefHeight="30.0" prefWidth="79.0" ripplerFill="#fff0f0" style="-fx-background-color: #10a6ad; -fx-background-radius: 10;" text="Add" textFill="#f6ffd1">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
          <effect>
             <DropShadow />
@@ -39,9 +39,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="847.0" layoutY="591.0" onMouseClicked="#btnUpdate_Clicked" prefHeight="30.0" prefWidth="79.0" ripplerFill="#ffeded" style="-fx-background-color: #10a6ad;" text="Update" textFill="#efffe4">
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="847.0" layoutY="591.0" onMouseClicked="#btnUpdate_Clicked" prefHeight="30.0" prefWidth="79.0" ripplerFill="#ffeded" style="-fx-background-color: #10a6ad; -fx-background-radius: 10;" text="Update" textFill="#efffe4">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
          <effect>
             <DropShadow />
@@ -50,9 +50,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnRefresh" buttonType="RAISED" layoutX="982.0" layoutY="666.0" onMouseClicked="#btnRefresh_Clicked" prefHeight="30.0" prefWidth="79.0" ripplerFill="#fff0f0" style="-fx-background-color: #10a6ad;" text="Refresh" textFill="#f6ffd1">
+      <JFXButton fx:id="btnRefresh" buttonType="RAISED" layoutX="982.0" layoutY="666.0" onMouseClicked="#btnRefresh_Clicked" prefHeight="30.0" prefWidth="79.0" ripplerFill="#fff0f0" style="-fx-background-color: #10a6ad; -fx-background-radius: 10;" text="Refresh" textFill="#f6ffd1">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
          <effect>
             <DropShadow />
@@ -61,9 +61,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="981.0" layoutY="590.0" onMouseClicked="#btnDelete_Clicked" prefHeight="30.0" prefWidth="79.0" ripplerFill="#ffeeee" style="-fx-background-color: #10a6ad;" text="Delete" textFill="#f6ffd1" AnchorPane.rightAnchor="10.0">
+      <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="981.0" layoutY="590.0" onMouseClicked="#btnDelete_Clicked" prefHeight="30.0" prefWidth="79.0" ripplerFill="#ffeeee" style="-fx-background-color: #10a6ad; -fx-background-radius: 10;" text="Delete" textFill="#f6ffd1" AnchorPane.rightAnchor="10.0">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
          <effect>
             <DropShadow />
@@ -82,7 +82,7 @@
             <Image url="@../image/icon-editProduct.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="939.0" layoutY="585.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="938.0" layoutY="586.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/icon-delete.png" />
          </image>

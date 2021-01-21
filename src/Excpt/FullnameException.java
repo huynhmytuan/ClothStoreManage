@@ -15,10 +15,10 @@ public class FullnameException extends Exception{
 	    public String printMessage() {
 	    	switch (fullnameConditionViolated) {
 	    	case 1: 
-	            return ("Fullname should not"
+	            return ("Name should not"
 	                    + " contain number");
 	    	case 2: 
-	            return ("Fullname should not"
+	            return ("Name should not"
 	                    + " contain special character");
 	    	}
 	    	return ("");	

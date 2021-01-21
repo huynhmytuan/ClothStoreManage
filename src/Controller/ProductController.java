@@ -13,6 +13,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 
+import Excpt.FullnameException;
+import Excpt.FullnameValidator;
 import Model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -125,8 +127,10 @@ public class ProductController implements Initializable {
     }
 	@FXML
     void btnAdd_Clicked(MouseEvent event) {
-    	int productID = Integer.parseInt(txtID.getText());
+    	try {
+		int productID = Integer.parseInt(txtID.getText());
     	String productName = txtName.getText();
+    	FullnameValidator.isValid(productName);
     	String productType = txtType.getText();
     	String productSize = txtSize.getText();
     	String productDecs = "";
@@ -143,7 +147,6 @@ public class ProductController implements Initializable {
 		System.out.println("Current Date="+today);
 		
 		float totalPrice =  (float)numIn * Float.parseFloat(productInPrice);
-    	try {
 			
 			su.insertStorage(storID, productID, numIn, numLeft, today, totalPrice);
 			Alert a = new Alert(AlertType.INFORMATION,"Insert product successfully!");
@@ -151,9 +154,10 @@ public class ProductController implements Initializable {
 		    listM = pu.getDataList();
 		    loadTable(listM);
 		}
-		catch(Exception e) {
-		}
-    	
+		catch(FullnameException e) {
+			Alert a = new Alert(AlertType.WARNING, e.printMessage());
+            a.show();
+		}	
     }
 
     @FXML
@@ -167,7 +171,6 @@ public class ProductController implements Initializable {
 				su.deleteStorage(productID);
 				Alert a = new Alert(AlertType.INFORMATION,"Delete product successfully!");
 				a.show();
-			
 			}
 			catch(Exception e) {
 				
@@ -180,8 +183,10 @@ public class ProductController implements Initializable {
 
     @FXML
     void btnUpdate_Clicked(MouseEvent event) {
+    	try {
     	int productID = Integer.parseInt(txtID.getText());
     	String productName = txtName.getText();
+    	FullnameValidator.isValid(productName);
     	String productType = txtType.getText();
     	String productSize = txtSize.getText();
     	String productDecs = "";
@@ -190,25 +195,23 @@ public class ProductController implements Initializable {
     	String productOutPrice = txtOutPrice.getText();
     	String productPicture = "";
 		productPicture = txtPicture.getText();
-		
-		
 		int numIn = Integer.parseInt(txtNumberOfProductIn.getText());
     	int numLeft = Integer.parseInt(txtQuantityInStock.getText());
     	LocalDate today = LocalDate.now();
 		System.out.println("Current Date="+today);
 		float totalPrice =  (float)numIn * Float.parseFloat(productInPrice);
-		try {
 			pu.updatetProduct(productID, productName, productType, productSize, productDecs, Float.parseFloat(productInPrice), Float.parseFloat(productOutPrice), productPicture);
 			su.updateStorage(productID, numIn, numLeft, totalPrice);
 
 			Alert a = new Alert(AlertType.INFORMATION,"Update product successfully!");
 		    a.show();
-		}
-		catch(Exception e) {
-		}
-    	
 		listM = pu.getDataList();
     	loadTable(listM);
+    	}
+    	catch(FullnameException e) {
+			Alert a = new Alert(AlertType.WARNING, e.printMessage());
+            a.show();
+		}
     }
 
     @FXML

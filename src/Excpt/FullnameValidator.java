@@ -4,7 +4,7 @@ public class FullnameValidator {
 	public static void isValid(String fullname) 
 	        throws FullnameException 
 	    {  
-	        // to check contain number
+	        // to check contain character
 	        if (fullname.matches(".*\\d.*")) { 
 	           throw new FullnameException(1);
 	        } 
