@@ -40,6 +40,7 @@ public class SaleController implements Initializable{
 	ObservableList<Product> listM = FXCollections.observableArrayList();
 	ObservableList<Sale> listSale = FXCollections.observableArrayList();
     int index = -1;
+    int saleID;
     
     @FXML
     private Text txtTotalBill;
@@ -221,7 +222,6 @@ public class SaleController implements Initializable{
     
     public void createProduct(Product prod, int inputNum) {
     	LocalDate today = LocalDate.now();//Lay gia ngay hien tai
-		int saleID = getRandomSaleID();
 		int staffID = LoginController.userID; //Lay ID cua nhan vien thuc hien bill
 		Float totalprice = (float)inputNum * prod.getProductOutPrice();
 		listSale.add(new Sale(saleID, today, curCus.getCusID(), staffID, prod.getProductID(), inputNum, prod.getProductOutPrice(),totalprice));   
@@ -231,12 +231,16 @@ public class SaleController implements Initializable{
     @FXML
     void btnAddItems_Clicked(MouseEvent event) {
     	Product prod = tableProduct.getSelectionModel().getSelectedItem();
-    	
+    	ObservableList<Sale> items = tableSale.getItems();
+    	if(items.isEmpty()) {
+    		saleID = getRandomSaleID();
+    	}
     	if(prod == null) {
     		Alert a = new Alert(AlertType.WARNING, "Please choose an item to add!");
             a.show();
     	}
     	else {
+    		
     		Storage sto = su.getAvailableByProdID(prod.getProductID());
     		TextInputDialog td = new TextInputDialog(); 
         	td.setHeaderText("Available stocks: "+sto.getQuantityInStock()+"\n"+"Insert quantity of item:");
