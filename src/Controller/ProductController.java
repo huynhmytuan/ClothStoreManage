@@ -1,6 +1,8 @@
 package Controller;
 
 
+import java.awt.FileDialog;
+import java.io.File;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.time.LocalDate;
@@ -27,6 +29,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -95,11 +98,15 @@ public class ProductController implements Initializable {
     @FXML
     private JFXTextField txtOutPrice;
 
-    @FXML
-    private JFXTextField txtPicture;
 
     @FXML
     private JFXTextField txtDecs;
+
+    @FXML
+    private JFXButton btnimport;
+
+    @FXML
+    private JFXTextField tbimageURL;
     
     @FXML
     private JFXComboBox<String> cmbCategory;
@@ -113,6 +120,9 @@ public class ProductController implements Initializable {
     @FXML
     private JFXTextField txtQuantityInStock;
 
+    @FXML
+    private ImageView imgItems;
+    
     public int getRandomStorID() {
     	ObservableList<Storage> inputList = su.getDataList();
     	int storID;
@@ -139,7 +149,7 @@ public class ProductController implements Initializable {
 	    	String productInPrice = txtInPrice.getText();
 	    	String productOutPrice = txtOutPrice.getText();
 	    	String productPicture = "";
-			productPicture = txtPicture.getText();
+			productPicture = tbimageURL.getText();
 			pu.insertProduct(productID, productName, productType, productSize, productDecs, Float.parseFloat(productInPrice), Float.parseFloat(productOutPrice), productPicture);
 	    	int numIn = Integer.parseInt(txtNumberOfProductIn.getText());
 	    	int numLeft = Integer.parseInt(txtQuantityInStock.getText());
@@ -205,7 +215,7 @@ public class ProductController implements Initializable {
 	    	String productInPrice = txtInPrice.getText();
 	    	String productOutPrice = txtOutPrice.getText();
 	    	String productPicture = "";
-			productPicture = txtPicture.getText();
+			productPicture = tbimageURL.getText();
 			int numIn = Integer.parseInt(txtNumberOfProductIn.getText());
 	    	int numLeft = Integer.parseInt(txtQuantityInStock.getText());
 	    	LocalDate today = LocalDate.now();
@@ -241,7 +251,7 @@ public class ProductController implements Initializable {
 		txtDecs.setText("");
 		txtInPrice.setText("");
 		txtOutPrice.setText("");
-		txtPicture.setText("");
+		tbimageURL.setText("");
 		txtNumberOfProductIn.setText("");
 		txtQuantityInStock.setText("");
     }
@@ -268,7 +278,11 @@ public class ProductController implements Initializable {
     	txtSize.setText(pro.getProductSize());
     	txtInPrice.setText("" + pro.getProductInPrice());
     	txtOutPrice.setText("" + pro.getProductOutPrice());
-    	
+    	tbimageURL.setText(pro.getProductPicture());
+    	String path = tbimageURL.getText();
+    	File file = new File(path);
+        Image image = new Image(file.toURI().toString());
+        imgItems.setImage(image);
     	Storage sto = su.getAvailableByProdID(pro.getProductID());
     	txtNumberOfProductIn.setText(""+sto.getNumOfProductIn());
     	txtQuantityInStock.setText(""+ sto.getQuantityInStock());
@@ -351,6 +365,13 @@ public class ProductController implements Initializable {
 	 	loadTable(listM);
     }
     
+    @FXML
+    void btnImport_Clicked(MouseEvent event) {
+    	FileDialog fd = null;
+    	fd.show();
+    	String path = new File(fd.getFile()).getAbsolutePath();;
+    	File f = new File(path);
+    }
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
