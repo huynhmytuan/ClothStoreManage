@@ -165,13 +165,14 @@ public class RegisterController implements Initializable{
 		    		    			 userIDArr[n] = uid.getUserID();
 		    		    			 n++;
 		    		    		 }
-		    		    		 boolean check = true;
+		    		    		 boolean check = false;
 		    		    		 do{
 		    		    			 check  = IntStream.of(loginIDArr).anyMatch(x -> x == loginID);
 		    		    			 if(check){
 		    		    				 loginID = rand.nextInt(10000);
 		    		    			 }
 		    		    			 else {
+		    		    				 check = true;
 		    		    				 break;
 		    		    			 }
 		    		    		 }while(check);

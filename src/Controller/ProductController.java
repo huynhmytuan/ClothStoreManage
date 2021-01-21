@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.stream.IntStream;
 
 import javax.swing.JOptionPane;
 
@@ -42,7 +43,6 @@ public class ProductController implements Initializable {
 	ProductUtil pu = new ProductUtil();
 	StorageUtil su = new StorageUtil();
 	ObservableList<Product> listM;
-    int index = -1;
     ResultSet rs = null;
 
     @FXML
@@ -129,7 +129,7 @@ public class ProductController implements Initializable {
     
     public int getRandomStorID() {
     	ObservableList<Storage> inputList = su.getDataList();
-    	int storID;
+    	int storID = -1;
     	Random rand = new Random();
     	storID = rand.nextInt(10000);//Random a new numID
 		int[] storIDArr = new int[listM.size()]; //Create a list to store ID in database
@@ -138,6 +138,22 @@ public class ProductController implements Initializable {
 			storIDArr[n] = lid.getStorID();
 			n++;
 		}
+		boolean check = false;
+		 do{
+			 //Check if storID already in storIDArr
+			 for(int num : storIDArr) {
+				 if(num == storID) {
+					 check = true;
+					 break;
+				 }
+			 }
+			 if(check){
+				 storID = rand.nextInt(10000);
+			 }
+			 else {
+				 return storID;
+			 }
+		}while(check);
 		return storID;
     }
 	@FXML

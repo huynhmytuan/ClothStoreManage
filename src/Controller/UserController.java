@@ -136,6 +136,22 @@ public class UserController implements Initializable {
 			loginIDArr[n] = lid.getLoginID();
 			n++;
 		}
+		boolean check = false;
+		 do{
+			 //Check if storID already in storIDArr
+			 for(int num :	loginIDArr) {
+				 if(num == numID) {
+					 check = true;
+					 break;
+				 }
+			 }
+			 if(check){
+				 numID = rand.nextInt(10000);
+			 }
+			 else {
+				 return numID;
+			 }
+		 }while(check);
 		return numID;
     }
     public int getRandomUserID() {
@@ -143,12 +159,28 @@ public class UserController implements Initializable {
     	int numID;
     	Random rand = new Random();
 		numID = rand.nextInt(10000);//Random a new numID
-		int[] loginIDArr = new int[listM.size()]; //Create a list to store ID in database
+		int[] userIDArr = new int[listM.size()]; //Create a list to store ID in database
 		int n=0;
 		for(User lid : inputList) {
-			loginIDArr[n] = lid.getUserID();
+			userIDArr[n] = lid.getUserID();
 			n++;
 		}
+		boolean check = false;
+		 do{
+			 //Check if storID already in storIDArr
+			 for(int num : userIDArr) {
+				 if(num == numID) {
+					 check = true;
+					 break;
+				 }
+			 }
+			 if(check){
+				 numID = rand.nextInt(10000);
+			 }
+			 else {
+				 return numID;
+			 }
+		 }while(check);
 		return numID;
     }
     @FXML

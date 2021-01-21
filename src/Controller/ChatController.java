@@ -11,6 +11,8 @@ import com.jfoenix.controls.JFXTextField;
 
 import Model.User;
 import Model.UserUtil;
+
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.*;
@@ -31,7 +33,7 @@ public class ChatController implements Initializable, Runnable{
     private JFXButton btnSend;
 
     @FXML
-    void btnSend_Clicked(MouseEvent event) {
+    void btnSend_Clicked(Event event) {
     	User curUser = uu.getUserByID(ID);
     	String str = curUser.getUserName() + "\n"+txtChatText.getText();
         try{
@@ -44,7 +46,9 @@ public class ChatController implements Initializable, Runnable{
 
     @FXML
     void txtChatText_EnterPress(KeyEvent event) {
-
+    	if(event.getCode() == KeyCode.ENTER) {
+    		btnSend_Clicked(event);
+    	}
     }
     
     @Override
@@ -57,6 +61,20 @@ public class ChatController implements Initializable, Runnable{
             }
         }catch(Exception e){}
 	}
+    public static boolean hostAvailabilityCheck() { 
+        try (Socket s = new Socket("localhost", 2003)) {
+            return true;
+        } catch (IOException ex) {
+            /* ignore */
+        }
+        return false;
+    }
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		if(hostAvailabilityCheck()) {
+			
+		}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -64,11 +82,12 @@ public class ChatController implements Initializable, Runnable{
 	           Socket socketClient = new Socket("localhost", 2003);
 	           writer = new BufferedWriter(new OutputStreamWriter(socketClient.getOutputStream()));
 	           reader = new BufferedReader(new InputStreamReader(socketClient.getInputStream()));
+		    }catch(Exception e){}
+			Thread t1 = new Thread();
+	        t1.start();
 	    }catch(Exception e){}
 		Thread t1 = new Thread();
         t1.start();
 	}
-
-	
 
 }
