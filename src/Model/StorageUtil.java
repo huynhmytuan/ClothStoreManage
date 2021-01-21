@@ -39,6 +39,14 @@ ConnectDBUtil kn = new ConnectDBUtil();
 		catch(Exception e) {
 		}
 	}
+	public void updateStock(int ProductID, int QuantityInStock) {
+		String sql = " UPDATE Storage SET QuantityInStock='" + QuantityInStock + "' WHERE ProductID='" +ProductID+"'";
+		try {			
+			kn.ExecuteNonQuery(sql);
+		}
+		catch(Exception e) {
+		}
+	}
 	public void deleteStorage(int prodID) {
 		String sql = "DELETE Storage WHERE ProductID='" + prodID + "'";
 		try {
