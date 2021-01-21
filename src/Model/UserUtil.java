@@ -93,5 +93,22 @@ public class UserUtil {
 	        }
 	        return list;
 	   }
+	 public User getUserByID(int UserID){
+		 	ResultSet rs = null;
+		 	User user = null;
+	        try {
+	            rs = getUser();
+	            LocalDate date = null;
+	            while (rs.next()){   
+	            	date = rs.getDate("UserDOB").toLocalDate();
+	                user  = new User(rs.getInt("UserID"), rs.getString("UserName"), date, rs.getString("UserPhone"), rs.getString("UserEmail"), rs.getString("UserAddress"));           
+	            }
+	        } 
+	        catch (Exception e) {
+	        	Alert a = new Alert(AlertType.INFORMATION,"Database Error: "+e.getMessage());
+		        a.show();
+	        }
+	        return user;
+	   }
 }
 

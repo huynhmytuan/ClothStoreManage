@@ -66,6 +66,11 @@ public class DashboardController implements Initializable {
 	    void btnUserDetail_Clicked(MouseEvent event) {
 	    	LoadUI("UserManageUI.fxml");
 	    }
+
+	    @FXML
+	    void btnChat_Clicked(MouseEvent event) {
+	    	LoadUI("ChatUI.fxml");
+	    }
 	    // ham loadUI 
 	    private void LoadUI(String UI) {
 	    	Parent root = null;
