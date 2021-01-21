@@ -25,6 +25,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -34,6 +35,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class ProductController implements Initializable {
 	ProductUtil pu = new ProductUtil();
@@ -383,10 +387,13 @@ public class ProductController implements Initializable {
     
     @FXML
     void btnImport_Clicked(MouseEvent event) {
-    	FileDialog fd = null;
-    	fd.show();
-    	String path = new File(fd.getFile()).getAbsolutePath();;
-    	File f = new File(path);
+    	Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    	File file;
+    	FileChooser fileChooser = new FileChooser();
+		file = fileChooser.showOpenDialog(window);
+    	if(file != null) {
+    		tbimageURL.setText(file.getAbsolutePath());
+    	}
     }
     
 	@Override
