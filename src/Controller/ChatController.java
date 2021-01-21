@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXTextField;
 
 import Model.User;
 import Model.UserUtil;
+
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -60,7 +61,6 @@ public class ChatController implements Initializable, Runnable{
             }
         }catch(Exception e){}
 	}
-    
     public static boolean hostAvailabilityCheck() { 
         try (Socket s = new Socket("localhost", 2003)) {
             return true;
@@ -75,6 +75,9 @@ public class ChatController implements Initializable, Runnable{
 		if(hostAvailabilityCheck()) {
 			
 		}
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
 		try{ 
 	           Socket socketClient = new Socket("localhost", 2003);
 	           writer = new BufferedWriter(new OutputStreamWriter(socketClient.getOutputStream()));
@@ -82,9 +85,9 @@ public class ChatController implements Initializable, Runnable{
 		    }catch(Exception e){}
 			Thread t1 = new Thread();
 	        t1.start();
-		
+	    }catch(Exception e){}
+		Thread t1 = new Thread();
+        t1.start();
 	}
-
-	
 
 }
