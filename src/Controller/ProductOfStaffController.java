@@ -190,10 +190,18 @@ public class ProductOfStaffController implements Initializable {
     	txt_proinprice.setText("" + pro.getProductInPrice());
     	txt_prooutprice.setText("" + pro.getProductOutPrice());
     	txt_quantity.setText(""+ sto.getQuantityInStock());
-    	String path = pro.getProductPicture();
-    	File file = new File(path);
-        Image image = new Image(file.toURI().toString());
-        imageview.setImage(image);
+    	String path = "";
+    	path = pro.getProductPicture();
+    	if((path == null)) {
+    		File file = new File("src/ProductImage/Error-icon.png");
+	        Image image = new Image(file.toURI().toString());
+	        imageview.setImage(image);
+    	}
+    	else {
+    		File file = new File(path);
+	        Image image = new Image(file.toURI().toString());
+	        imageview.setImage(image);
+    	}
     }
     
     @FXML

@@ -1,5 +1,6 @@
 package Controller;
 
+import java.awt.TextArea;
 import java.io.*;
 import java.net.Socket;
 import java.net.URL;
@@ -17,13 +18,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.input.*;
 
 public class ChatController implements Initializable, Runnable{
-
 	BufferedWriter writer;
     BufferedReader reader;
     int ID = LoginController.userID;
     UserUtil uu = new UserUtil();
+    public ChatController() {
+		// TODO Auto-generated constructor stub
+//        taChatBox.setEditable(false);
+    	
+	}
     @FXML
-    private static JFXTextArea taChatBox;
+    private static TextArea taChatBox;
 
     @FXML
     private JFXTextField txtChatText;
@@ -32,9 +37,14 @@ public class ChatController implements Initializable, Runnable{
     private JFXButton btnSend;
 
     @FXML
+    private JFXTextField ohNO;
+
+	@FXML
     void btnSend_Clicked(Event event) {
     	User curUser = uu.getUserByID(ID);
-    	String str = curUser.getUserName() + "\n"+txtChatText.getText();
+    	String name = curUser.getUserName();
+    	String str = "Kaleen Bhaiya\n"+txtChatText.getText();
+//    	ohNO.setText(str);
         try{
             writer.write(str);
             writer.write("\r\n");
@@ -54,35 +64,30 @@ public class ChatController implements Initializable, Runnable{
 	public void run() {
 		// TODO Auto-generated method stub
     	try{
-            String msg = "";
+    		System.out.println("Received 1 ");
+    		String msg = "";
             while((msg = reader.readLine()) != null){
-            	taChatBox.appendText(msg + "\n");
+            	msg = reader.readLine();
+            	ohNO.setText(msg);
+//                taChatBox.append(msg + "\n");
             }
         }catch(Exception e){}
 	}
-    
-    public static boolean hostAvailabilityCheck() { 
-        try (Socket s = new Socket("localhost", 2003)) {
-            return true;
-        } catch (IOException ex) {
-            /* ignore */
-        }
-        return false;
-    }
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		if(hostAvailabilityCheck()) {
-			
-		}
-		try{ 
-	           Socket socketClient = new Socket("localhost", 2003);
-	           writer = new BufferedWriter(new OutputStreamWriter(socketClient.getOutputStream()));
-	           reader = new BufferedReader(new InputStreamReader(socketClient.getInputStream()));
-		    }catch(Exception e){}
-			Thread t1 = new Thread();
-	        t1.start();
-		
+//		taChatBox.setText("Hello chat");
+
+//    	taChatBox.setText("Hello");
+		try{
+            
+            Socket socketClient = new Socket("localhost", 2003);
+            writer = new BufferedWriter(new OutputStreamWriter(socketClient.getOutputStream()));
+            reader = new BufferedReader(new InputStreamReader(socketClient.getInputStream()));
+        }catch(Exception e){}
+		ChatController chat = new ChatController();
+		Thread a = new Thread(chat);
+		a.start();
 	}
 
 	

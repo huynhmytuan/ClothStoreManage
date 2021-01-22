@@ -299,10 +299,18 @@ public class ProductController implements Initializable {
     	txtInPrice.setText("" + pro.getProductInPrice());
     	txtOutPrice.setText("" + pro.getProductOutPrice());
     	tbimageURL.setText(pro.getProductPicture());
-    	String path = tbimageURL.getText();
-    	File file = new File(path);
-        Image image = new Image(file.toURI().toString());
-        imgItems.setImage(image);
+    	String path = "";
+    	path = tbimageURL.getText();
+    	if((path == null)) {
+    		File file = new File("src/ProductImage/Error-icon.png");
+	        Image image = new Image(file.toURI().toString());
+	        imgItems.setImage(image);
+    	}
+    	else {
+    		File file = new File(path);
+	        Image image = new Image(file.toURI().toString());
+	        imgItems.setImage(image);
+    	}
     	Storage sto = su.getAvailableByProdID(pro.getProductID());
     	txtNumberOfProductIn.setText(""+sto.getNumOfProductIn());
     	txtQuantityInStock.setText(""+ sto.getQuantityInStock());
