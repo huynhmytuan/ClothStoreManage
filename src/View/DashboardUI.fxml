@@ -134,7 +134,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
                <children>
-                  <JFXButton buttonType="RAISED" onMouseClicked="#btnLogOut_Clicked" prefHeight="50.0" prefWidth="180.0" ripplerFill="#fffafa" text="Log Out" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" layoutY="3.0" onMouseClicked="#btnLogOut_Clicked" prefHeight="50.0" prefWidth="180.0" ripplerFill="#fffafa" text="Log Out" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="16.0" />
                      </font>
@@ -145,7 +145,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <ImageView fitHeight="35.0" fitWidth="32.0" layoutX="27.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="35.0" fitWidth="32.0" layoutX="27.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../image/icon-logout.png" />
                      </image>

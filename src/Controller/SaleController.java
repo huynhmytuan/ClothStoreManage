@@ -1,8 +1,10 @@
 package Controller;
 
 import java.net.URL;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.Currency;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -124,11 +126,13 @@ public class SaleController implements Initializable{
     	colPrice.setCellValueFactory(new PropertyValueFactory<Sale,Float>("Price"));
     	colTotal.setCellValueFactory(new PropertyValueFactory<Sale,Float>("TotalPrice"));
     	tableSale.setItems(list);
+    	Locale localeVN = new Locale("vi", "VN");//tien te
+        NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);//tien te
     	float totalBill = 0;
     	for(Sale one:list) {
     		totalBill +=one.getTotalPrice();
     	}
-    	txtTotalBill.setText(""+totalBill+" $");
+    	txtTotalBill.setText(currencyVN.format(totalBill));
     }
     //Search
     @FXML

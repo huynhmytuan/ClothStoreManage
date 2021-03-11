@@ -1,11 +1,11 @@
 package Controller;
 
-
 import java.awt.FileDialog;
 import java.io.File;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.util.Locale;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.stream.IntStream;
@@ -38,6 +38,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import java.text.NumberFormat;
 
 public class ProductController implements Initializable {
 	ProductUtil pu = new ProductUtil();
@@ -323,13 +324,15 @@ public class ProductController implements Initializable {
     
     @FXML
     void Row_Clicked(MouseEvent event) {
+    	Locale localeVN = new Locale("vi", "VN");//tien te
+        NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);//tien te
     	Product pro = tableProduct.getSelectionModel().getSelectedItem();
     	txtID.setText(""+ pro.getProductID());
     	txtName.setText(pro.getProductName());
     	txtType.setText(pro.getProductType());
     	txtSize.setText(pro.getProductSize());
-    	txtInPrice.setText("" + pro.getProductInPrice());
-    	txtOutPrice.setText("" + pro.getProductOutPrice());
+    	txtInPrice.setText("" + currencyVN.format(pro.getProductInPrice()));
+    	txtOutPrice.setText("" + currencyVN.format(pro.getProductOutPrice()));
     	tbimageURL.setText(pro.getProductPicture());
     	String path = "";
     	path = tbimageURL.getText();

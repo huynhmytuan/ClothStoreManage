@@ -3,6 +3,8 @@ package Controller;
 import java.io.File;
 import java.net.URL;
 import java.sql.ResultSet;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -191,12 +193,14 @@ public class ProductOfStaffController implements Initializable {
     public void Row_Clicked(MouseEvent event) {
         Product pro = table_Product.getSelectionModel().getSelectedItem();
         Storage sto = su.getAvailableByProdID(pro.getProductID());
+        Locale localeVN = new Locale("vi", "VN");//tien te
+        NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);//tien te
     	txt_id.setText(""+ pro.getProductID());
     	txt_proname.setText(pro.getProductName());
     	txt_protype.setText(pro.getProductType());
     	txt_prosize.setText(pro.getProductSize());
-    	txt_proinprice.setText("" + pro.getProductInPrice());
-    	txt_prooutprice.setText("" + pro.getProductOutPrice());
+    	txt_proinprice.setText("" + currencyVN.format(pro.getProductInPrice()));
+    	txt_prooutprice.setText("" + currencyVN.format(pro.getProductOutPrice()));
     	txt_quantity.setText(""+ sto.getQuantityInStock());
     	String path = "";
     	path = pro.getProductPicture();

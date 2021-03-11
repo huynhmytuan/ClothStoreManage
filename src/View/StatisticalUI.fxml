@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1070.0" style="-fx-background-color: #82e4ff;" stylesheets="@../CSS/TableView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BillController">
+   <children>
+      <AnchorPane layoutX="6.0" layoutY="7.0" prefHeight="84.0" prefWidth="1055.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+         <children>
+            <Label layoutX="350.0" layoutY="6.0" text="REVENUE STATISTICS" textAlignment="CENTER" textFill="#37a6b5" AnchorPane.topAnchor="6.0">
+               <font>
+                  <Font name="Arial Bold" size="30.0" />
+               </font>
+            </Label>
+            <Label layoutX="6.0" layoutY="53.0" text="Search By" textFill="#227680">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <JFXComboBox fx:id="cmbSearch" layoutX="89.0" layoutY="53.0" prefHeight="26.0" prefWidth="163.0" />
+            <JFXButton fx:id="btnCheck" buttonType="RAISED" layoutX="469.0" layoutY="46.0" onMouseClicked="#btnCheck_Selected" prefHeight="34.0" prefWidth="111.0" ripplerFill="#ffeeee" style="-fx-background-color: #10a6ad;" text="Check" textFill="#f6ffd1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <DatePicker fx:id="datePicker" layoutX="271.0" layoutY="54.0" prefHeight="26.0" prefWidth="183.0" />
+            <JFXButton fx:id="btnRefresh" buttonType="RAISED" layoutX="597.0" layoutY="46.0" onMouseClicked="#btnRefresh_Clicked" prefHeight="34.0" prefWidth="111.0" ripplerFill="#ffeeee" style="-fx-background-color: #10a6ad;" text="Refresh" textFill="#f6ffd1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <Label layoutX="513.0" layoutY="617.0" text="TIMES" textFill="#095d67">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <BarChart fx:id="barChart" layoutX="67.0" layoutY="150.0" prefHeight="462.0" prefWidth="956.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <Label layoutX="-3.0" layoutY="345.0" rotate="270.0" text="REVENUE" textFill="#095d67" AnchorPane.leftAnchor="-3.0">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
