@@ -259,7 +259,6 @@ public class SaleController implements Initializable{
             a.show();
     	}
     	else {
-    		
     		Storage sto = su.getAvailableByProdID(prod.getProductID());
     		TextInputDialog td = new TextInputDialog(); 
         	td.setHeaderText("Available stocks: "+sto.getQuantityInStock()+"\n"+"Insert quantity of item:");
@@ -291,8 +290,6 @@ public class SaleController implements Initializable{
         	}
     	}
     }
-    
-    
 
     @FXML
     void btnEditBill_Clicked(MouseEvent event) {
@@ -395,7 +392,7 @@ public class SaleController implements Initializable{
     	}
     	else {
     		//code add bill vao csdl
-    		for(Sale one: listSale) {
+    		for(Sale one: listSale){
     			Storage sto = su.getAvailableByProdID(one.getProductID());
     			int left = sto.getQuantityInStock() - one.getNumOfProduct();
     			sa.insertSale(one.getSaleID(), one.getDateSale(), one.getCusID(), one.getStaffID(), one.getProductID(), one.getNumOfProduct(), one.getPrice(), one.getTotalPrice());
