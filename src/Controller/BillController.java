@@ -10,7 +10,6 @@ import javax.management.relation.Relation;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 
-import Model.Product;
 import Model.Sale;
 import Model.SaleUtil;
 import Model.Storage;
