@@ -29,6 +29,8 @@ public class ProductOfStaffController implements Initializable {
 	ObservableList<Product> listM;
     int index = -1;
     ResultSet rs = null;
+    Boolean typeCheck = false;
+    
 	@FXML
     private TableView<Product> table_Product;
 
@@ -114,10 +116,24 @@ public class ProductOfStaffController implements Initializable {
     }
     @FXML
     public void cmbCategory_Selected(ActionEvent event) {
-    	String category = cmbCategory.getValue();
+    	String category = cmbCategory.getValue().replace(" ", "");
     	listM = pu.Search(category);
 	 	loadTable(listM);
-    	
+    	typeCheck = true;
+    }
+    
+    @FXML
+    public void cmbSize_Selected(ActionEvent event) {
+    	if(typeCheck==false) {
+    		Alert a = new Alert(AlertType.WARNING, "Please choose product type first!");
+            a.show();
+    	}
+    	else {
+    		String size = cmbSize.getValue().replace(" ", "");
+    		String type = cmbCategory.getValue();
+    		listM = pu.SearchByCategory(type,size);
+    		loadTable(listM);
+    	}
     }
     
     public ObservableList<String> loadSize() {
@@ -146,14 +162,6 @@ public class ProductOfStaffController implements Initializable {
 		return listSize;
     }
     
-    
-    @FXML
-    public void cmbSize_Selected(ActionEvent event) {
-    	String size = cmbSize.getValue();
-    	listM = pu.Search(size);
-	 	loadTable(listM);
-    }
-  
     public void loadTable(ObservableList<Product> list) {
     	col_id.setCellValueFactory(new PropertyValueFactory<Product,Integer>("ProductID"));
 		col_name.setCellValueFactory(new PropertyValueFactory<Product,String>("ProductName"));

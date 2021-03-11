@@ -44,6 +44,7 @@ public class ProductController implements Initializable {
 	StorageUtil su = new StorageUtil();
 	ObservableList<Product> listM;
     ResultSet rs = null;
+    Boolean typeCheck = false;
 
     @FXML
     private AnchorPane productUI;
@@ -156,10 +157,41 @@ public class ProductController implements Initializable {
 		}while(check);
 		return storID;
     }
+    
+    public int getRandomProdID() {
+    	ObservableList<Product> inputList = pu.getDataList();
+    	int numID;
+    	Random rand = new Random();
+		numID = rand.nextInt(10000);//Random a new numID
+		int[] prodIDArr = new int[inputList.size()]; //Create a list to store ID in database
+		int n=0;
+		for(Product lid : inputList) {
+			prodIDArr[n] = lid.getProductID();
+			n++;
+		}
+		boolean check = false;
+		 do{
+			 //Check if storID already in storIDArr
+			 for(int num : prodIDArr) {
+				 if(num == numID) {
+					 check = true;
+					 break;
+				 }
+			 }
+			 if(check){
+				 numID = rand.nextInt(10000);
+			 }
+			 else {
+				 return numID;
+			 }
+		 }while(check);
+		return numID;
+    }
+    
 	@FXML
     void btnAdd_Clicked(MouseEvent event) {
     	try {
-			int productID = Integer.parseInt(txtID.getText());
+			int productID = getRandomProdID();
 	    	String productName = txtName.getText();
 	    	FullnameValidator.isValid(productName);
 	    	String productType = txtType.getText();
@@ -353,12 +385,25 @@ public class ProductController implements Initializable {
     }
     @FXML
     public void cmbCategory_Selected(ActionEvent event) {
-    	String category = cmbCategory.getValue();
+    	String category = cmbCategory.getValue().replace(" ", "");
     	listM = pu.Search(category);
 	 	loadTable(listM);
-    	
+    	typeCheck = true;
     }
     
+    @FXML
+    public void cmbSize_Selected(ActionEvent event) {
+    	if(typeCheck==false) {
+    		Alert a = new Alert(AlertType.WARNING, "Please choose product type first!");
+            a.show();
+    	}
+    	else {
+    		String size = cmbSize.getValue().replace(" ", "");
+    		String type = cmbCategory.getValue();
+    		listM = pu.SearchByCategory(type,size);
+    		loadTable(listM);
+    	}
+    }
     public ObservableList<String> loadSize() {
     	listM = pu.getDataList();
     	ObservableList<String> sizeList = FXCollections.observableArrayList();
@@ -386,12 +431,7 @@ public class ProductController implements Initializable {
     }
     
     
-    @FXML
-    public void cmbSize_Selected(ActionEvent event) {
-    	String size = cmbSize.getValue();
-    	listM = pu.Search(size);
-	 	loadTable(listM);
-    }
+
     
     @FXML
     void btnImport_Clicked(MouseEvent event) {

@@ -63,7 +63,39 @@ public class ProductUtil {
         }
         return list;
     }
-	
+	//Search Category
+	public ObservableList<Product> SearchByCategory(String condi) {
+		ObservableList<Product> list = FXCollections.observableArrayList();
+		ResultSet rs = null;
+        String sql = "SELECT * FROM Product WHERE ProductType like '%" + condi + "%'";
+        try {
+			rs = kn.getTable(sql);
+            while (rs.next()){   
+                list.add(new Product(Integer.parseInt(rs.getString("ProductID")), rs.getString("ProductName"), rs.getString("ProductType"), rs.getString("ProductSize"), rs.getString("ProductDecs"), rs.getFloat("ProductInPrice"), rs.getFloat("ProductOutPrice") ,rs.getString("ProductPicture")));               
+            }
+        }
+        catch(Exception e) {  
+        	Alert a = new Alert(AlertType.INFORMATION,"Database Error: "+e.getMessage());
+	        a.show();
+        }
+        return list;
+    }
+	public ObservableList<Product> SearchByCategory(String condi1, String condi2) {
+		ObservableList<Product> list = FXCollections.observableArrayList();
+		ResultSet rs = null;
+        String sql = "SELECT * FROM Product WHERE ProductType like '%" + condi1 + "%' AND ProductSize like '%" + condi2 + "%'";
+        try {
+			rs = kn.getTable(sql);
+            while (rs.next()){   
+                list.add(new Product(Integer.parseInt(rs.getString("ProductID")), rs.getString("ProductName"), rs.getString("ProductType"), rs.getString("ProductSize"), rs.getString("ProductDecs"), rs.getFloat("ProductInPrice"), rs.getFloat("ProductOutPrice") ,rs.getString("ProductPicture")));               
+            }
+        }
+        catch(Exception e) {  
+        	Alert a = new Alert(AlertType.INFORMATION,"Database Error: "+e.getMessage());
+	        a.show();
+        }
+        return list;
+    }
 	//Get data Tableview_Product
     public ObservableList<Product> getDataList(){
         ObservableList<Product> list = FXCollections.observableArrayList();

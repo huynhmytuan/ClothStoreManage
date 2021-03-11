@@ -32,7 +32,8 @@ import javafx.util.Pair;
 
 public class BillController implements Initializable{
 	SaleUtil su = new SaleUtil();
-	ObservableList<Sale> billList = getBillList();
+	ObservableList<Sale> listSaleAll = su.getDataList();
+	ObservableList<Sale> billList = getBillList(listSaleAll);
     @FXML
     private TableView<Sale> tableBill;
 
@@ -85,9 +86,9 @@ public class BillController implements Initializable{
 		colQuantity.setCellValueFactory(new PropertyValueFactory<Sale,Integer>("NumOfProduct"));
 		colTotal.setCellValueFactory(new PropertyValueFactory<Sale,Float>("TotalPrice"));
 		tableProduct.setItems(list);
-    }
-    public ObservableList<Sale> getBillList() {
-    	ObservableList<Sale> listM = su.getDataList();
+    }    	
+    
+    public ObservableList<Sale> getBillList(ObservableList<Sale> listM) {
     	ObservableList<Sale> billList = FXCollections.observableArrayList();
 		billList.add(listM.get(0));
 		for(Sale i : listM) {
@@ -120,19 +121,27 @@ public class BillController implements Initializable{
     @FXML
     public void btnCheck_Selected(MouseEvent event) {
     	String category = cmbSearch.getValue();
-    	ObservableList<Sale> bill = FXCollections.observableArrayList();
-    	if(category.equals("Search By Date")) {
-    		LocalDate date = datePicker.getValue();
-    		bill = su.searchBillByDate(date);
-    		loadBill(bill);
+    	if(category==null) {
+    		Alert a = new Alert(AlertType.INFORMATION,"Please choose one of search type!");
+		    a.show();
     	}
     	else {
-    		LocalDate date = datePicker.getValue();
-    		int month = date.getMonthValue();
-    		bill = su.searchBillByMonth(month);
-    		loadBill(bill);
+    		ObservableList<Sale> bill = FXCollections.observableArrayList();
+        	if(category.equals("Search By Date")) {
+        		LocalDate date = datePicker.getValue();
+        		bill = su.searchBillByDate(date);
+        		ObservableList<Sale> billList = getBillList(bill); 
+        		loadBill(billList);
+        	}
+        	else {
+        		LocalDate date = datePicker.getValue();
+        		int month = date.getMonthValue();
+        		bill = su.searchBillByMonth(month);
+        		ObservableList<Sale> billList = getBillList(bill); 
+        		loadBill(billList);
+        	}
+        	loadProduct(null);
     	}
-    	loadProduct(null);
     }
     @FXML
     public void btnRefresh_Clicked(MouseEvent event) {
@@ -165,7 +174,8 @@ public class BillController implements Initializable{
 	    			SoundTrack successSound = new SoundTrack(path);
 	    			successSound.start();
 	    			su.deleteSale(pro.getSaleID());
-	    			billList = getBillList();
+	    			ObservableList<Sale> listM = su.getDataList();
+	    			billList = getBillList(listM);
 	    	    	loadBill(billList);
 	    		}
 	    	}

@@ -1,0 +1,9 @@
+--module-path
+"C:\\Program Files\\Java\\javafx-sdk-15.0.1\\lib"
+--add-modules
+javafx.controls,javafx.fxml
+-Dfile.encoding=Cp1252
+-classpath
+"E:\\Java\\FinalProject\\CLOTHINGSTORE MANAGEMENT_Nhom 1\\ClothStoreManage\\bin;E:\\Java\\FinalProject\\CLOTHINGSTORE MANAGEMENT_Nhom 1\\Library\\sqljdbc42.jar;E:\\Java\\FinalProject\\CLOTHINGSTORE MANAGEMENT_Nhom 1\\Library\\jfoenix-9.0.10.jar;C:\\Program Files\\Java\\javafx-sdk-15.0.1\\lib\\javafx.base.jar;C:\\Program Files\\Java\\javafx-sdk-15.0.1\\lib\\javafx.controls.jar;C:\\Program Files\\Java\\javafx-sdk-15.0.1\\lib\\javafx.fxml.jar;C:\\Program Files\\Java\\javafx-sdk-15.0.1\\lib\\javafx.graphics.jar;C:\\Program Files\\Java\\javafx-sdk-15.0.1\\lib\\javafx.media.jar;C:\\Program Files\\Java\\javafx-sdk-15.0.1\\lib\\javafx.swing.jar;C:\\Program Files\\Java\\javafx-sdk-15.0.1\\lib\\javafx.web.jar;C:\\Program Files\\Java\\javafx-sdk-15.0.1\\lib\\javafx-swt.jar"
+-XX:+ShowCodeDetailsInExceptionMessages
+application.Main
