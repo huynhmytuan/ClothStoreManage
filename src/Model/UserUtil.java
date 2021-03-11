@@ -101,7 +101,9 @@ public class UserUtil {
 	            LocalDate date = null;
 	            while (rs.next()){   
 	            	date = rs.getDate("UserDOB").toLocalDate();
-	                user  = new User(rs.getInt("UserID"), rs.getString("UserName"), date, rs.getString("UserPhone"), rs.getString("UserEmail"), rs.getString("UserAddress"));           
+	            	if(rs.getInt("UserID")==UserID) {
+	            		user  = new User(rs.getInt("UserID"), rs.getString("UserName"), date, rs.getString("UserPhone"), rs.getString("UserEmail"), rs.getString("UserAddress"));           
+	            	}
 	            }
 	        } 
 	        catch (Exception e) {

@@ -1,6 +1,7 @@
 package Model;
 
 import java.sql.ResultSet;
+import java.time.LocalDate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -113,4 +114,22 @@ public class ProductUtil {
         }
         return list;
     }
+    //Get 
+    public Product getProdByID(int ProdID){
+	 	ResultSet rs = null;
+	 	Product prod = null;
+        try {
+            rs = getProduct();
+            while (rs.next()){  
+            	if(rs.getInt("ProductID")==ProdID) {
+            		prod  = new Product(Integer.parseInt(rs.getString("ProductID")), rs.getString("ProductName"), rs.getString("ProductType"), rs.getString("ProductSize"), rs.getString("ProductDecs"), rs.getFloat("ProductInPrice"), rs.getFloat("ProductOutPrice") ,rs.getString("ProductPicture"));        
+            	}
+            }
+        }
+        catch (Exception e) {
+        	Alert a = new Alert(AlertType.INFORMATION,"Database Error: "+e.getMessage());
+	        a.show();
+        }
+        return prod;
+   }
 }
