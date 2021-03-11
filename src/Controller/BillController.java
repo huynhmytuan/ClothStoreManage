@@ -1,22 +1,22 @@
 package Controller;
 
 import java.net.URL;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.management.relation.Relation;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextArea;
 
-import Model.Sale;
-import Model.SaleUtil;
-import Model.Storage;
+import Model.*;
 import Task.SoundTrack;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -27,10 +27,15 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.util.Pair;
 
 public class BillController implements Initializable{
 	SaleUtil su = new SaleUtil();
+	ProductUtil pu = new ProductUtil();
+	CustomerUtil cu = new CustomerUtil();
+	UserUtil uu = new UserUtil();
+	ObservableList<Product> listProduct = pu.getDataList();
+	ObservableList<Customer> listCus = cu.getDataList();
+	ObservableList<User> listUser = uu.getDataList();
 	ObservableList<Sale> listSaleAll = su.getDataList();
 	ObservableList<Sale> billList = getBillList(listSaleAll);
     @FXML
@@ -44,18 +49,6 @@ public class BillController implements Initializable{
 
     @FXML
     private TableColumn<Sale, Integer> colStaffID;
-
-    @FXML
-    private TableView<Sale> tableProduct;
-
-    @FXML
-    private TableColumn<Sale, Integer> colProductID;
-
-    @FXML
-    private TableColumn<Sale, Integer> colQuantity;
-
-    @FXML
-    private TableColumn<Sale, Float> colTotal;
 
     @FXML
     private JFXButton btnDelete;
@@ -72,6 +65,9 @@ public class BillController implements Initializable{
     private DatePicker datePicker;
     
     @FXML
+    private JFXTextArea txtBill;
+    
+    @FXML
     private Label txtPrice;
 
     public void loadBill(ObservableList<Sale> list) {
@@ -79,13 +75,7 @@ public class BillController implements Initializable{
 		colDate.setCellValueFactory(new PropertyValueFactory<Sale,LocalDate>("DateSale"));
 		colStaffID.setCellValueFactory(new PropertyValueFactory<Sale,Integer>("StaffID"));
 		tableBill.setItems(list);
-    }
-    public void loadProduct(ObservableList<Sale> list) {
-    	colProductID.setCellValueFactory(new PropertyValueFactory<Sale,Integer>("ProductID"));
-		colQuantity.setCellValueFactory(new PropertyValueFactory<Sale,Integer>("NumOfProduct"));
-		colTotal.setCellValueFactory(new PropertyValueFactory<Sale,Float>("TotalPrice"));
-		tableProduct.setItems(list);
-    }    	
+    }   	
     
     public ObservableList<Sale> getBillList(ObservableList<Sale> listM) {
     	ObservableList<Sale> billList = FXCollections.observableArrayList();
@@ -109,12 +99,27 @@ public class BillController implements Initializable{
     }
     @FXML
     void Row_Clicked(MouseEvent event) {
+    	txtBill.clear();
+    	Locale localeVN = new Locale("vi", "VN");
+    	NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
     	Sale curBill = tableBill.getSelectionModel().getSelectedItem();
     	int billID = curBill.getSaleID();
     	ObservableList<Sale> proList = su.getBillBySaleID(billID);
-    	loadProduct(proList);
-    	String price = totalPrice();
-    	txtPrice.setText(price);
+    	float total = 0;
+    	Customer cus = cu.getCusByID(curBill.getCusID());
+    	txtBill.setText(txtBill.getText() + "\t*************************************************************\n");
+    	txtBill.setText(txtBill.getText() + "\t							POS BILL							\n");
+    	txtBill.setText(txtBill.getText() + "\t**************************************************************\n");
+    	txtBill.setText(txtBill.getText() + "\tDate: "+curBill.getDateSale() + "			 Customer: " + cus.getCusName()+"\n");
+    	txtBill.setText(txtBill.getText() + "\t**************************************************************\n");
+    	txtBill.setText(txtBill.getText() + "\tProduct			Quantity			Price 				Total\n");
+    	for(Sale one :proList) {
+    		Product prod = pu.getProdByID(one.getProductID());
+    		txtBill.setText(txtBill.getText() + "\t" + prod.getProductName() + "\t\t" + one.getNumOfProduct() + "\t\t\t" + currencyVN.format(prod.getProductOutPrice()) + "\t\t\t" + currencyVN.format(one.getTotalPrice()) +"\n");
+    		total+=one.getTotalPrice();
+    	}
+    	txtBill.setText(txtBill.getText() + "\t**************************************************************\n");
+    	txtBill.setText(txtBill.getText() + "\t										Total: "+currencyVN.format(total)+"\n");
     }
     
     @FXML
@@ -139,13 +144,12 @@ public class BillController implements Initializable{
         		ObservableList<Sale> billList = getBillList(bill); 
         		loadBill(billList);
         	}
-        	loadProduct(null);
     	}
     }
     @FXML
     public void btnRefresh_Clicked(MouseEvent event) {
     	loadBill(billList);
-    	tableProduct.setItems(null);
+    	txtBill.setText(null);
     }
     
     @FXML
@@ -189,18 +193,8 @@ public class BillController implements Initializable{
     	
     }
     public String totalPrice() {
-    	float totalPrice = 0;
-    	ObservableList<Sale> pro = tableProduct.getItems();
-    	if(pro == null) {
-    		return totalPrice + " $";
-    	}
-    	else {
-    		totalPrice = 0;
-    		for(Sale one : pro){
-    			totalPrice += one.getTotalPrice();
-    		}
-    	}
-    	return totalPrice + " $";
+		return null;
+    	//code
     }
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

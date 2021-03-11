@@ -406,6 +406,7 @@ public class SaleController implements Initializable{
     		cashSound.start();
       		Alert a = new Alert(AlertType.INFORMATION, "Payment success!");
             a.show();
+           
             //clear table view
             listSale.clear();
         	loadSale(listSale);

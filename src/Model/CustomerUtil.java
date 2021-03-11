@@ -85,9 +85,10 @@ public class CustomerUtil {
 		 	Customer cus = new Customer();
 	        ResultSet rs = null;
 	        try {
-	            String sql = "SELECT CusName, CusPhone, CusAddress  FROM Customer WHERE CusID='"+CusID+"'";
+	            String sql = "SELECT CusID, CusName, CusPhone, CusAddress  FROM Customer WHERE CusID='"+CusID+"'";
 	            rs = kn.getTable(sql);
-	            while (rs.next()){   
+	            while (rs.next()){
+	            	cus.setCusID(CusID);
 	                cus.setCusName(rs.getString("CusName"));  
 	                cus.setCusPhone(rs.getString("CusPhone"));
 	                cus.setCusAddress(rs.getNString("CusAddress"));
